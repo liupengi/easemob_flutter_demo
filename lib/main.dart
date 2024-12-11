@@ -111,7 +111,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 Expanded(
                   child: TextButton(
                     onPressed: _signOut,
-                    child: const Text("创建群组"),
+                    child: const Text("获取禁言列表"),
                     style: ButtonStyle(
                       foregroundColor: MaterialStateProperty.all(Colors.white),
                       backgroundColor:
@@ -223,7 +223,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void _initSDK() async {
     EMOptions options = EMOptions(
-      appKey: "easemob-demo#support",
+      appKey: "1145240331209630#duiquan",
       autoLogin: false,
       debugMode: true,
       requireAck: true,
@@ -429,12 +429,28 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   void _signOut() async {
+    EMClient.getInstance.groupManager.fetchMuteListFromServer("265049485672455");
     try {
-      await EMClient.getInstance.groupManager
-          .requestToJoinPublicGroup("264950694084612");
+      EMGroup group = await EMClient.getInstance.groupManager.fetchGroupInfoFromServer("265049485672455");
+
+
+      List<String>? muteList  = group.muteList;
+
+
+      print(muteList.toString());
     } on EMError catch (e) {
-      print(e.toString());
     }
+
+
+
+
+
+    // try {
+    //   await EMClient.getInstance.groupManager
+    //       .requestToJoinPublicGroup("264950694084612");
+    // } on EMError catch (e) {
+    //   print(e.toString());
+    // }
 
     //EMClient.getInstance.chatManager.pinConversation(conversationId: "10000005", isPinned: true);
 
@@ -606,6 +622,9 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   void _button() {
+
+
+
     EMTextMessageBody textBody = EMTextMessageBody(content: "content");
 
     EMMessage emMessage =

@@ -79,10 +79,10 @@ packages:
     dependency: "direct main"
     description:
       name: im_flutter_sdk
-      sha256: "7f5673d46d86cccef6ed7364198642729ca4257e0976e084e1874e22885a29a5"
+      sha256: "0023ee17d4e3037af9b360c2c4ea170dba774b7542197865027f0a1f4cc12089"
       url: "https://pub.dev"
     source: hosted
-    version: "4.8.2"
+    version: "4.10.0"
   leak_tracker:
     dependency: transitive
     description:
