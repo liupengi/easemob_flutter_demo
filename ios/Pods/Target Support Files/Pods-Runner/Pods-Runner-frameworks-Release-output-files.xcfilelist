@@ -1,0 +1,2 @@
+${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/im_flutter_sdk.framework
+${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/HyphenateChat.framework

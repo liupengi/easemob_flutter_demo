@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:im_flutter_sdk/im_flutter_sdk.dart';
+import 'dart:core';
+
+import 'package:intl/intl.dart';
 
 void main() {
   runApp(const MyApp());
@@ -111,7 +114,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 Expanded(
                   child: TextButton(
                     onPressed: _signOut,
-                    child: const Text("获取禁言列表"),
+                    child: const Text("获取漫游消息"),
                     style: ButtonStyle(
                       foregroundColor: MaterialStateProperty.all(Colors.white),
                       backgroundColor:
@@ -222,8 +225,14 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   void _initSDK() async {
+    // 指定翻译的目标语言
+    EMMessage textMessage = EMMessage.createTxtSendMessage(
+      targetId: "11",
+      content: "111"
+    );
+
     EMOptions options = EMOptions(
-      appKey: "1145240331209630#duiquan",
+      appKey: "easemob-demo#support",
       autoLogin: false,
       debugMode: true,
       requireAck: true,
@@ -234,6 +243,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   void _addChatListener() {
+
     EMClient.getInstance.groupManager.addEventHandler("identifier",
         EMGroupEventHandler(
           onMemberJoinedFromGroup: (groupid,member){
@@ -243,9 +253,20 @@ class _MyHomePageState extends State<MyHomePage> {
 
             print("您加入了群组" + groupId + "====" + inviter+"====="+inviteMessage.toString());
           },
+          onSpecificationDidUpdate: (group){
+
+          },
+            onAnnouncementChangedFromGroup: (groupid,announcement){
+              print("公告更新了" + groupid + "====" + announcement);
+
+            }
+          //onSpecificationDidUpdate
+
 
         )
     );
+
+
 
 
 
@@ -263,6 +284,8 @@ class _MyHomePageState extends State<MyHomePage> {
     EMClient.getInstance.addConnectionEventHandler(
         "UNIQUE_HANDLER_ID",
         EMConnectionEventHandler(
+
+
           onConnected: () {
             _addLogToConsole("onConnected---------");
             print("-------------------------onConnected");
@@ -270,6 +293,14 @@ class _MyHomePageState extends State<MyHomePage> {
           onDisconnected: () {
             _addLogToConsole("onDisconnected---------");
           },
+          // onOfflineMessageSyncStart: (){
+          //   print("-------------------------onOfflineMessageSyncStart");
+          // },
+          //
+          // onOfflineMessageSyncFinish: (){
+          //   print("-------------------------onOfflineMessageSyncFinish");
+          // },
+
         ));
 
     // 添加收消息监听
@@ -277,6 +308,9 @@ class _MyHomePageState extends State<MyHomePage> {
       // EMChatEventHandler 对应的 key。
       "UNIQUE_HANDLER_ID",
       EMChatEventHandler(
+        onConversationsUpdate: (){
+          EMClient.getInstance.chatManager.loadAllConversations();
+        },
         onMessageReactionDidChange: (events) async {
           for (var i = 0; i < events.length; i++) {
             print(events[i].messageId);
@@ -291,18 +325,42 @@ class _MyHomePageState extends State<MyHomePage> {
             print("======================");
           }
         },
+        onMessagesRecalledInfo:(recallMessageInfo) {
+          for (var msg in recallMessageInfo) {
+            print("onMessagesRecalledInfo======================"+msg.recallMessageId);
+          }
+
+
+
+        } ,
         onMessagesReceived: (messages) async {
           for (var msg in messages) {
-            print("======================");
-            print(msg.chatType);
-            print("======================");
 
-            List<EMConversation> loadAllConversations =
-            await EMClient.getInstance.chatManager.loadAllConversations();
-            for (var i = 0; i < loadAllConversations.length; i++) {
-              print(loadAllConversations[i].type);
-              print("----------------------------------");
-            }
+            print("onMessagesReceived======================${msg.toString()}");
+// // 指定需要翻译的目标语言
+//             List<String> languages = ["en"];
+//             try {
+//               // 执行消息内容的翻译，`textMessage`：收到的文本消息
+//               EMMessage translatedMessage = await EMClient.getInstance.chatManager
+//                   .translateMessage(msg: msg, languages: languages);
+//
+//               EMTextMessageBody body = translatedMessage.body as EMTextMessageBody;
+//               print("translation: ${body.translations}");
+//
+//             } on EMError catch (e) {
+//             }
+
+
+          //  print(msg.status);
+
+
+
+            // List<EMConversation> loadAllConversations =
+            // await EMClient.getInstance.chatManager.loadAllConversations();
+            // for (var i = 0; i < loadAllConversations.length; i++) {
+            //   print(loadAllConversations[i].type);
+            //   print("----------------------------------");
+            // }
 
             switch (msg.body.type) {
               case MessageType.TXT:
@@ -377,6 +435,7 @@ class _MyHomePageState extends State<MyHomePage> {
           }
         },
       ),
+
     );
     // EMClient.getInstance.chatManager.addMessageEvent("UNIQUE_HANDLER_ID", EMMessageReactionEvent(
     //
@@ -397,11 +456,26 @@ class _MyHomePageState extends State<MyHomePage> {
       // ChatMessageEvent 对应的 key。
         "UNIQUE_HANDLER_ID",
         ChatMessageEvent(
-          onSuccess: (msgId, msg) {
+          onSuccess: (msgId, msg) async {
             _addLogToConsole("send message succeed");
             Map? map = msg.attributes;
             print("------------------成功");
-            print(map);
+            // 消息发送动作完成。
+            EMTextMessageBody body = msg.body as EMTextMessageBody;
+
+            print("translation: ${body.translations}");
+
+
+            List<String> languages = ["en"];
+            try {
+              // 执行消息内容的翻译，`textMessage`：收到的文本消息
+              EMMessage translatedMessage = await EMClient.getInstance.chatManager
+                  .translateMessage(msg: msg, languages: languages);
+
+              EMTextMessageBody body = translatedMessage.body as EMTextMessageBody;
+              print("translation: ${body.translations}");
+            } on EMError catch (e) {
+            }
           },
           onProgress: (msgId, progress) {
             _addLogToConsole("send message succeed");
@@ -421,7 +495,7 @@ class _MyHomePageState extends State<MyHomePage> {
     }
 
     try {
-      await EMClient.getInstance.login(_username, _password);
+      await EMClient.getInstance.login("lp","1");
       _addLogToConsole("sign in succeed, username: $_username");
     } on EMError catch (e) {
       _addLogToConsole("sign in failed, e: ${e.code} , ${e.description}");
@@ -429,17 +503,68 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   void _signOut() async {
-    EMClient.getInstance.groupManager.fetchMuteListFromServer("265049485672455");
-    try {
-      EMGroup group = await EMClient.getInstance.groupManager.fetchGroupInfoFromServer("265049485672455");
+
+    List<EMMessage> messages = await  EMClient.getInstance.chatManager.loadMessagesWithKeyword("你");
+      for (var i = 0; i < messages.length; i++){
+        debugPrint("=================================================================================================================================================");
+        debugPrint("loadMessagesWithKeyword搜索到的消息: ${messages[i].toJson()}");
 
 
-      List<String>? muteList  = group.muteList;
+
+      }
 
 
-      print(muteList.toString());
-    } on EMError catch (e) {
-    }
+    // EMConversation? emConversation =await EMClient.getInstance.chatManager.getConversation('274305606811654');
+    // List<EMMessage>? message =await emConversation?.loadMessages(
+    //     startMsgId: "",
+    //     loadCount:20,
+    //     direction: EMSearchDirection.Up
+    // );
+    // for (var i = 0; i < message!.length; i++){
+    //   EMTextMessageBody body = message[i].body as EMTextMessageBody;
+    //   debugPrint("translation: ${body.translations}");
+    //
+    // }
+
+    // FetchMessageOptions fetchMessageOptions = const FetchMessageOptions(
+    //   needSave: true
+    // );
+    //
+    // try {
+    //   EMCursorResult<EMMessage> message = await EMClient.getInstance.chatManager.fetchHistoryMessagesByOption("273215126568974",
+    //       EMConversationType.GroupChat,
+    //       options: fetchMessageOptions,
+    //       cursor: "",
+    //       pageSize: 20);
+    //   List<EMMessage> data = message.data;
+    //   for (var i = 0; i < data!.length; i++){
+    //     debugPrint("=================================================================================================================================================");
+    //     debugPrint("通过漫游获取的消息: ${data[i].toJson()}");
+    //
+    //
+    //
+    //   }
+    // } on EMError catch (e) {
+    //   print("获取的漫游消息失败：${e.code}======${e.description}");
+    // }
+
+
+
+
+
+
+
+    // EMClient.getInstance.groupManager.fetchMuteListFromServer("265049485672455");
+    // try {
+    //   EMGroup group = await EMClient.getInstance.groupManager.fetchGroupInfoFromServer("265049485672455");
+    //
+    //
+    //   List<String>? muteList  = group.muteList;
+    //
+    //
+    //   print(muteList.toString());
+    // } on EMError catch (e) {
+    // }
 
 
 
@@ -544,25 +669,50 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   void _joinChatRoom() async {
-    await EMClient.getInstance.chatRoomManager.joinChatRoom("205354411556871");
+    EMConversation? emConversation =await EMClient.getInstance.chatManager.getConversation('273215126568974');
+    List<EMMessage>? message =await emConversation?.loadMessages(
+      startMsgId: "",
+        loadCount:20,
+      direction: EMSearchDirection.Up
+    );
+    for (var i = 0; i < message!.length; i++){
+      debugPrint("=================================================================================================================================================");
+      debugPrint("通过本地获取的消息: ${message[i].toJson()}");
 
-    // EMConversation? emConversation =await EMClient.getInstance.chatManager.getConversation('1805212823417192449_employee');
-    // List<EMMessage>? message =await emConversation?.loadMessages(
-    //   startMsgId: "",
-    //     loadCount:20,
-    //   direction: EMSearchDirection.Up
-    // );
-    // for (var i = 0; i < message!.length; i++){
-    //
-    //   print("======================");
-    //   print(message[i].hasRead);
-    //   print("======================");
-    // }
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   // await EMClient.getInstance.chatRoomManager.joinChatRoom("205354411556871");
+
+
   }
 
   Future<void> _getConversationFromServer() async {
-    //  ConversationFetchOptions conversationFetchOptions = ConversationFetchOptions.pinned();
-    // EMCursorResult<EMConversation> conversation = await EMClient.getInstance.chatManager.fetchConversationsByOptions(options:conversationFetchOptions) ;
+      ConversationFetchOptions conversationFetchOptions = ConversationFetchOptions();
+     EMCursorResult<EMConversation> conversation = await EMClient.getInstance.chatManager.fetchConversationsByOptions(options:conversationFetchOptions) ;
+    var conversations = conversation.data;
+      for (var i = 0; i < conversations!.length; i++){
+        debugPrint("=================================================================================================================================================");
+        debugPrint("通过本地获取的消息: ${conversations[i].latestMessage().toString()}");
+
+
+      }
+
+
+
     //  var data = conversation.data;
 
     List<String> list = ["10000015"];
@@ -575,28 +725,12 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   void _signUp() async {
-    List<EMConversation> conversation = await EMClient.getInstance.chatManager
-        .fetchConversationListFromServer(pageNum: 1, pageSize: 20);
+    // List<EMConversation> conversation = await EMClient.getInstance.chatManager
+    //     .fetchConversationListFromServer(pageNum: 1, pageSize: 20);
+    //
+    // print("");
 
-    print("");
 
-    // FetchMessageOptions fetchMessageOptions = FetchMessageOptions(
-    //   from: "1805212823417192449_employee",
-    //   startTs: -1,
-    //   endTs: -1,
-    //   direction: EMSearchDirection.Up,
-    //   needSave: true
-    //
-    //   );
-    // EMCursorResult<EMMessage> message = await EMClient.getInstance.chatManager.fetchHistoryMessagesByOption("1805212823417192449_employee", EMConversationType.Chat,cursor: "",pageSize: 50);
-    // List<EMMessage> data = message.data;
-    //
-    // for (var i = 0; i < data!.length; i++){
-    //
-    //   print("======================");
-    //   print(data[i].hasRead);
-    //   print("======================");
-    // }
 
     // var searchMsgFromDB2 = EMClient.getInstance.chatManager.searchMsgFromDB("",
     // timestamp:DateTime.now().millisecondsSinceEpoch,
@@ -627,12 +761,15 @@ class _MyHomePageState extends State<MyHomePage> {
 
     EMTextMessageBody textBody = EMTextMessageBody(content: "content");
 
-    EMMessage emMessage =
-    EMMessage.createTxtSendMessage(targetId: _string, content: "content");
+    EMMessage emMessage = EMMessage.createTxtSendMessage(targetId: _string, content: "content",targetLanguages: ["en"]);
 
-    emMessage.chatType = ChatType.GroupChat;
+    emMessage.chatType = ChatType.Chat;
+
     EMClient.getInstance.chatManager.sendMessage(emMessage);
-    print("--------------------------------");
+    EMTextMessageBody body = emMessage.body as EMTextMessageBody;
+
+    print("translation: ${body.translations}");
+
   }
 
   void _sendMessage() async {

@@ -1,0 +1,29 @@
+PODS:
+  - Flutter (1.0.0)
+  - HyphenateChat (4.8.1)
+  - im_flutter_sdk (0.0.1):
+    - Flutter
+    - HyphenateChat (= 4.8.1)
+
+DEPENDENCIES:
+  - Flutter (from `Flutter`)
+  - im_flutter_sdk (from `.symlinks/plugins/im_flutter_sdk/ios`)
+
+SPEC REPOS:
+  trunk:
+    - HyphenateChat
+
+EXTERNAL SOURCES:
+  Flutter:
+    :path: Flutter
+  im_flutter_sdk:
+    :path: ".symlinks/plugins/im_flutter_sdk/ios"
+
+SPEC CHECKSUMS:
+  Flutter: e0871f40cf51350855a761d2e70bf5af5b9b5de7
+  HyphenateChat: 88ff1478183f1349498bd592c89ea9c394c12f76
+  im_flutter_sdk: 558ea6e89f7a243aedb34d6032255fab7a802a22
+
+PODFILE CHECKSUM: 819463e6a0290f5a72f145ba7cde16e8b6ef0796
+
+COCOAPODS: 1.16.2
