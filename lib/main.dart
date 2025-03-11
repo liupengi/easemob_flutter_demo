@@ -223,7 +223,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void _initSDK() async {
     EMOptions options = EMOptions(
-      appKey: "easemob-demo#support",
+      appKey: "1165250217193383#develop",
       autoLogin: false,
       debugMode: true,
       requireAck: true,
@@ -421,7 +421,7 @@ class _MyHomePageState extends State<MyHomePage> {
     }
 
     try {
-      await EMClient.getInstance.login("wyq5", "1");
+      await EMClient.getInstance.loginWithToken("10", "YWMtr53PuP4hEe-RhCHTiptth2muw-2SYU0SurJaYSEFvI9ur5Xw-P0R75dMBccmDn3LAwMAAAGVgw_f9jeeSAA1MxLO1m1Q3Hgz7nXTfCKlTUHevJbQSB_Usrlsz4eOYQ");
       _addLogToConsole("sign in succeed, username: $_username");
     } on EMError catch (e) {
       _addLogToConsole("sign in failed, e: ${e.code} , ${e.description}");
@@ -430,11 +430,12 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void _signOut() async {
     try {
-      EMGroup group = await EMClient.getInstance.groupManager.fetchGroupInfoFromServer("274998504783876");
+      EMGroup group = await EMClient.getInstance.groupManager.fetchGroupInfoFromServer("274939917697028");
 
-
+      print("------>${group.memberCount}");
       print("------>${group.maxUserCount}");
     } on EMError catch (e) {
+
     }
 
 
