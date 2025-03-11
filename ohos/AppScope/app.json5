@@ -1,6 +1,6 @@
 {
   "app": {
-    "bundleName": "com.easemob.demo.easemob_flutter_demo",
+    "bundleName": "com.example.easemob",
     "vendor": "example",
     "versionCode": 1,
     "versionName": "1.0.0",

@@ -5,13 +5,13 @@
         "name": "default",
         "type": "HarmonyOS",
         "material": {
-          "certpath": "/Users/liupeng/.ohos/config/default_ohos_01-zvTRd2xldPSgaTNpoI6FBQnVQXhl3iihwY2arREY=.cer",
-          "storePassword": "0000001B1CC73D98E9AEEA8E40D611B789611E12B8ADDD60A8D812B82DD70EE32F3A63FEBBB46A1C697A4D",
-          "keyAlias": "debugKey",
-          "keyPassword": "0000001BDF8ED75142C0DBAF68DB75E83F500398B039C33D0648BA77E9F0CA4495D59AF98525F0B03991D3",
-          "profile": "/Users/liupeng/.ohos/config/default_ohos_01-zvTRd2xldPSgaTNpoI6FBQnVQXhl3iihwY2arREY=.p7b",
+          "storePassword": "0000001AF78267E092F931009808852D9942137F35998C94487922B7953DB8F24C478448A736C173D900",
+          "certpath": "/Users/liupeng/Downloads/liupeng.cer",
+          "keyAlias": "liupeng",
+          "keyPassword": "0000001A53C8971C0CC1F4DAE582D259A68FE320C8132F76552B6D07BA0BE9FE93C204D6063E1EC2F11B",
+          "profile": "/Users/liupeng/Downloads/liupengDebug (1).p7b",
           "signAlg": "SHA256withECDSA",
-          "storeFile": "/Users/liupeng/.ohos/config/default_ohos_01-zvTRd2xldPSgaTNpoI6FBQnVQXhl3iihwY2arREY=.p12"
+          "storeFile": "/Users/liupeng/Downloads/liupeng.p12"
         }
       }
     ],

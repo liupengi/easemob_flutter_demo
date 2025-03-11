@@ -231,11 +231,15 @@ class _MyHomePageState extends State<MyHomePage> {
       content: "111"
     );
 
-    EMOptions options = EMOptions(
-      appKey: "easemob-demo#support",
+    EMOptions options = EMOptions.withAppKey(
+      "1137220225110285#demo",
       autoLogin: false,
       debugMode: true,
       requireAck: true,
+      extSettings: {
+        ExtSettings.kAppIDForOhOS: "111703463",
+      },
+
     );
     await EMClient.getInstance.init(options);
     // 通知 SDK UI 已准备好。该方法执行后才会收到 `EMChatRoomEventHandler`、`EMContactEventHandler` 和 `EMGroupEventHandler` 回调。
@@ -495,7 +499,7 @@ class _MyHomePageState extends State<MyHomePage> {
     }
 
     try {
-      await EMClient.getInstance.login("lp","1");
+      await EMClient.getInstance.login("p2","1");
       _addLogToConsole("sign in succeed, username: $_username");
     } on EMError catch (e) {
       _addLogToConsole("sign in failed, e: ${e.code} , ${e.description}");
