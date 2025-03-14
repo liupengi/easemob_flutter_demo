@@ -113,38 +113,6 @@
 
 /**
  *  \~chinese
- *  按数目从服务器获取自己加入的群组。
- *  
- *  这里需要注意的是：
- *  - 每次调用只返回一页的数据。首次调用传空值，会从最新的第一条开始取；
- *  - aPageSize 是这次接口调用期望返回的列表数据个数，如当前在最后一页，返回的数据会是 count < aPageSize；
- *  - 列表页码 aPageNum 是方便服务器分页查询返回，对于数据量未知且很大的情况，分页获取，服务器会根据每次的页数和每次的pagesize 返回数据，直到返回所有数据。
- *
- *  同步方法，会阻塞当前线程。
- *
- *  @param aPageNum  获取自己加入群的游标，首次调用传空。
- *  @param aPageSize 期望返回结果的数量, 如果小于 0 则一次返回所有结果。
- *  @param pError    出错信息。
- *
- *  @result 群组列表。
- *
- *  \~english
- *  Gets pagesize number group you joined from the server.
- *
- *  This is a synchronous method and blocks the current thread.
- *
- *  @param aPageNum        Gets the cursor to join the group. Sets the parameter as nil for the first time.
- *  @param aPageSize       The number of results expected to be returned. If <0 then all results will be returned at once
- *  @param pError          The error information if the method fails: Error.
- *
- *  @result  The Group list. 
- */
-- (NSArray<EMGroup *> *_Nullable )getJoinedGroupsFromServerWithPage:(NSInteger)aPageNum
-                                                           pageSize:(NSInteger)aPageSize
-                                                              error:(EMError **_Nullable )pError __deprecated_msg("Use -getJoinedGroupsFromServerWithPage:pageSize:needMemberCount:needRole:error:completion: instead");;
-
-/**
- *  \~chinese
  *  从服务器获取指定范围内的公开群。
  *  
  *  同步方法，会阻塞当前线程。
@@ -792,6 +760,24 @@
  */
 - (NSString *_Nullable)getGroupAnnouncementWithId:(NSString *_Nonnull)aGroupId
                                    error:(EMError **_Nullable)pError;
+
+/**
+ *  \~chinese
+ *  查看自己是否在群组禁言名单中。
+ *
+ *  @param aGroupId         群组 ID。
+ *  @param aCompletionBlock 该方法完成调用的回调。如果该方法调用失败，会包含调用失败的原因。
+ *
+ *
+ *  \~english
+ *  Checks whether the current user is on the mute list of a group.
+ *
+ *  @param aGroupId         The group ID.
+ *  @param aCompletionBlock The completion block, which contains the error message if the method fails.
+ *
+ */
+- (void)isMemberInMuteListFromServerWithGroupId:(NSString * _Nonnull)aGroupId
+                                     completion:(void (^ _Nonnull)(BOOL inMuteList, EMError * _Nullable aError))aCompletionBlock;
 
 /**
  *  \~chinese
@@ -2415,116 +2401,6 @@
                                  needRole:(BOOL)aNeedRole
                                completion:(void (^_Nullable)(NSArray<EMGroup *> *_Nullable aList, EMError *_Nullable aError))aCompletionBlock;
 
-#pragma mark - Apns
-
-/**
- *  \~chinese
- *  屏蔽/取消屏蔽群组消息的推送。
- *  
- *  同步方法，会阻塞当前线程。
- * 
- *  已废弃，请用 {@link IEMPushManager::updatePushServiceForGroups:disablePush:} 代替。
- *
- *  @param aGroupId    群组 ID。
- *  @param aIgnore     是否屏蔽。
- *
- *  @result 错误信息。
- *
- *  \~english
- *  Blocks/unblocks group message‘s push notification.
- *
- *  This is a synchronous method and blocks the current thread.
- * 
- *  Deprecated, please use  {@link IEMPushManager::updatePushServiceForGroups:disablePush:}  instead.
- *
- *  @param aGroupId     The group ID.
- *  @param aIsIgnore    Whether to show or ignore the push notification.
- *
- *  @result    The error information if the method fails: Error.
- */
-- (EMError *)ignoreGroupPush:(NSString *)aGroupId
-                      ignore:(BOOL)aIsIgnore EM_DEPRECATED_IOS(3_3_2, 3_8_3, "Use -IEMPushManager::updatePushServiceForGroups:disablePush:");
-
-
-/**
- *  \~chinese
- *  屏蔽/取消屏蔽群组消息的推送。
- * 
- *  已废弃，请用 {@link IEMPushManager::updatePushServiceForGroups:disablePush:completion:} 代替。
- *
- *  @param aGroupId          群组 ID。
- *  @param aIsEnable         是否允许推送。
- *  @param aCompletionBlock  该方法完成调用的回调。如果该方法调用失败，会包含调用失败的原因。
- *
- *
- *  \~english
- *  Blocks/unblocks the group message‘s push notification.
- * 
- *  Deprecated, please use  {@link IEMPushManager::updatePushServiceForGroups:disablePush:completion:}  instead.
- *
- *  @param aGroupId          The group ID.
- *  @param aIsEnable         Whether to block or unblock the push notification.
- *  @param aCompletionBlock  The completion block, which contains the error message if the method fails.
- *
- */
-- (void)updatePushServiceForGroup:(NSString *)aGroupId
-                    isPushEnabled:(BOOL)aIsEnable
-                       completion:(void (^)(EMGroup *aGroup, EMError *aError))aCompletionBlock EM_DEPRECATED_IOS(3_3_2, 3_8_3, "Use -IEMPushManager::updatePushServiceForGroups:disablePush:completion:");
-
-
-/**
- *  \~chinese
- *  屏蔽/取消屏蔽群组消息的推送。
- * 
- *  已废弃，请用 {@link IEMPushManager::updatePushServiceForGroups:disablePush:} 代替。
- *
- *  同步方法，会阻塞当前线程。
- *
- *  @param aGroupIDs   群组 ID 列表。
- *  @param aIgnore     是否屏蔽。
- *
- *  @result 错误信息。
- *
- *  \~english
- *  Blocks/unblocks the group message‘s push notification.
- * 
- *  Deprecated, please use  {@link IEMPushManager::updatePushServiceForGroups:disablePush:}  instead.
- *
- *  This is a synchronous method and blocks the current thread.
- *
- *  @param aGroupIDs    The group ID list.
- *  @param aIsIgnore    Whether to show or ignore the push notification.
- *
- *  @result    The error information if the method fails: Error.
- */
-- (EMError *)ignoreGroupsPush:(NSArray *)aGroupIDs
-                       ignore:(BOOL)aIsIgnore EM_DEPRECATED_IOS(3_3_2, 3_8_3, "Use -IEMPushManager::updatePushServiceForGroups:disablePush:");
-
-/**
- *  \~chinese
- *  屏蔽/取消屏蔽群组消息的推送。
- * 
- *  已废弃，请用 {@link IEMPushManager::updatePushServiceForGroups:disablePush:completion:} 代替。
- *
- *  @param aGroupIDs         群组 ID 列表。
- *  @param aIsEnable         是否允许推送。
- *  @param aCompletionBlock  该方法完成调用的回调。如果该方法调用失败，会包含调用失败的原因。
- *
- *
- *  \~english
- *  Blocks/unblocks the group message‘s push notification.
- * 
- *  Deprecated, please use  {@link IEMPushManager::updatePushServiceForGroups:disablePush:completion:}  instead.
- *
- *  @param aGroupIDs         The group ID list.
- *  @param aIsEnable         Whether to enable group messages push.
- *  @param aCompletionBlock  The completion block, which contains the error message if the method fails.
- *
- */
-- (void)updatePushServiceForGroups:(NSArray *)aGroupIDs
-                     isPushEnabled:(BOOL)aIsEnable
-                        completion:(void (^)(NSArray *groups, EMError *aError))aCompletionBlock EM_DEPRECATED_IOS(3_3_2, 3_8_3, "Use -IEMPushManager::updatePushServiceForGroups:disablePush:completion:");
-
 #pragma mark - Group member attributes
 /**
 *  \~chinese
@@ -2592,37 +2468,5 @@
 * - If both the map of custom attributes and EMError are empty, no custom attribute is set for the group members.
 */
 - (void)fetchMembersAttributes:(NSString *_Nonnull)groupId userIds:(NSArray<__kindof NSString *> *_Nonnull)userIds keys:(NSArray<__kindof NSString *> *_Nonnull)keys completion:(void (^_Nullable)(NSDictionary<NSString*,NSDictionary<NSString*,NSString*>*> *_Nullable attributes, EMError *_Nullable error))completionBlock;
-
-#pragma mark - EM_DEPRECATED_IOS  3.8.8
-
-/**
- *  \~chinese
- *  按数目从服务器获取自己加入的群组。
- *
- *  已废弃，请用 {@link getJoinedGroupsFromServerWithPage:pageSize:needMemberCount:needRole:error:completion:} 代替。
- *
- *  异步方法。
- *
- *  @param aPageNum  获取自己加入群的游标，首次调用传空。
- *  @param aPageSize 期望返回结果的数量, 如果小于 0 则一次返回所有结果。
- *  @param aCompletionBlock      该方法完成调用的回调。如果该方法调用失败，会包含调用失败的原因。
- *
- *  \~english
- *  Gets the pagesize number group you joined from the server.
- *
- *  Deprecated, please use  {@link getJoinedGroupsFromServerWithPage:pageSize:needMemberCount:needRole:error:completion:}  instead.
- *
- *  This is an asynchronous method.
- *
- *  @param aPageNum            The cursor when joins the group. Sets the parameter as nil for the first time.
- *  @param aPageSize           The number of results expected to be returned, if <0 then all results will be returned at once.
- *  @param aCompletionBlock    The completion block, which contains the error message if the method fails.
- *
- */
-
-- (void)getJoinedGroupsFromServerWithPage:(NSInteger)aPageNum
-                                 pageSize:(NSInteger)aPageSize
-                               completion:(void (^_Nullable)(NSArray<EMGroup *> *aList, EMError *_Nullable aError))aCompletionBlock
-                                __deprecated_msg("Use -getJoinedGroupsFromServerWithPage:pageSize:needMemberCount:needRole:error:completion: instead");
 
 @end

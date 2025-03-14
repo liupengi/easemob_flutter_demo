@@ -257,32 +257,4 @@ typedef NS_ENUM(NSInteger, EMGroupPermissionType) {
  */
 + (instancetype)groupWithId:(NSString *)aGroupId;
 
-#pragma mark - EM_DEPRECATED_IOS 3.8.8
-/**
- *  \~chinese
- *  群组属性配置，需要先通过 getGroupSpecificationFromServerWithId 获取群组详情。
- * 
- *  已废弃，请用 {@link settings} 代替。
- *
- *  \~english
- *  Setting options of group, require fetch group's detail first.
- * 
- *  Deprecated. Please use  {@link settings}  instead.
- */
-@property (nonatomic, strong, readonly) EMGroupOptions *setting __deprecated_msg("Use settings instead");
-
-/**
- *  \~chinese
- *  群组的所有成员(包含owner、admins和members)。
- * 
- *  已废弃，请用 {@link users} 代替。
- *
- *  \~english
- *  All occupants of the group, includes the group owner and admins and all other group members.
- * 
- *  Deprecated. Please use  {@link users}  instead.
- */
-@property (nonatomic, strong, readonly) NSArray *occupants
-__deprecated_msg("Use users instead");
-
 @end

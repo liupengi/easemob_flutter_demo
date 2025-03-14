@@ -56,5 +56,14 @@
  */
 @property (nonatomic, strong) NSString* _Nullable ext;
 
+/*!
+ *  \~chinese
+ *  撤回消息的会话Id。
+ *
+ *  \~english
+ *  The  conversationId of the recalled message.
+ */
+@property (nonatomic, strong) NSString* _Nonnull conversationId;
+
 @end
 

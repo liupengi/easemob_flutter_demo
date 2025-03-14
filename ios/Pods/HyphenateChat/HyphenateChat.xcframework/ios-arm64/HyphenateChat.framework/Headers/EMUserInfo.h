@@ -98,14 +98,4 @@ typedef NS_ENUM(NSInteger, EMUserInfoType) {
  */
 @property (nonatomic,copy) NSString * _Nullable ext;
 
-#pragma mark - EM_DEPRECATED_IOS 3.8.8
-
-/**
- *  \~chinese 用户昵称。
- *
- *  \~english The user's nickname.
- */
-@property (nonatomic,copy) NSString *nickName
-__deprecated_msg("Use nickname instead");
-
 @end

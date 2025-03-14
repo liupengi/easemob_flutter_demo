@@ -32,19 +32,19 @@ typedef NS_ENUM(NSInteger, EMChatroomPermissionType) {
 
 
 /**
- *  \~chinese 
+ *  \~chinese
  *  聊天室实例，需要先调用 getChatroomSpecificationFromServerWithId 方法获取该聊天室详情。
  *
- *  \~english 
+ *  \~english
  *  The chat room object.
  */
 @interface EMChatroom : NSObject
 
 /**
- *  \~chinese 
+ *  \~chinese
  *  聊天室 ID，需要先调用 getChatroomSpecificationFromServerWithId 方法获取该聊天室详情。
  *
- *  \~english 
+ *  \~english
  *  The chat room ID.
  */
 @property (nonatomic, copy, readonly) NSString * _Nullable chatroomId;
@@ -53,16 +53,16 @@ typedef NS_ENUM(NSInteger, EMChatroomPermissionType) {
  *  \~chinese
  *  聊天室的主题，需要先调用 getChatroomSpecificationFromServerWithId 方法获取该聊天室详情。
  *
- *  \~english 
+ *  \~english
  *  The subject of the chat room.
  */
 @property (nonatomic, copy, readonly) NSString * _Nullable subject;
 
 /**
- *  \~chinese 
+ *  \~chinese
  *  聊天室的描述，需要先调用 getChatroomSpecificationFromServerWithId 方法获取该聊天室详情。
  *
- *  \~english 
+ *  \~english
  *  The description of chat room.
  */
 @property (nonatomic, copy, readonly) NSString * _Nullable description;
@@ -74,7 +74,7 @@ typedef NS_ENUM(NSInteger, EMChatroomPermissionType) {
  *  聊天室的所有者只有一人。
  *
  *  \~english
- *  The owner of the chat room. There is only one owner per chat room. 
+ *  The owner of the chat room. There is only one owner per chat room.
  */
 @property (nonatomic, copy, readonly) NSString * _Nullable owner;
 
@@ -120,19 +120,18 @@ typedef NS_ENUM(NSInteger, EMChatroomPermissionType) {
  */
 @property (nonatomic, strong, readonly) NSArray<NSString *> * _Nullable blacklist;
 
-
 /**
  *  \~chinese
  *  聊天室的被禁言列表。
  *
- *  只有聊天室所有者有权限调用该方法，非聊天室所有者返回 nil。
+ *  只有聊天室所有者有权限调用该方法，非聊天室所有者返回 nil。返回的字典中key为被禁言用户Id，value为禁言到期时间，单位毫秒，-1 代表永久禁言。
  *
  *  \~english
  *  The list of muted members.
  *
- *  Only the chatroom owner can call the method. Returns nil if the user is not the chatroom owner.
+ *  Only the chatroom owner can call the method. Returns nil if the user is not the chatroom owner.Return a key-value pairs, where the key is the user ID of the muted user and the value is the mute expiration timestamp in millisecond.Value == -1 means muted forever.
  */
-@property (nonatomic, strong, readonly) NSArray<NSString *> * _Nullable muteList;
+@property (nonatomic, strong, readonly) NSDictionary<NSString *, NSNumber*> * _Nullable muteMembers;
 
 /**
 *  \~chinese
@@ -167,21 +166,79 @@ typedef NS_ENUM(NSInteger, EMChatroomPermissionType) {
 
 /**
  *  \~chinese
- *  聊天室的当前人数，需要先调用 getChatroomSpecificationFromServerWithId 方法获取该聊天室详情。如果没有获取聊天室详情将返回 0。
+ *  聊天室的当前人数
+ *  包括聊天室所有者、管理员与普通成员
+ *  加入聊天室即可获取
+ *  当聊天室有成员进出时，此属性会更新。
  *
  *  \~english
  *  The current number of members in the chat room.
+ *  This includes the chat room owner, administrators, and regular members.
+ *  You can get this information after joining the chat room.
+ *  This property is updated when members join or leave the chat room.
  */
 @property (nonatomic, readonly) NSInteger occupantsCount;
 
 /**
  *  \~chinese
- *  聊天室成员是否全部被禁言。
+ *  聊天室成员是否全部被禁言,加入聊天室即可获取。
+ *  加入聊天室后，收到一键禁言/取消禁言的回调时，该状态会更新。
  *
  *  \~english
- *  Whether all members of the chat room are muted.
+ *  Checks whether all members are muted,This propery is available once join the chat room.
+ *  After joining the chat room, when you receive a callback for muting or unmuting all members, this property will be updated.
  */
 @property (nonatomic, readonly) BOOL isMuteAllMembers;
+
+/**
+ * \~chinese
+ * 获取聊天室创建时间戳（毫秒）。
+ * 只有加入聊天室后可获取。
+ *
+ * \~english
+ * Gets the timestamp(ms) when the chat room was created.
+ * This property is available once join the chat room.
+ */
+@property (nonatomic,readonly) NSInteger createTimestamp;
+
+/**
+ * \~chinese
+ * 当前登录用户是否在白名单中。
+ * 加入聊天室后可获取。
+ * 当前用户被加入或者被移除白名单时，此属性会发生变化。
+ * - `true`: 在白名单中。
+ * - `false`: 不在白名单中。
+ *
+ * \~english
+ * Current user is in allow list or not.
+ * This property is available once join the chat room.
+ * This property will be updated when current user is added or removed from the white list.
+ * - `true`: In white list.
+ * - `false`: Not in white list.
+ */
+@property (nonatomic,readonly) BOOL isInWhitelist;
+
+/**
+ * \~chinese
+ * 获取当前被禁言截止时间戳（毫秒）。
+ *
+ * 加入聊天室后可获取。
+ * 当前用户被禁言或者被解除禁言时，此属性会被更新。
+ *
+ * - 当取值为0，表示当前用户未被禁言。
+ * - 当取值为-1，表示未能获取到用户被禁言时间戳。
+ *
+ * \~english
+ * Gets the timestamp(ms) when Current user will be unmuted.
+ *
+ * This property is available once join the chat room.
+ * This property will be updated when current use is muted or unmuted.
+ *
+ * - Current use is not muted if it is zero.
+ * - Means cannot get MuteUntilTimeStamp correctly if it is be set with -1;
+ */
+@property (nonatomic,readonly) NSInteger muteExpireTimestamp;
+
 /**
  *  \~chinese
  *  获取聊天室实例。
@@ -199,76 +256,17 @@ typedef NS_ENUM(NSInteger, EMChatroomPermissionType) {
  */
 + (instancetype _Nullable)chatroomWithId:(NSString * _Nonnull )aChatroomId;
 
-#pragma mark - EM_DEPRECATED_IOS 3.8.8
-
-/**
-*  \~chinese
-*  聊天室的白名单列表。
-*
-*  需要owner权限才能查看，非owner返回nil
-*
-*  \~english
-*  List of whitelist members<NSString>
-*
-*  Need owner's authority to access, return nil if user is not the chatroom owner.
-*/
-@property (nonatomic, strong, readonly) NSArray *whiteList __deprecated_msg("Use whitelist instead");
-
-#pragma mark - EM_DEPRECATED_IOS 3.3.0
-
 /**
  *  \~chinese
- *  该方法已废弃，用 {@link -memberList} 代替。聊天室的成员列表，需要先调用 getChatroomSpecificationFromServerWithId 方法获取该聊天室详情。
+ *  聊天室的被禁言列表。
+ *
+ *  只有聊天室所有者有权限调用该方法，非聊天室所有者返回 nil。
  *
  *  \~english
- *  Deprecated, please use -memberList instead. The list of members in the chat room.
+ *  The list of muted members.
+ *
+ *  Only the chatroom owner can call the method. Returns nil if the user is not the chatroom owner.
  */
-@property (nonatomic, copy, readonly) NSArray *members EM_DEPRECATED_IOS(3_1_0, 3_3_0, "Use -memberList instead");
-
-/**
- *  \~chinese
- *  该方法已废弃，用 {@link -occupantsCount} 代替。聊天室的当前人数，如果没有获取聊天室详情将返回 0。
- *
- *  \~english
- *  Deprecated, please use -occupantsCount instead. The total number of members in the chat room.
- */
-@property (nonatomic, readonly) NSInteger membersCount EM_DEPRECATED_IOS(3_1_0, 3_3_0, "Use -occupantsCount instead");
-
-/**
- *  \~chinese
- *  该方法已废弃，用 {@link -maxOccupantsCount} 代替。聊天室的最大人数，如果没有获取聊天室详情将返回 0。
- *
- *  \~english
- *  Deprecated, please use -maxOccupantsCount instead.The maximum member number of the chat room.
- */
-@property (nonatomic, readonly) NSInteger maxMembersCount EM_DEPRECATED_IOS(3_1_0, 3_3_0, "Use -maxOccupantsCount instead");
-
-#pragma mark - EM_DEPRECATED_IOS < 3.2.3
-
-/**
- *  \~chinese
- *  该方法已废弃，请用 {@link -members} 代替。聊天室的成员列表。
- *
- *  \~english
- *  Deprecated, please use - members instead. The list of members in the chat room.
- */
-@property (nonatomic, copy, readonly) NSArray *occupants __deprecated_msg("Use -members instead");
-
-/**
- *  \~chinese
- *  该方法已废弃，请使用 {@link +chatroomWithId:} 方法代替。初始化聊天室实例。
- *
- *  
- *
- *  @result nil
- *
- *  \~english
- *  Deprecated, please use  {@link +chatroomWithId:}  instead.Initializes chatroom instance.
- *
- *   
- *
- *  @result nil
- */
-- (instancetype)init __deprecated_msg("Use +chatroomWithId: instead");
+@property (nonatomic, strong, readonly) NSArray<NSString *> * _Nullable muteList __deprecated_msg("Use muteMembers instead");
 
 @end

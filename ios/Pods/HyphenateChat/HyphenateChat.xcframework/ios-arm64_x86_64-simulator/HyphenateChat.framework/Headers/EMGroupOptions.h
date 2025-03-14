@@ -76,17 +76,5 @@ typedef NS_ENUM(NSInteger, EMGroupStyle) {
  */
 @property (nonatomic, strong) NSString *ext;
 
-#pragma mark - EM_DEPRECATED_IOS 3.8.8
-
-/**
- *  \~chinese
- *  群组的最大成员数(3 - 2000，默认是200)
- *
- *  \~english
- *  The group capacity (3-2000, the default is 200)
- */
-@property (nonatomic) NSInteger maxUsersCount
-__deprecated_msg("Use maxUsers instead");
-
 
 @end

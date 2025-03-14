@@ -238,25 +238,6 @@
  */
 - (void)onMessagePinChanged:(NSString* _Nonnull)messageId conversationId:(NSString* _Nonnull)conversationId operation:(EMMessagePinOperation)pinOperation pinInfo:(EMMessagePinInfo* _Nonnull)pinInfo;
 
-#pragma mark - Deprecated methods
-
-/**
- *  \~chinese
- *  收到消息撤回代理。
- *
- *  @param aMessages  撤回消息列表。
- *
- *  已废弃，请用 {@link messagesInfoDidRecall:} 代替。
- *
- *  \~english
- *  Occurs when a received message is recalled.
- *
- *  @param aMessages  The list of recalled messages.
- *
- *  Deprecated. Please use {@link messagesInfoDidRecall:} instead.
- */
-- (void)messagesDidRecall:(NSArray *)aMessages __deprecated_msg("Use -messagesInfoDidRecall: instead");
-
 /*!
  *  \~chinese
  *  Reaction 数据发生改变事件回调。

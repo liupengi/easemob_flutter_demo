@@ -1,6 +1,11 @@
 # Acknowledgements
 This application makes use of the following third party libraries:
 
+## AgoraInfra_iOS
+
+Copyright 2023 agora.io. All rights reserved.
+
+
 ## HyphenateChat
 
 Hyphenate Inc. 2017

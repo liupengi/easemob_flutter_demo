@@ -1,10 +1,10 @@
 CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = NO
-FRAMEWORK_SEARCH_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/im_flutter_sdk" "${PODS_ROOT}/HyphenateChat" "${PODS_XCFRAMEWORKS_BUILD_DIR}/HyphenateChat"
+FRAMEWORK_SEARCH_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/im_flutter_sdk" "${PODS_ROOT}/AgoraInfra_iOS" "${PODS_ROOT}/HyphenateChat" "${PODS_XCFRAMEWORKS_BUILD_DIR}/AgoraInfra_iOS" "${PODS_XCFRAMEWORKS_BUILD_DIR}/HyphenateChat"
 GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
 HEADER_SEARCH_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/im_flutter_sdk/im_flutter_sdk.framework/Headers"
 LD_RUNPATH_SEARCH_PATHS = $(inherited) '@executable_path/Frameworks' '@loader_path/Frameworks'
-OTHER_LDFLAGS = $(inherited) -ObjC -framework "HyphenateChat" -framework "im_flutter_sdk"
-OTHER_MODULE_VERIFIER_FLAGS = $(inherited) "-F${PODS_CONFIGURATION_BUILD_DIR}/Flutter" "-F${PODS_CONFIGURATION_BUILD_DIR}/HyphenateChat" "-F${PODS_CONFIGURATION_BUILD_DIR}/im_flutter_sdk"
+OTHER_LDFLAGS = $(inherited) -ObjC -framework "HyphenateChat" -framework "aosl" -framework "im_flutter_sdk"
+OTHER_MODULE_VERIFIER_FLAGS = $(inherited) "-F${PODS_CONFIGURATION_BUILD_DIR}/AgoraInfra_iOS" "-F${PODS_CONFIGURATION_BUILD_DIR}/Flutter" "-F${PODS_CONFIGURATION_BUILD_DIR}/HyphenateChat" "-F${PODS_CONFIGURATION_BUILD_DIR}/im_flutter_sdk"
 PODS_BUILD_DIR = ${BUILD_DIR}
 PODS_CONFIGURATION_BUILD_DIR = ${PODS_BUILD_DIR}/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)
 PODS_PODFILE_DIR_PATH = ${SRCROOT}/.

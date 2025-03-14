@@ -61,6 +61,15 @@ typedef NS_ENUM(NSInteger, AreaCode)
 
 /**
  *  \~chinese
+ *  appId，是项目的唯一标识。
+ *
+ *  \~english
+ *  The appId, which is the unique identifier of the project.
+ */
+@property(nonatomic, copy, readonly) NSString *appId;
+
+/**
+ *  \~chinese
  *  控制台是否输出日志。
  *  - `YES`：是；
  *  - （默认）`NO`：否。
@@ -432,6 +441,20 @@ typedef NS_ENUM(NSInteger, AreaCode)
 
 /**
  *  \~chinese
+ *  SDK 的工作路径是否可备份。
+ *  - YES：可拷贝。
+ *  - （默认）NO：不可拷贝。
+
+ *
+ *  \~english
+ *  Whether the SDK work path is copiable.
+ *  - YES：Copiable.
+ *  - （Default）NO：Uncopiable.
+ */
+@property (nonatomic) BOOL workPathCopiable;
+
+/**
+ *  \~chinese
  *  获取 SDK 选项实例。
  *
  *  @param aAppkey  App key。
@@ -447,88 +470,20 @@ typedef NS_ENUM(NSInteger, AreaCode)
  */
 + (instancetype _Nonnull)optionsWithAppkey:(NSString * _Nonnull)aAppkey;
 
-#pragma mark - EM_DEPRECATED_IOS 3.8.8
 /**
  *  \~chinese
- *  离开群组时是否删除该群所有消息。
- *  - （默认）`YES`：是；
- *  - `NO`：否。
+ *  获取 SDK 选项实例。
+ *
+ *  @param appId  App Id。
+ *
+ *  @result SDK 设置项实例。
  *
  *  \~english
- *  Whether to delete all the group messages when leaving the group.
- *  - (Default)`YES`: Yes.
- *  - `NO`: No.
- */
-@property(nonatomic, assign) BOOL isDeleteMessagesWhenExitGroup __deprecated_msg("Use deleteMessagesOnLeaveGroup instead");
-
-/**
- *  \~chinese
- *  离开聊天室时是否删除所有消息。
- *  - （默认）`YES`：是；
- *  - `NO`：否。
+ *  Gets an SDK options instance.
  *
- *  \~english
- *  Whether to delete all the chat room messages when leaving the chat room.
- *  - (Default)`YES`: Yes.
- *  - `NO`: No.
- */
-@property(nonatomic, assign) BOOL isDeleteMessagesWhenExitChatRoom
-    __deprecated_msg("Use deleteMessagesOnLeaveChatroom instead");
-
-/**
- *  \~chinese
- *  是否允许聊天室所有者离开。
- *  - （默认）`YES`：是；
- *  - `NO`：否。
+ *  @param appId  The App Id.
  *
- *  \~english
- *  Whether to allow the chat room owner to leave the chat room.
- *  - (Default)`YES`: Yes.
- *  - `NO`: No.
+ *  @result  The SDK options instance.
  */
-@property(nonatomic, assign) BOOL isChatroomOwnerLeaveAllowed
-    __deprecated_msg("Use canChatroomOwnerLeave instead");
-
-/**
- *  \~chinese
- *  用户自动同意群邀请。
- *  - （默认）`YES`：是；
- *  - `NO`：否。
- *
- *  \~english
- *  Whether to automatically accept group invitations.
- *  - (Default)`YES`: Yes.
- *  - `NO`: No.
- */
-@property(nonatomic, assign) BOOL isAutoAcceptGroupInvitation
-    __deprecated_msg("Use autoAcceptGroupInvitation instead");
-
-/**
- *  \~chinese
- *  自动同意好友申请。
- *  - `YES`：是；
- *  - （默认）`NO`：否。
- *
- *  \~english
- *  Whether to automatically accept friend requests.
- *  - `YES`: Yes.
- *  - (Default) `NO`: No.
- */
-@property(nonatomic, assign) BOOL isAutoAcceptFriendInvitation
-    __deprecated_msg("Use autoAcceptFriendInvitation instead");
-
-/**
- *  \~chinese
- *  是否自动下载图片和视频缩略图及语音消息。
- *  - （默认）`YES`：是；
- *  - `NO`：否。
- *
- *  \~english
- *  Whether to automatically download thumbnails of images and videos and voice messages.
- *  - (Default) `YES`: Yes.
- *  - `NO`: No.
- */
-@property(nonatomic, assign) BOOL isAutoDownloadThumbnail
-    __deprecated_msg("Use autoDownloadThumbnail instead");
-
++ (instancetype _Nonnull)optionsWithAppId:(NSString* _Nonnull)appId;
 @end

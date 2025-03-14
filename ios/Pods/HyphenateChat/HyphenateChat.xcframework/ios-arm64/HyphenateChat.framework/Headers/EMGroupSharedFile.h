@@ -84,17 +84,4 @@
  */
 + (instancetype)sharedFileWithId:(NSString*)aFileId;
 
-
-#pragma mark - EM_DEPRECATED_IOS 3.8.8
-
-/**
- *  \~chinese
- *  文件创建时间
- *
- *  \~english
- *  Create Time of File
- */
-@property (nonatomic) long long createTime
-__deprecated_msg("Use createdAt instead");
-
 @end

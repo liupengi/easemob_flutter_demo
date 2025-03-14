@@ -142,12 +142,12 @@ NS_ASSUME_NONNULL_BEGIN
  *  移除子区成员（仅群管理可用）
  *
  *  @param aUser 要移除用户的环信id
- *  @param threadId 要操作的子区id
+ *  @param athreadId 要操作的子区id
  *  @param aCompletionBlock 返回回调，成功或者失败
  *  \~english
  *  Remove sub-zone members (only available for group management)
  *  @param aUser To remove the user's ease id
- *  @param threadId subarea id to operate
+ *  @param athreadId subarea id to operate
  *  @param aCompletionBlock return callback, success or failure
  */
 - (void)removeMemberFromChatThread:(NSString *)aUser

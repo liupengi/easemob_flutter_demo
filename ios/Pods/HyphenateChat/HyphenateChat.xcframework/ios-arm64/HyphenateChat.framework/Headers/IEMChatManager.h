@@ -1023,7 +1023,7 @@ typedef NS_ENUM(NSUInteger, EMMessageFetchHistoryDirection) {
  *  Removes messages in a conversation (from both local storage and the server).
  *
  *  @param conversation The EMConversation object.
- *  @param messageIds   The specified Unix timestamp in miliseconds. Messages with a timestamp before the specified one will be removed from the conversation.
+ *  @param beforeTimeStamp   The specified Unix timestamp in miliseconds. Messages with a timestamp before the specified one will be removed from the conversation.
  *  @param completion   The completion block, which contains the error message if the method fails.
  *
  */
@@ -1559,6 +1559,19 @@ NS_ASSUME_NONNULL_BEGIN
  * This method works only for local conversations.
  */
 - (EMError*)markAllConversationsAsRead;
+
+/**
+ *  \~chinese
+ *  获取数据库中的消息总数。
+ *
+ *  @param completion 获取数据库中消息总数的回调，包含消息总数和失败原因。
+ *
+ *  \~english
+ *  Get the message count from db.
+ *
+ *  @param completion  The completion block, which contains the number of message count in db.
+ */
+- (void)getMessageCountWithCompletion:(void (^)(NSInteger count, EMError * _Nullable aError))completion;
     
 NS_ASSUME_NONNULL_END
 

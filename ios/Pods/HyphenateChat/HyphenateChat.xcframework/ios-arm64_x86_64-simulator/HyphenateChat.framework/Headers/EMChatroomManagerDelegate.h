@@ -113,19 +113,16 @@ typedef NS_ENUM(NSInteger, EMChatroomBeKickedReason)
  *  有成员被加入禁言列表。
  *
  *  @param aChatroom        聊天室。
- *  @param aMutes           被禁言的成员。
- *  @param aMuteExpire      禁言失效时间，暂时不可用。
+ *  @param aMutes           被禁言的成员，kv结构，key为被禁言的userId，value为禁言到期时间戳，单位毫秒，-1代表永久禁言。
  *
  *  \~english
- *  Users are added to the mute list.
+ *  Occurs when one or more members are added to the mute list of the chat room.
  *
- *  @param aChatroom        The Chatroom.
- *  @param aMutes           The users who are muted.
- *  @param aMuteExpire      The mute expire duration, not available at this time.
+ *  @param aChatroom       The chat room.
+ *  @param aMutes             The muted chat room members. The parameter value is represented as key-value pairs, where the key is the user ID of the muted user and the value is the mute expiration timestamp in millisecond.Value == -1 means muted forever.
  */
 - (void)chatroomMuteListDidUpdate:(EMChatroom *)aChatroom
-                addedMutedMembers:(NSArray<NSString *> *)aMutes
-                       muteExpire:(NSInteger)aMuteExpire;
+                addedMutedMembers:(NSDictionary<NSString *,NSNumber*> *)aMutes;
 
 /**
  *  \~chinese
@@ -296,66 +293,6 @@ typedef NS_ENUM(NSInteger, EMChatroomBeKickedReason)
  *  \~chinese
  *  有用户加入聊天室。
  *
- *  已废弃，请用 {@link userDidJoinChatroom:user:} 代替。
- *
- *  @param aChatroom    加入的聊天室。
- *  @param aUsername    加入者。
- *
- *  \~english
- *  Occurs when a user joins a chat room
- *
- *  Deprecated, please use  {@link userDidJoinChatroom:user:}  instead.
- *
- *  @param aChatroom    Joined chatroom
- *  @param aUsername    The user who joined chatroom
- */
-- (void)didReceiveUserJoinedChatroom:(EMChatroom *)aChatroom
-                            username:(NSString *)aUsername __deprecated_msg("Use -userDidJoinChatroom:user: instead");
-
-/**
- *  \~chinese
- *  有用户离开聊天室。
- *
- *  已废弃，请用 {@link userDidLeaveChatroom:reason:} 代替。
- *
- *  @param aChatroom    离开的聊天室。
- *  @param aUsername    离开者。
- *
- *  \~english
- *  A user leaved the chatroom.
- *
- *  Deprecated, please use  {@link userDidLeaveChatroom:reason:}  instead.
- *
- *  @param aChatroom    The chatroom which the user Leaved from.
- *  @param aUsername    The user who leaved chatroom.
- */
-- (void)didReceiveUserLeavedChatroom:(EMChatroom *)aChatroom
-                            username:(NSString *)aUsername __deprecated_msg("Use -userDidLeaveChatroom:reason: instead");
-
-/**
- *  \~chinese
- *  被踢出聊天室。
- *
- *  已废弃，请用 {@link didDismissFromChatroom:reason:} 代替。
- *
- *  @param aChatroom    被踢出的聊天室。
- *  @param aReason      被踢出聊天室的原因。
- *
- *  \~english
- *  User was kicked out from the chatroom.
- *
- *  Deprecated, please use  {@link didDismissFromChatroom:reason:}  instead.
- *
- *  @param aChatroom    The chatroom which the user was kicked out from.
- *  @param aReason      The reason of kicked out.
- */
-- (void)didReceiveKickedFromChatroom:(EMChatroom *)aChatroom
-                              reason:(EMChatroomBeKickedReason)aReason __deprecated_msg("Use -didDismissFromChatroom:reason: instead");
-
-/**
- *  \~chinese
- *  有用户加入聊天室。
- *
  *  @param aChatroom    加入的聊天室。
  *  @param aUsername    加入者。
  *
@@ -367,6 +304,25 @@ typedef NS_ENUM(NSInteger, EMChatroomBeKickedReason)
  */
 - (void)userDidJoinChatroom:(EMChatroom *)aChatroom
                        user:(NSString *)aUsername __deprecated_msg("Use -userDidJoinChatroom:user:ext: instead");
+
+/**
+ *  \~chinese
+ *  有成员被加入禁言列表。
+ *
+ *  @param aChatroom        聊天室。
+ *  @param aMutes           被禁言的成员。
+ *  @param aMuteExpire      禁言失效时间，暂时不可用。
+ *
+ *  \~english
+ *  Users are added to the mute list.
+ *
+ *  @param aChatroom        The Chatroom.
+ *  @param aMutes           The users who are muted.
+ *  @param aMuteExpire      The mute expire duration, not available at this time.
+ */
+- (void)chatroomMuteListDidUpdate:(EMChatroom *)aChatroom
+                addedMutedMembers:(NSArray<NSString *> *)aMutes
+                       muteExpire:(NSInteger)aMuteExpire __deprecated_msg("Use -chatroomMuteListDidUpdate:addedMutedMembers: instead");;
 @end
 
 NS_ASSUME_NONNULL_END

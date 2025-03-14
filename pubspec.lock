@@ -79,11 +79,11 @@ packages:
     dependency: "direct main"
     description:
       path: "."
-      ref: "7cc70a0"
-      resolved-ref: "7cc70a002224135abbce874f47a7483151b6fe19"
+      ref: "95013ac"
+      resolved-ref: "95013accfe934c6cd7743fca6c6c9dc3179ced3b"
       url: "https://github.com/easemob/im_flutter_sdk_oh.git"
     source: git
-    version: "4.12.0"
+    version: "4.12.0-ohos-beta.1"
   intl:
     dependency: "direct main"
     description:

@@ -28,7 +28,6 @@ typedef NS_ENUM(NSInteger, EMDownloadStatus) {
     EMDownloadStatusSucceed,            /** \~chinese 下载文件消息成功。 \~english The SDK successfully downloads the file message. */
     EMDownloadStatusFailed,             /** \~chinese 下载文件消息失败。  \~english The SDK fails to download the file message.*/
     EMDownloadStatusPending,            /** \~chinese 文件消息下载正在等待中。  \~english File message download is pending.*/
-    EMDownloadStatusSuccessed=EMDownloadStatusSucceed,   /** \~chinese 该状态已废弃。请改用 EMDownloadStatusSucceed。  \~english This state is deprecated. Use EMDownloadStatusSucceed instead.*/
 };
 
 /**

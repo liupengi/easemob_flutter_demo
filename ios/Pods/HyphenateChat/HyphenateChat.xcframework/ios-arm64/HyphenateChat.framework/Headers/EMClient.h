@@ -20,13 +20,11 @@
 #import "IEMThreadManager.h"
 #import "IEMPushManager.h"
 #import "IEMUserInfoManager.h"
-#import "IEMTranslateManager.h"
 #import "IEMPresenceManager.h"
 #import "IEMStatisticsManager.h"
 
 #import "EMDeviceConfig.h"
 #import "EMLocalNotificationManager.h"
-#import "EMTranslationResult.h"
 #import "EMLogDelegate.h"
 
 /**
@@ -355,6 +353,29 @@ typedef NS_ENUM(NSInteger, EMServerCheckType) {
  *  @Result A description of the issue that caused this call to fail.
  */
 - (EMError *_Nullable)changeAppkey:(NSString * _Nonnull)aAppkey;
+
+/**
+ *  \~chinese
+ *  修改 AppId。
+ *
+ *
+ * 只有在未登录状态才能修改 AppId。
+ *
+ *
+ *  @param aAppId   修改后的 AppId。
+ *
+ *  @result EMError  错误信息，包含调用失败的原因。
+ *
+ *  \~english
+ *  Updates the the AppId, the unique identifier used to access the chat server.
+ *
+ * You can only update the AppId when you are logged out.
+ *
+ *  @param aAppId  The new AppId.
+ *
+ *  @Result A description of the issue that caused this call to fail.
+ */
+- (EMError *_Nullable)changeAppId:(NSString * _Nonnull)aAppId;
 
 #pragma mark - User Registration 
 /**
@@ -856,6 +877,33 @@ typedef NS_ENUM(NSInteger, EMServerCheckType) {
 
 /**
  *  \~chinese
+ *  注册 device token。
+ *
+ *  Device token 用于苹果 APNS 推送。
+ *
+ *  异步方法。
+ *
+ *  @param aCertName           要绑定的证书名称
+ *  @param aDeviceToken     要绑定的 token。
+ *  @param aCompletionBlock 该方法完成调用的回调。如果该方法调用失败，会包含调用失败的原因。
+ *
+ *  \~english
+ *  Registers the device token.
+ *
+ *  Device token binding is required to enable Apple push notification service.
+ *
+ *  This is an asynchronous method.
+ *
+ *  @param aCertName               The certification name to bind.
+ *  @param aDeviceToken         The device token to bind.
+ *  @param aCompletionBlock     The completion block, which contains the error message if the method fails.
+ */
+- (void)registerForRemoteNotificationsWithCertName:(NSString *_Nonnull)aCertName
+                                       deviceToken:(NSData *_Nonnull)aDeviceToken
+                                        completion:(void (^_Nullable)(EMError *_Nullable aError))aCompletionBlock;
+
+/**
+ *  \~chinese
  *  绑定设备的FCM token，集成FCM推送时使用
  *
  *  异步方法
@@ -1343,7 +1391,5 @@ typedef NS_ENUM(NSInteger, EMServerCheckType) {
  */
 - (void)serviceCheckWithUsername:(NSString *_Nonnull)aUsername
                         password:(NSString *_Nonnull)aPassword
-                      completion:(void (^_Nullable)(EMServerCheckType aType, EMError *_Nullable aError))aCompletionBlock;
-
-@property (nonatomic, strong, readonly) id<IEMTranslateManager> _Nonnull translateManager EM_DEPRECATED_IOS(3_8_9, 3_9_5,"Use -IEMChatManager translateMessage: instead");
+                      completion:(void (^_Nullable)(EMServerCheckType aType, EMError *_Nullable aError))aCompletionBlock __deprecated_msg("This method is deprecated");
 @end

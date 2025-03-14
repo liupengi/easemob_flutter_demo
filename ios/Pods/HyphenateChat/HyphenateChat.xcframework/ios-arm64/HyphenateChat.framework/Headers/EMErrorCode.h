@@ -114,6 +114,7 @@ typedef NS_ENUM(NSInteger, EMErrorCode) {
     EMErrorGroupMemberAttributesKeyReachLimit,/** \~chinese 设置的群成员自定义属性 key 长度（不能超过 16 字节）超限。 \~english The key of a custom attribute(s) of the group member has exceeded the maximum allowed length of 16 bytes. */
     
     EMErrorGroupMemberAttributesValueReachLimit,/** \~chinese 设置群成员自定义属性 value 长度（不能超过 512 字节）超限。 \~english The value of a custom attribute(s) of the group member has exceeded the maximum allowed length of 512 bytes. */
+    EMErrorGroupUserInBlockList,             /** \~chinese 用户在群组黑名单中。 \~english The userId  is in group block list. */
     
     EMErrorChatroomInvalidId = 700,          /** \~chinese 聊天室 ID 异常。 \~english The chatroom ID is invalid.*/
     EMErrorChatroomAlreadyJoined,            /** \~chinese 用户已在该聊天室中。 \~english The user is already in the chatroom. */
@@ -122,6 +123,7 @@ typedef NS_ENUM(NSInteger, EMErrorCode) {
     EMErrorChatroomMembersFull,              /** \~chinese 聊天室已满。 \~english The chatroom has reached the maximum member capacity. */
     EMErrorChatroomNotExist,                 /** \~chinese 聊天室不存在。 \~english The chatroom does not exist. */
     EMErrorChatroomOwnerNotAllowLeave,       /** \~chinese 聊天室owner不允许离开。 \~english The owner of the chat room is not allowed to leave. */
+    EMErrorChatroomUserInBlockList,          /** \~chinese 用户在聊天室黑名单中。 \~english The userId  is in chatroom block list. */
     
     
     EMErrorUserCountExceed = 900,            /** \~chinese 获取用户属性的用户个数超过 100 个。 \~english The count of users to get userinfo more than 100 */

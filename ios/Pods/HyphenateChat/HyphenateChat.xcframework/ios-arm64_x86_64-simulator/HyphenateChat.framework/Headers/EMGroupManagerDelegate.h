@@ -511,33 +511,6 @@ typedef NS_ENUM(NSInteger, EMGroupLeaveReason) {
 - (void)onAttributesChangedOfGroupMember:(NSString *_Nonnull)groupId userId:(NSString *_Nonnull)userId attributes:(NSDictionary <NSString*,NSString*>*_Nullable)attributes operatorId:(NSString *_Nonnull)operatorId;
 
 #pragma mark - Deprecated methods
-/**
- *  \~chinese
- *  收到群组邀请回调。
- *
- *  该回调是由远端用户发送群组邀请触发的。如，用户 A 邀请用户 B 入群，则用户 B 会收到该回调。
- *
- *  已废弃，请用 {@link groupInvitationDidReceive:groupName:inviter:message: } 代替。
-
- *  @param aGroupId    群组 ID。
- *  @param aInviter    发送群组邀请的用户。
- *  @param aMessage    群组邀请的信息。
- *
- *  \~english
- *  Occurs when the user receives a group invitation.
- *
- *  This callback is triggered by a peer user sending a group invitation. For example, after user A sends user B a group invitation, user B receives this callback.
- *
- *  Deprecated. Please use  {@link groupInvitationDidReceive:groupName:inviter:message: }  instead.
- *
- *  @param aGroupId          The group ID.
- *  @param aInviter          The user sending the group invitation.
- *  @param aMessage          The invitation message.
- */
-- (void)groupInvitationDidReceive:(NSString *)aGroupId
-                          inviter:(NSString *)aInviter
-                          message:(NSString *)aMessage
-                          __deprecated_msg("Use -groupInvitationDidReceive:groupName:inviter:message: instead");
 
 /**
  *  \~chinese

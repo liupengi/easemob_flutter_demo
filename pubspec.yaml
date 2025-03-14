@@ -38,7 +38,7 @@ dependencies:
   im_flutter_sdk:
     git:
       url: "https://github.com/easemob/im_flutter_sdk_oh.git"
-      ref: "7cc70a0"
+      ref: "95013ac"
   intl: ^0.17.0
 dev_dependencies:
   flutter_test:

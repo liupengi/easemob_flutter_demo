@@ -162,6 +162,24 @@ typedef NS_ENUM(NSInteger, EMConnectionState) {
  */
 - (void)tokenDidExpire:(EMErrorCode)aErrorCode;
 
+/**
+ *  \~chinese
+ *  开始从服务器拉取离线消息时触发。
+ *
+ *  \~english
+ *  Occurs when the SDK starts pulling offline messages from the server.
+ */
+- (void)onOfflineMessageSyncStart;
+
+/**
+ *  \~chinese
+ *  从服务器拉取离线消息结束时触发。
+ *
+ *  \~english
+ *  Occurs when the SDK finishes pulling offline messages from the server.
+ */
+- (void)onOfflineMessageSyncFinish;
+
 #pragma mark - EM_DEPRECATED_IOS 4.1.0
 /**
  *  \~chinese

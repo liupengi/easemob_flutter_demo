@@ -99,20 +99,4 @@
  */
 @property (nonatomic, copy) NSString *dnsURL;
 
-
-/**
- *  \~chinese
- *  配置项扩展。
- * 
- *  已废弃。
- *
- *  \~english
- *  The options extension.
- * 
- *  Deprecated.
- *
- */
-#pragma mark - Deprecated 3.8.3.1
-@property (nonatomic, strong) NSDictionary *extension __deprecated_msg("");
-
 @end
