@@ -197,7 +197,7 @@ class _MyHomePageState extends State<MyHomePage> {
     );
 
     EMOptions options = EMOptions.withAppKey(
-      "easemob-demo#support",
+      "1137220225110285#demo",
       autoLogin: false,
       debugMode: true,
       requireAck: true,
@@ -469,7 +469,7 @@ class _MyHomePageState extends State<MyHomePage> {
     }
 
     try {
-      await EMClient.getInstance.login("lp","1");
+      await EMClient.getInstance.login("p0","1");
       _addLogToConsole("sign in succeed, username: $_username");
     } on EMError catch (e) {
       _addLogToConsole("sign in failed, e: ${e.code} , ${e.description}");
