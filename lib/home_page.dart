@@ -213,6 +213,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void _addChatListener() {
 
+
     EMClient.getInstance.groupManager.addEventHandler("identifier",
         EMGroupEventHandler(
             onMemberJoinedFromGroup: (groupid,member){

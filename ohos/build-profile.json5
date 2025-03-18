@@ -5,10 +5,10 @@
         "name": "default",
         "type": "HarmonyOS",
         "material": {
-          "storePassword": "0000001AF78267E092F931009808852D9942137F35998C94487922B7953DB8F24C478448A736C173D900",
+          "storePassword": "0000001AED760045B34F2641C164B49BCD608951AB86B39ACE7D8F3A710006571B22F7CDE1C05AE96B0E",
           "certpath": "/Users/liupeng/Downloads/liupeng.cer",
           "keyAlias": "liupeng",
-          "keyPassword": "0000001A53C8971C0CC1F4DAE582D259A68FE320C8132F76552B6D07BA0BE9FE93C204D6063E1EC2F11B",
+          "keyPassword": "0000001AE924DA540D9C4CFE501FD807307436447A1747EF54E81D6ABAE05D7444E92FAFAFEC67E136DC",
           "profile": "/Users/liupeng/Downloads/liupengDebug (1).p7b",
           "signAlg": "SHA256withECDSA",
           "storeFile": "/Users/liupeng/Downloads/liupeng.p12"
