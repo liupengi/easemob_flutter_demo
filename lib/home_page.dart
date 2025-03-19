@@ -261,6 +261,7 @@ class _MyHomePageState extends State<MyHomePage> {
             print("-------------------------onConnected");
           },
           onDisconnected: () {
+            EMClient.getInstance.logout(true);
             _addLogToConsole("onDisconnected---------");
           },
           // onOfflineMessageSyncStart: (){
