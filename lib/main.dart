@@ -223,7 +223,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void _initSDK() async {
     EMOptions options = EMOptions(
-      appKey: "1165250217193383#develop",
+      appKey: "1137220225110285#demo",
       autoLogin: false,
       debugMode: true,
       requireAck: true,
@@ -268,8 +268,14 @@ class _MyHomePageState extends State<MyHomePage> {
             print("-------------------------onConnected");
           },
           onDisconnected: () {
-            _addLogToConsole("onDisconnected---------");
+
+
+
           },
+          onUserDidLoginFromOtherDevice: (info){
+            print("-------------------------onUserDidLoginFromOtherDevice");
+            EMClient.getInstance.logout(false);
+          }
         ));
 
     // 添加收消息监听
@@ -421,7 +427,7 @@ class _MyHomePageState extends State<MyHomePage> {
     }
 
     try {
-      await EMClient.getInstance.loginWithToken("10", "YWMtr53PuP4hEe-RhCHTiptth2muw-2SYU0SurJaYSEFvI9ur5Xw-P0R75dMBccmDn3LAwMAAAGVgw_f9jeeSAA1MxLO1m1Q3Hgz7nXTfCKlTUHevJbQSB_Usrlsz4eOYQ");
+      await EMClient.getInstance.login(_username, _password);
       _addLogToConsole("sign in succeed, username: $_username");
     } on EMError catch (e) {
       _addLogToConsole("sign in failed, e: ${e.code} , ${e.description}");
@@ -429,14 +435,23 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   void _signOut() async {
-    try {
-      EMGroup group = await EMClient.getInstance.groupManager.fetchGroupInfoFromServer("274939917697028");
+    List<EMConversation> loadAllConversations = await EMClient.getInstance.chatManager.loadAllConversations();
+    for (var i = 0; i < loadAllConversations.length; i++) {
+      EMMessage? emMessage =await loadAllConversations[i].latestMessage();
 
-      print("------>${group.memberCount}");
-      print("------>${group.maxUserCount}");
-    } on EMError catch (e) {
-
+      print("----------------------------------${loadAllConversations[i].id}--------${emMessage?.body.toJson()}");
     }
+
+
+
+    // try {
+    //   EMGroup group = await EMClient.getInstance.groupManager.fetchGroupInfoFromServer("274939917697028");
+    //
+    //   print("------>${group.memberCount}");
+    //   print("------>${group.maxUserCount}");
+    // } on EMError catch (e) {
+    //
+    // }
 
 
 
