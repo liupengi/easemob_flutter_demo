@@ -19,7 +19,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
 
 environment:
-  sdk: ^3.5.4
+  sdk: '>=3.4.0 <4.0.0'
 
 # Dependencies specify other packages that your package needs in order to work.
 # To automatically upgrade your package dependencies to the latest versions
@@ -35,8 +35,18 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.8
-  im_flutter_sdk: 4.12.0+1
+  em_chat_uikit: ^2.0.3
+  #im_flutter_sdk: 4.12.0+1
+dependency_overrides:
+    video_player_android: 2.7.16
+    video_thumbnail:
+      git:
+        url: https://github.com/Shahidbangash/video_thumbnail.git
+        ref: master
+
+
 dev_dependencies:
+
   flutter_test:
     sdk: flutter
 
