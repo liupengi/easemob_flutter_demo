@@ -461,9 +461,9 @@ class _MyHomePageState extends State<MyHomePage> {
 
     try {
       await EMClient.getInstance.login("p0","1");
-      Navigator.of(context).push(MaterialPageRoute(builder: (context){
-        return new HomePage();
-      }));
+      // Navigator.of(context).push(MaterialPageRoute(builder: (context){
+      //   return new HomePage();
+      // }));
       _addLogToConsole("sign in succeed, username: $_username");
     } on EMError catch (e) {
       _addLogToConsole("sign in failed, e: ${e.code} , ${e.description}");
@@ -471,6 +471,9 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   void _signOut() async {
+    EMClient.getInstance.pushManager.fetchConversationSilentMode(conversationId: "lp1", type: EMConversationType.Chat);
+
+
 
     // List<EMMessage> messages = await  EMClient.getInstance.chatManager.loadMessagesWithKeyword("你");
     //   for (var i = 0; i < messages.length; i++){
@@ -483,28 +486,28 @@ class _MyHomePageState extends State<MyHomePage> {
 
 
 
-    FetchMessageOptions fetchMessageOptions = const FetchMessageOptions(
-        needSave: true,
-        direction:EMSearchDirection.Up
-    );
-
-    try {
-      EMCursorResult<EMMessage> message = await EMClient.getInstance.chatManager.fetchHistoryMessagesByOption("wf1",
-          EMConversationType.Chat,
-          options: fetchMessageOptions,
-          cursor: "",
-          pageSize: 20);
-      List<EMMessage> data = message.data;
-      for (var i = 0; i < data!.length; i++){
-        debugPrint("=================================================================================================================================================");
-        debugPrint("通过漫游获取的消息: ${data[i].toJson()}");
-
-
-
-      }
-    } on EMError catch (e) {
-      print("获取的漫游消息失败：${e.code}======${e.description}");
-    }
+    // FetchMessageOptions fetchMessageOptions = const FetchMessageOptions(
+    //     needSave: true,
+    //     direction:EMSearchDirection.Up
+    // );
+    //
+    // try {
+    //   EMCursorResult<EMMessage> message = await EMClient.getInstance.chatManager.fetchHistoryMessagesByOption("wf1",
+    //       EMConversationType.Chat,
+    //       options: fetchMessageOptions,
+    //       cursor: "",
+    //       pageSize: 20);
+    //   List<EMMessage> data = message.data;
+    //   for (var i = 0; i < data!.length; i++){
+    //     debugPrint("=================================================================================================================================================");
+    //     debugPrint("通过漫游获取的消息: ${data[i].toJson()}");
+    //
+    //
+    //
+    //   }
+    // } on EMError catch (e) {
+    //   print("获取的漫游消息失败：${e.code}======${e.description}");
+    // }
 
 
 
