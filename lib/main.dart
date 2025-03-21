@@ -1,4 +1,4 @@
-import 'package:easemob_flutter_demo/home_page.dart';
+import 'package:easemob_flutter_demo/login_page.dart';
 import 'package:flutter/material.dart';
 import 'package:im_flutter_sdk/im_flutter_sdk.dart';
 import 'dart:core';
