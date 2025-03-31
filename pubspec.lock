@@ -78,12 +78,44 @@ packages:
   im_flutter_sdk:
     dependency: "direct main"
     description:
+      name: im_flutter_sdk
+      sha256: "00d40a6666fd0b331c2a146b68dd07a8d74c1e4e09fbfb68db87ade97155618e"
+      url: "https://pub.dev"
+    source: hosted
+    version: "4.13.0+1"
+  im_flutter_sdk_android:
+    dependency: transitive
+    description:
+      name: im_flutter_sdk_android
+      sha256: "7a2eb9aad81ee0b18996dc592a56094f3470b2f9a40551645760747308f81308"
+      url: "https://pub.dev"
+    source: hosted
+    version: "4.13.0+1"
+  im_flutter_sdk_interface:
+    dependency: transitive
+    description:
+      name: im_flutter_sdk_interface
+      sha256: "990751cc02d20479d45a859a6e542252f27ebaa05d5135e2e9e928c28b32d313"
+      url: "https://pub.dev"
+    source: hosted
+    version: "4.13.0+1"
+  im_flutter_sdk_ios:
+    dependency: transitive
+    description:
+      name: im_flutter_sdk_ios
+      sha256: "4c8b5ef4df1b581d5917e3917ea4f445f908c4ac726013dcd5fbcbf2cfd5a2f6"
+      url: "https://pub.dev"
+    source: hosted
+    version: "4.13.0+1"
+  im_flutter_sdk_ohos:
+    dependency: "direct main"
+    description:
       path: "."
-      ref: main
-      resolved-ref: "0b292193c8fb0ad2fa0d5891ab3d617a7881f411"
+      ref: "1.5.3"
+      resolved-ref: d5c0e2df49aa02df561a51ce0288c1c4f8aab421
       url: "https://github.com/easemob/im_flutter_sdk_oh.git"
     source: git
-    version: "4.12.0-ohos-beta.1"
+    version: "1.5.3"
   intl:
     dependency: "direct main"
     description:
@@ -96,18 +128,18 @@ packages:
     dependency: transitive
     description:
       name: leak_tracker
-      sha256: "3f87a60e8c63aecc975dda1ceedbc8f24de75f09e4856ea27daf8958f2f0ce05"
+      sha256: "7f0df31977cb2c0b88585095d168e689669a2cc9b97c309665e3386f3e9d341a"
       url: "https://pub.dev"
     source: hosted
-    version: "10.0.5"
+    version: "10.0.4"
   leak_tracker_flutter_testing:
     dependency: transitive
     description:
       name: leak_tracker_flutter_testing
-      sha256: "932549fb305594d82d7183ecd9fa93463e9914e1b67cacc34bc40906594a1806"
+      sha256: "06e98f569d004c1315b991ded39924b21af84cf14cc94791b8aea337d25b57f8"
       url: "https://pub.dev"
     source: hosted
-    version: "3.0.5"
+    version: "3.0.3"
   leak_tracker_testing:
     dependency: transitive
     description:
@@ -136,18 +168,18 @@ packages:
     dependency: transitive
     description:
       name: material_color_utilities
-      sha256: f7142bb1154231d7ea5f96bc7bde4bda2a0945d2806bb11670e30b850d56bdec
+      sha256: "0e0a020085b65b6083975e499759762399b4475f766c21668c4ecca34ea74e5a"
       url: "https://pub.dev"
     source: hosted
-    version: "0.11.1"
+    version: "0.8.0"
   meta:
     dependency: transitive
     description:
       name: meta
-      sha256: bdb68674043280c3428e9ec998512fb681678676b3c54e773629ffe74419f8c7
+      sha256: "7687075e408b093f36e6bbf6c91878cc0d4cd10f409506f7bc996f68220b9136"
       url: "https://pub.dev"
     source: hosted
-    version: "1.15.0"
+    version: "1.12.0"
   path:
     dependency: transitive
     description:
@@ -156,6 +188,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.9.0"
+  plugin_platform_interface:
+    dependency: transitive
+    description:
+      name: plugin_platform_interface
+      sha256: "4820fbfdb9478b1ebae27888254d445073732dae3d6ea81f0b7e06d5dedc3f02"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.1.8"
   sky_engine:
     dependency: transitive
     description: flutter
@@ -205,10 +245,10 @@ packages:
     dependency: transitive
     description:
       name: test_api
-      sha256: "5b8a98dafc4d5c4c9c72d8b31ab2b23fc13422348d2997120294d3bac86b4ddb"
+      sha256: "9955ae474176f7ac8ee4e989dadfb411a58c30415bcfb648fa04b2b8a03afa7f"
       url: "https://pub.dev"
     source: hosted
-    version: "0.7.2"
+    version: "0.7.0"
   vector_math:
     dependency: transitive
     description:
@@ -221,10 +261,10 @@ packages:
     dependency: transitive
     description:
       name: vm_service
-      sha256: "5c5f338a667b4c644744b661f309fb8080bb94b18a7e91ef1dbd343bed00ed6d"
+      sha256: "3923c89304b715fb1eb6423f017651664a03bf5f4b29983627c4da791f74a4ec"
       url: "https://pub.dev"
     source: hosted
-    version: "14.2.5"
+    version: "14.2.1"
 sdks:
   dart: ">=3.4.0 <4.0.0"
   flutter: ">=3.18.0-18.0.pre.54"

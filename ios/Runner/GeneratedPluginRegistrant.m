@@ -6,10 +6,10 @@
 
 #import "GeneratedPluginRegistrant.h"
 
-#if __has_include(<im_flutter_sdk/ImFlutterSdkPlugin.h>)
-#import <im_flutter_sdk/ImFlutterSdkPlugin.h>
+#if __has_include(<im_flutter_sdk_ios/ImFlutterSdkPlugin.h>)
+#import <im_flutter_sdk_ios/ImFlutterSdkPlugin.h>
 #else
-@import im_flutter_sdk;
+@import im_flutter_sdk_ios;
 #endif
 
 @implementation GeneratedPluginRegistrant

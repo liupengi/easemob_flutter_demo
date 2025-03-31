@@ -216,7 +216,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
             },
             onAnnouncementChangedFromGroup: (groupid,announcement){
-              print("公告更新了" + groupid + "====" + announcement);
+              print("公告更新了" + groupid + "====" + announcement!);
 
             }
           //onSpecificationDidUpdate

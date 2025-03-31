@@ -1,5 +1,5 @@
 import { FlutterEngine, Log } from '@ohos/flutter_ohos';
-import ImFlutterSdkOhPlugin from 'im_flutter_sdk';
+import ImFlutterSdkOhPlugin from 'im_flutter_sdk_ohos';
 
 /**
  * Generated file. Do not edit.

@@ -35,10 +35,12 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.8
-  im_flutter_sdk:
+  im_flutter_sdk: ^4.13.0
+  im_flutter_sdk_ohos:
     git:
       url: "https://github.com/easemob/im_flutter_sdk_oh.git"
-      ref: "main"
+      ref: 1.5.3
+
   intl: ^0.17.0
 dev_dependencies:
   flutter_test:
