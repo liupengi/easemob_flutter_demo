@@ -398,13 +398,23 @@ class _MyHomePageState extends State<MyHomePage> {
             for (var msg in messages) {
               print("onMessagesRead------${msg.hasReadAck}");
             }
+          },
+        onGroupMessageRead: (messages) async {
+          for (var msg in messages) {
+            print("onMessagesRead------${msg.readCount}");
+            EMCursorResult<EMGroupMessageAck> list =await  EMClient.getInstance.chatManager.fetchGroupAcks("","");
+            List<EMGroupMessageAck> groupMessageAcklist =list.data;
+
+
           }
+        }
       ),
 
     );
     // EMClient.getInstance.chatManager.addMessageEvent("UNIQUE_HANDLER_ID", EMMessageReactionEvent(
     //
     // ));
+
 
     EMClient.getInstance.chatRoomManager.addEventHandler(
         "UNIQUE_HANDLER_ID",
@@ -454,6 +464,8 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   void _signIn() async {
+
+
     if (_username.isEmpty || _password.isEmpty) {
       _addLogToConsole("username or password is null");
       return;
@@ -464,6 +476,10 @@ class _MyHomePageState extends State<MyHomePage> {
       // Navigator.of(context).push(MaterialPageRoute(builder: (context){
       //   return new HomePage();
       // }));
+      
+      
+
+      
       _addLogToConsole("sign in succeed, username: $_username");
     } on EMError catch (e) {
       _addLogToConsole("sign in failed, e: ${e.code} , ${e.description}");
@@ -471,7 +487,17 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   void _signOut() async {
-    EMClient.getInstance.pushManager.fetchConversationSilentMode(conversationId: "lp1", type: EMConversationType.Chat);
+    EMClient.getInstance.chatRoomManager.joinChatRoom("201705207693314");
+
+    EMCursorResult<String> list =await EMClient.getInstance.chatRoomManager.fetchChatRoomMembers("201705207693314",cursor: "",pageSize: 20);
+    List<String> lists = list.data;
+    for (var i = 0; i < lists.length; i++){
+      debugPrint("=================================================================================================================================================");
+      debugPrint("通过漫游获取的消息: ${lists[i].toString()}");
+    }
+
+    EMChatRoom emChatRoom =await  EMClient.getInstance.chatRoomManager.fetchChatRoomInfoFromServer("201705207693314");
+   // EMClient.getInstance.pushManager.fetchConversationSilentMode(conversationId: "lp1", type: EMConversationType.Chat);
 
 
 
