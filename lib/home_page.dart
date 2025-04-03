@@ -1,4 +1,8 @@
+import 'package:easemob_flutter_demo/widget/contacts_view.dart';
+import 'package:easemob_flutter_demo/widget/conversations_view.dart';
+import 'package:easemob_flutter_demo/widget/me_view.dart';
 import 'package:flutter/material.dart';
+
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -21,19 +25,10 @@ class _BottomNavigationDemoState extends State<BottomNavigationDemo> {
   static const TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
 
-  static const List<Widget> _widgetOptions = <Widget>[
-    Text(
-      '首页',
-      style: optionStyle,
-    ),
-    Text(
-      '消息',
-      style: optionStyle,
-    ),
-    Text(
-      '设置',
-      style: optionStyle,
-    ),
+  static final List<Widget> _widgetOptions = <Widget>[
+    ConversationsView(),
+    ContactsView(),
+    MeView(),
   ];
 
   void _onItemTapped(int index) {
@@ -46,7 +41,7 @@ class _BottomNavigationDemoState extends State<BottomNavigationDemo> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('底部导航示例'),
+        title: const Text('EasemobDemo'),
       ),
       body: Center(
         child: _widgetOptions.elementAt(_selectedIndex),

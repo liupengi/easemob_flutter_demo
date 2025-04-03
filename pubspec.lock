@@ -79,10 +79,10 @@ packages:
     dependency: "direct main"
     description:
       name: im_flutter_sdk
-      sha256: "00d40a6666fd0b331c2a146b68dd07a8d74c1e4e09fbfb68db87ade97155618e"
+      sha256: b946f2906198d30f2f54fc162169febf0973aae3738f287a2c17a4832abc1cc5
       url: "https://pub.dev"
     source: hosted
-    version: "4.13.0+1"
+    version: "4.13.0"
   im_flutter_sdk_android:
     dependency: transitive
     description:
