@@ -112,6 +112,8 @@ typedef NS_ENUM(NSInteger, EMMessagePinOperation) {
  */
 @interface EMChatMessage : NSObject
 
+-(instancetype _Nonnull ) init __attribute__((unavailable("call initWithConversationID instead")));
+
 /**
  *  \~chinese
  *  消息 ID，是消息的唯一标识。

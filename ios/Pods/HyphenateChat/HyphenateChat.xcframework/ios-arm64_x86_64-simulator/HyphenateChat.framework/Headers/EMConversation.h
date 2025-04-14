@@ -112,7 +112,7 @@ typedef NS_ENUM(NSInteger, EMMessageSearchScope) {
  *  The chat conversation class.
  */
 @interface EMConversation : NSObject
-
+-(instancetype _Nonnull ) init NS_UNAVAILABLE;
 /**
  *  \~chinese
  *  会话 ID。
@@ -332,7 +332,7 @@ typedef NS_ENUM(NSInteger, EMMessageSearchScope) {
  *  @param completion   该方法完成调用的回调。如果该方法调用失败，会包含调用失败的原因。
  *
  *  \~english
- *  Removes messages from the conversation by timestamp.
+ *  Removes messages from the conversation by message id list.
  *
  * This method deletes messages from both local storage and server.
  *
@@ -345,15 +345,15 @@ typedef NS_ENUM(NSInteger, EMMessageSearchScope) {
  *  \~chinese
  *  从会话中删除消息（包括本地存储和服务器存储）。
  *
- *  @param beforeTimeStamp   UNIX 时间戳，单位为毫秒。若消息的 UNIX 时间戳小于设置的值，则会被删除。
+ *  @param beforeTimeStamp   UNIX 时间戳，单位为毫秒。若消息的 UNIX 时间戳小于等于设置的值，则会被删除。
  *  @param completion   该方法完成调用的回调。如果该方法调用失败，会包含调用失败的原因。
  *
  *  \~english
- *  Removes messages from the conversation by message ID.
+ *  Removes messages from the conversation timestamp.
  *
  * This method deletes messages from both local storage and server.
  *
- *  @param messageIds   The message timestamp in millisecond. Messages with the timestamp smaller than the specified one will be removed from the current conversation.
+ *  @param beforeTimeStamp   The message timestamp in millisecond. Messages with the timestamp smaller than the specified one will be removed from the current conversation.
  *  @param completion   The completion block, which contains the error message if the method fails.
  *
  */

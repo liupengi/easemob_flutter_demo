@@ -176,17 +176,17 @@ code_sign_if_enabled() {
 }
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
-  install_framework "${BUILT_PRODUCTS_DIR}/im_flutter_sdk/im_flutter_sdk.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/im_flutter_sdk_ios/im_flutter_sdk_ios.framework"
   install_framework "${PODS_XCFRAMEWORKS_BUILD_DIR}/AgoraInfra_iOS/aosl.framework"
   install_framework "${PODS_XCFRAMEWORKS_BUILD_DIR}/HyphenateChat/HyphenateChat.framework"
 fi
 if [[ "$CONFIGURATION" == "Profile" ]]; then
-  install_framework "${BUILT_PRODUCTS_DIR}/im_flutter_sdk/im_flutter_sdk.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/im_flutter_sdk_ios/im_flutter_sdk_ios.framework"
   install_framework "${PODS_XCFRAMEWORKS_BUILD_DIR}/AgoraInfra_iOS/aosl.framework"
   install_framework "${PODS_XCFRAMEWORKS_BUILD_DIR}/HyphenateChat/HyphenateChat.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
-  install_framework "${BUILT_PRODUCTS_DIR}/im_flutter_sdk/im_flutter_sdk.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/im_flutter_sdk_ios/im_flutter_sdk_ios.framework"
   install_framework "${PODS_XCFRAMEWORKS_BUILD_DIR}/AgoraInfra_iOS/aosl.framework"
   install_framework "${PODS_XCFRAMEWORKS_BUILD_DIR}/HyphenateChat/HyphenateChat.framework"
 fi

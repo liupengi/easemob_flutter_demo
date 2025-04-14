@@ -10,11 +10,9 @@ Copyright 2023 agora.io. All rights reserved.
 
 Hyphenate Inc. 2017
 
-## im_flutter_sdk
+## im_flutter_sdk_ios
 
 MIT License
-
-Copyright (c) 2019 环信 Easemob
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

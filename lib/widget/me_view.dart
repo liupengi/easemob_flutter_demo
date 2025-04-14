@@ -15,10 +15,286 @@ class _SMDState extends State<MeView> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.grey[100],
-      body: Container(
-        child: const Column(
+      body: const SingleChildScrollView(
+        child:  Column(
           children: [
             TextButton(onPressed: _fetchMemberAttributes, child: Text("获取单个群成员所有自定义属性")),
+            TextButton(
+              onPressed: _sendMessage,
+              child: Text("发送消息"),
+            ),
+            TextButton(
+              onPressed: _sendMessage,
+              child: Text("发送消息"),
+            ),
+            TextButton(
+              onPressed: _sendMessage,
+              child: Text("发送消息"),
+            ),
+            TextButton(
+              onPressed: _sendMessage,
+              child: Text("发送消息"),
+            ),
+            TextButton(
+              onPressed: _sendMessage,
+              child: Text("发送消息"),
+            ),
+            TextButton(
+              onPressed: _sendMessage,
+              child: Text("发送消息"),
+            ),
+            TextButton(
+              onPressed: _sendMessage,
+              child: Text("发送消息"),
+            ),
+            TextButton(
+              onPressed: _sendMessage,
+              child: Text("发送消息"),
+            ),
+            TextButton(
+              onPressed: _sendMessage,
+              child: Text("发送消息"),
+            ),
+            TextButton(
+              onPressed: _sendMessage,
+              child: Text("发送消息"),
+            ),
+            TextButton(
+              onPressed: _sendMessage,
+              child: Text("发送消息"),
+            ),
+            TextButton(
+              onPressed: _sendMessage,
+              child: Text("发送消息"),
+            ),
+            TextButton(
+              onPressed: _sendMessage,
+              child: Text("发送消息"),
+            ),
+            TextButton(
+              onPressed: _sendMessage,
+              child: Text("发送消息"),
+            ),
+            TextButton(
+              onPressed: _sendMessage,
+              child: Text("发送消息"),
+            ),
+            TextButton(
+              onPressed: _sendMessage,
+              child: Text("发送消息"),
+            ),
+            TextButton(
+              onPressed: _sendMessage,
+              child: Text("发送消息"),
+            ),
+            TextButton(
+              onPressed: _sendMessage,
+              child: Text("发送消息"),
+            ),
+            TextButton(
+              onPressed: _sendMessage,
+              child: Text("发送消息"),
+            ),
+            TextButton(
+              onPressed: _sendMessage,
+              child: Text("发送消息"),
+            ),
+            TextButton(
+              onPressed: _sendMessage,
+              child: Text("发送消息"),
+            ),
+            TextButton(
+              onPressed: _sendMessage,
+              child: Text("发送消息"),
+            ),
+            TextButton(
+              onPressed: _sendMessage,
+              child: Text("发送消息"),
+            ),
+            TextButton(
+              onPressed: _sendMessage,
+              child: Text("发送消息"),
+            ),
+            TextButton(
+              onPressed: _sendMessage,
+              child: Text("发送消息"),
+            ),
+            TextButton(
+              onPressed: _sendMessage,
+              child: Text("发送消息"),
+            ),
+            TextButton(
+              onPressed: _sendMessage,
+              child: Text("发送消息"),
+            ),
+            TextButton(
+              onPressed: _sendMessage,
+              child: Text("发送消息"),
+            ),
+            TextButton(
+              onPressed: _sendMessage,
+              child: Text("发送消息"),
+            ),
+            TextButton(
+              onPressed: _sendMessage,
+              child: Text("发送消息"),
+            ),
+            TextButton(
+              onPressed: _sendMessage,
+              child: Text("发送消息"),
+            ),
+            TextButton(
+              onPressed: _sendMessage,
+              child: Text("发送消息"),
+            ),
+            TextButton(
+              onPressed: _sendMessage,
+              child: Text("发送消息"),
+            ),
+            TextButton(
+              onPressed: _sendMessage,
+              child: Text("发送消息"),
+            ),
+            TextButton(
+              onPressed: _sendMessage,
+              child: Text("发送消息"),
+            ),
+            TextButton(
+              onPressed: _sendMessage,
+              child: Text("发送消息"),
+            ),
+            TextButton(
+              onPressed: _sendMessage,
+              child: Text("发送消息"),
+            ),
+            TextButton(
+              onPressed: _sendMessage,
+              child: Text("发送消息"),
+            ),
+            TextButton(
+              onPressed: _sendMessage,
+              child: Text("发送消息"),
+            ),
+            TextButton(
+              onPressed: _sendMessage,
+              child: Text("发送消息"),
+            ),
+            TextButton(
+              onPressed: _sendMessage,
+              child: Text("发送消息"),
+            ),
+            TextButton(
+              onPressed: _sendMessage,
+              child: Text("发送消息"),
+            ),
+            TextButton(
+              onPressed: _sendMessage,
+              child: Text("发送消息"),
+            ),
+            TextButton(
+              onPressed: _sendMessage,
+              child: Text("发送消息"),
+            ),
+            TextButton(
+              onPressed: _sendMessage,
+              child: Text("发送消息"),
+            ),
+            TextButton(
+              onPressed: _sendMessage,
+              child: Text("发送消息"),
+            ),
+            TextButton(
+              onPressed: _sendMessage,
+              child: Text("发送消息"),
+            ),
+            TextButton(
+              onPressed: _sendMessage,
+              child: Text("发送消息"),
+            ),
+            TextButton(
+              onPressed: _sendMessage,
+              child: Text("发送消息"),
+            ),
+            TextButton(
+              onPressed: _sendMessage,
+              child: Text("发送消息"),
+            ),
+            TextButton(
+              onPressed: _sendMessage,
+              child: Text("发送消息"),
+            ),
+            TextButton(
+              onPressed: _sendMessage,
+              child: Text("发送消息"),
+            ),
+            TextButton(
+              onPressed: _sendMessage,
+              child: Text("发送消息"),
+            ),
+            TextButton(
+              onPressed: _sendMessage,
+              child: Text("发送消息"),
+            ),
+            TextButton(
+              onPressed: _sendMessage,
+              child: Text("发送消息"),
+            ),
+            TextButton(
+              onPressed: _sendMessage,
+              child: Text("发送消息"),
+            ),
+            TextButton(
+              onPressed: _sendMessage,
+              child: Text("发送消息"),
+            ),
+            TextButton(
+              onPressed: _sendMessage,
+              child: Text("发送消息"),
+            ),
+            TextButton(
+              onPressed: _sendMessage,
+              child: Text("发送消息"),
+            ),
+            TextButton(
+              onPressed: _sendMessage,
+              child: Text("发送消息"),
+            ),
+            TextButton(
+              onPressed: _sendMessage,
+              child: Text("发送消息"),
+            ),
+            TextButton(
+              onPressed: _sendMessage,
+              child: Text("发送消息"),
+            ),
+            TextButton(
+              onPressed: _sendMessage,
+              child: Text("发送消息"),
+            ),
+            TextButton(
+              onPressed: _sendMessage,
+              child: Text("发送消息"),
+            ),
+            TextButton(
+              onPressed: _sendMessage,
+              child: Text("发送消息"),
+            ),
+            TextButton(
+              onPressed: _sendMessage,
+              child: Text("发送消息"),
+            ),
+            TextButton(
+              onPressed: _sendMessage,
+              child: Text("发送消息"),
+            ),
+            TextButton(
+              onPressed: _sendMessage,
+              child: Text("发送消息"),
+            ),
+            TextButton(
+              onPressed: _sendMessage,
+              child: Text("发送消息"),
+            ),
             TextButton(
               onPressed: _sendMessage,
               child: Text("发送消息"),
@@ -45,14 +321,18 @@ void _sendMessage() async {
   );
   msg.attributes = {"11111": "qwer", "22222": "23455"};
 
-  EMClient.getInstance.chatManager.sendMessage(msg);
+//  EMClient.getInstance.chatManager.sendMessage(msg);
 }
 void _signOut() async {
 
 
 
 
-  // EMConversation? emConversation =await EMClient.getInstance.chatManager.getConversation("p1");
+  EMConversation? emConversation =await EMClient.getInstance.chatManager.getConversation("p1");
+  EMMessage? emMessage = await emConversation?.latestMessage();
+
+  EMMessageBody? emMessageBody =   emMessage?.body;
+  emMessageBody?.toJson();
   // emConversation?.deleteMessagesWithTs(1738391124716, 1743315924716);
 
 

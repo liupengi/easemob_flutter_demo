@@ -44,6 +44,8 @@ typedef NS_ENUM(NSInteger, EMMessageBodyType) {
  */
 @interface EMMessageBody : NSObject
 
+-(instancetype _Nonnull ) init NS_UNAVAILABLE;
+
 /**
  *  \~chinese
  *  消息体类型。

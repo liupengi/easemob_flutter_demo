@@ -524,22 +524,58 @@ typedef NS_ENUM(NSUInteger, EMMessageFetchHistoryDirection) {
  *  \~chinese
  *  修改本地以及服务端的消息内容。
  *
- *  你只能调用该方法修改单聊和群聊中的文本消息，不能修改聊天室消息。
+ *  支持文本消息和自定义消息的修改。
  *  @param messageId         消息实例id。
- *  @param body                    文本消息体实例（EMTextMessageBody）。
+ *  @param body                    消息体实例。
  *  @param completionBlock 该方法完成调用的回调。如果该方法调用失败，会包含调用失败的原因。成功则error为空，message不为空
  *
  *  \~english
  *  Modifies a local message or a message at the server side.
  *
- * You can call this method to only modify a text message in one-to-one chats or group chats, but not in chat rooms.
+ * You can call this method to only modify a text or custom message in one-to-one chats or group chats, but not in chat rooms.
  *
- *  @param message            The ID of the message to modify.
- *  @param body                   The modified message body(EMTextMessageBody).
+ *  @param messageId            The ID of the message to modify.
+ *  @param body                   The new message body.
  *  @param completionBlock     The completion block, which contains the error message if the method fails.
  *
  */
 - (void)modifyMessage:(NSString *_Nonnull)messageId body:(EMMessageBody *_Nonnull)body completion:(void (^_Nonnull)(EMError * _Nullable error,EMChatMessage *_Nullable message))completionBlock;
+
+/**
+ *  \~chinese
+ *  修改本地以及服务端消息。
+ *
+ *  - 文本/自定义消息：支持修改消息内容（body）和扩展 `ext`。
+ *  - 文件/视频/音频/图片/位置/合并转发消息：只支持修改消息扩展 `ext`。
+ *  - 命令消息：不支持修改。
+ *
+ *  该方法会同时更新服务器和本地的消息，消息 ID 不会更新。
+ *
+ *  @param messageId       要修改的消息 ID。
+ *  @param body            修改后的消息 body。只有文本消息和自定义消息支持，传 nil 表示不修改。
+ *  @param ext             修改后的消息扩展信息，将会覆盖之前的扩展信息，传 nil 表示不修改。
+ *  @param completionBlock 该方法完成调用的回调。如果该方法调用失败，会包含调用失败的原因。
+ *
+ *  \~english
+ *   Modifies a message both in the local storage and server.
+ *
+ *  - Text and custom message: Both the message body `body` and extension information `ext` can be modified.
+ *  - Image/voice/video/file/combined message: Only the message extension field `ext` can be modified.
+ *  - Command message: This type of message cannot be modified.
+ *
+ *  Note that the message ID cannot be changed.
+ *
+ *  @param messageId       The ID of the message for modification.
+ *  @param body            The modified message body. You can only modify the body of a text message and a custom message. The value `nil` indicates that the message body remains unchanged.
+ *  @param ext             The modified message extension information. The new extension information will overwrite the previous. The value `nil` indicates that the message extension information remains unchanged.
+ *  @param completionBlock The completion block, which contains the error message if the method fails.
+ *
+ */
+
+- (void)modifyMessage:(NSString *_Nonnull)messageId
+                 body:(EMMessageBody *_Nullable)body
+                  ext:(NSDictionary* _Nullable)ext
+           completion:(void (^_Nonnull)(EMError * _Nullable error,EMChatMessage *_Nullable message))completionBlock;
 
 /**
  *  \~chinese
