@@ -23,6 +23,7 @@ class _SMDState extends State<ConversationsView> {
   void loadAllConversation() async {
     List<EMConversation> loadConversations =
         await EMClient.getInstance.chatManager.loadAllConversations();
+
     setState(() {
       loadAllConversations = loadConversations;
     });

@@ -316,12 +316,34 @@ void _sendMessage() async {
   Map map = new Map();
   map.putIfAbsent("1111", () => "22222");
   var msg = EMMessage.createTxtSendMessage(
-    targetId: "",
-    content: "111",
+    targetId: "lp1",
+    content: "你打哪单独得的色的您的",
   );
   msg.attributes = {"11111": "qwer", "22222": "23455"};
+  EMClient.getInstance.chatManager.addMessageEvent(
+    "UNIQUE_HANDLER_ID",
+    ChatMessageEvent(
+      // 收到成功回调之后，可以对发送的消息进行更新处理，或者其他操作。
+      onSuccess: (msgId, msg) {
 
-//  EMClient.getInstance.chatManager.sendMessage(msg);
+        print(msgId+"======"+msg.msgId);
+        // msgId 发送时消息 ID;
+        // msg 发送成功的消息;
+      },
+      // 收到回调之后，可以将发送的消息状态进行更新，或者进行其他操作。
+      onError: (msgId, msg, error) {
+        // msgId 发送时的消息 ID;
+        // msg 发送失败的消息;
+        // error 失败原因;
+      },
+      // 对于附件类型的消息，如图片，语音，文件，视频类型，上传或下载文件时会收到相应的进度值，表示附件的上传或者下载进度。
+      onProgress: (msgId, progress) {
+        // msgId 发送时的消息ID;
+        // progress 进度;
+      },
+    ),
+  );
+  EMClient.getInstance.chatManager.sendMessage(msg);
 }
 void _signOut() async {
 

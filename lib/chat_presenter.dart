@@ -8,6 +8,9 @@ class ChatPresenter {
             onMemberJoinedFromGroup: (groupid, member) {
               print("有用户加入群组了" + groupid + "====" + member);
             },
+            onMemberExitedFromGroup:(groupid, member) {
+              print("有用户退群组了" + groupid + "====" + member);
+            },
             onAutoAcceptInvitationFromGroup: (groupId, inviter, inviteMessage) {
               print("您加入了群组" +
                   groupId +
@@ -201,7 +204,7 @@ class ChatPresenter {
   void initSDK() async {
     EMOptions options = EMOptions.withAppKey(
       "easemob-demo#support",
-      autoLogin: true,
+      autoLogin: false,
       debugMode: true,
       requireAck: true,
       extSettings: {
