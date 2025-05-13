@@ -155,11 +155,20 @@ class ChatPresenter {
               await EMClient.getInstance.chatManager.fetchGroupAcks("", "");
           List<EMGroupMessageAck> groupMessageAcklist = list.data;
         }
-      }),
+      },
+        onMessageContentChanged:(message,operatorId,operationTime){
+
+          print("onMessageContentChanged------${message.msgId}");
+        }
+
+
+      ),
+
     );
     // EMClient.getInstance.chatManager.addMessageEvent("UNIQUE_HANDLER_ID", EMMessageReactionEvent(
     //
     // ));
+
 
     EMClient.getInstance.chatRoomManager.addEventHandler(
         "UNIQUE_HANDLER_ID",
