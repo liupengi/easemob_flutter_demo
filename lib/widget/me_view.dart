@@ -20,28 +20,28 @@ class _SMDState extends State<MeView> {
           children: [
             TextButton(onPressed: _fetchMemberAttributes, child: Text("获取单个群成员所有自定义属性")),
             TextButton(
-              onPressed: _sendMessage,
-              child: Text("发送消息"),
+              onPressed: _fetchHistoryMessagesByOption,
+              child: Text("从服务端获取历史消息"),
+            ),
+            TextButton(
+              onPressed: _fetchHistoryMessages,
+              child: Text("从本地取历史消息"),
+            ),
+            TextButton(
+              onPressed: _deleteLoadConversations,
+              child: Text("删除本地会话"),
+            ),
+            TextButton(
+              onPressed: _modifyMessage,
+              child: Text("修改消息"),
             ),
             TextButton(
               onPressed: _sendMessage,
               child: Text("发送消息"),
             ),
             TextButton(
-              onPressed: _sendMessage,
-              child: Text("发送消息"),
-            ),
-            TextButton(
-              onPressed: _sendMessage,
-              child: Text("发送消息"),
-            ),
-            TextButton(
-              onPressed: _sendMessage,
-              child: Text("发送消息"),
-            ),
-            TextButton(
-              onPressed: _sendMessage,
-              child: Text("发送消息"),
+              onPressed: _sendGroupMessageReceipt,
+              child: Text("发送群回执"),
             ),
             TextButton(
               onPressed: _sendMessage,
@@ -306,20 +306,98 @@ class _SMDState extends State<MeView> {
   }
 }
 
+void _sendGroupMessageReceipt() async {
+
+}
+void _fetchHistoryMessages() async {
+
+
+
+
+}
+
 void _fetchMemberAttributes() async {
   Map<String, String> map = await EMClient.getInstance.groupManager
       .fetchMemberAttributes(groupId: "274999171678209", userId: "p0");
   print(map.toString());
 }
 
+void _modifyMessage() async {
+  final attributes = {
+    'newKey': 'new value',
+  };
+  // EMConversation? emConversation =await EMClient.getInstance.chatManager.getConversation("lp2");
+  // EMMessage? emMessage = await emConversation?.latestMessage();
+  // EMImageMessageBody emImageMessageBody =  emMessage as EMImageMessageBody;
+  final txtBody = EMImageMessageBody(
+    localPath: "/data/user/0/com.hyphenate.chatdemo/files/image9020907944737722690.jpg",
+  );
+  await EMClient.getInstance.chatManager.modifyMessage(
+    messageId: "1448821902893123020",
+    msgBody: txtBody,
+    attributes: attributes,
+  );
+
+
+
+  // final txtBody = EMTextMessageBody(content: 'new content');
+  // Map<String, dynamic>  pre  = {};
+  // pre['undo'] = true;
+  // pre['undoText'] = '撤回了一条消息';
+  //
+  // // final attributes = {
+  // //   'undo': true,
+  // //   'undoText': '撤回了一条消息',
+  // // };
+  // await EMClient.getInstance.chatManager.modifyMessage(
+  //   messageId: "1446982397219309004",
+  //   msgBody: txtBody,
+  //   attributes: pre
+  // );
+
+}
+
+
+
+
+void _deleteLoadConversations() async {
+  EMClient.getInstance.chatManager.deleteConversation("");
+
+
+
+}
+void _fetchHistoryMessagesByOption() async {
+  FetchMessageOptions fetchMessageOptions = const FetchMessageOptions(
+      needSave: true,
+      direction:EMSearchDirection.Up
+  );
+
+  try {
+    EMCursorResult<EMMessage> message = await EMClient.getInstance.chatManager.fetchHistoryMessagesByOption("lp1",
+        EMConversationType.Chat,
+        options: fetchMessageOptions,
+        cursor: "",
+        pageSize: 20);
+    List<EMMessage> data = message.data;
+    for (var i = 0; i < data!.length; i++){
+      debugPrint("通过漫游获取的消息: ${data[i].toJson()}");
+
+
+    }
+  } on EMError catch (e) {
+    print("获取的漫游消息失败：${e.code}======${e.description}");
+  }
+}
+
 void _sendMessage() async {
   Map map = new Map();
   map.putIfAbsent("1111", () => "22222");
   var msg = EMMessage.createTxtSendMessage(
-    targetId: "lp1",
+    targetId: "288428783632387",
     content: "你打哪单独得的色的您的",
   );
   msg.attributes = {"11111": "qwer", "22222": "23455"};
+  msg.chatType = ChatType.GroupChat;
   EMClient.getInstance.chatManager.addMessageEvent(
     "UNIQUE_HANDLER_ID",
     ChatMessageEvent(
@@ -399,28 +477,7 @@ void _signOut() async {
 
 
 
-  // FetchMessageOptions fetchMessageOptions = const FetchMessageOptions(
-  //     needSave: true,
-  //     direction:EMSearchDirection.Up
-  // );
-  //
-  // try {
-  //   EMCursorResult<EMMessage> message = await EMClient.getInstance.chatManager.fetchHistoryMessagesByOption("p1",
-  //       EMConversationType.Chat,
-  //       options: fetchMessageOptions,
-  //       cursor: "",
-  //       pageSize: 20);
-  //   List<EMMessage> data = message.data;
-  //   for (var i = 0; i < data!.length; i++){
-  //     debugPrint("=================================================================================================================================================");
-  //     debugPrint("通过漫游获取的消息: ${data[i].toJson()}");
-  //
-  //
-  //
-  //   }
-  // } on EMError catch (e) {
-  //   print("获取的漫游消息失败：${e.code}======${e.description}");
-  // }
+
 
 
 

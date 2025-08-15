@@ -128,6 +128,15 @@
 
 /**
  *  \~chinese
+ *  图片是否Gif文件。
+ *
+ *  \~english
+ *  Whether the image is a gif file.
+ */
+@property (nonatomic) BOOL isGif;
+
+/**
+ *  \~chinese
  *  初始化图片消息体。
  * 
  * @param aData 图片数据。如果该图片的分辨率和你在控制台 Thumbnail Size 中配置的 width 和 height 不一致，SDK 会对该图片进行压缩。压缩原则维持图片的宽高比，是在控制台 width 和 height 的值为缩略图宽高中的更大值，然后按宽高比计算另一个值。以控制台中配置的 width 和 height 为 200 x 200 为例：
@@ -161,5 +170,25 @@
  */
 - (instancetype)initWithData:(NSData *)aData
                thumbnailData:(NSData *)aThumbnailData;
+
+/**
+ *  \~chinese
+ *  初始化Gif图片消息体。
+ *
+ *  @param aGifFilePath   gif图片本地路径。
+ *  @param aDisplayName gif图片显示名称（不包含路径）。
+ *
+ *  @result Gif消息体实例。
+ *
+ *  \~english
+ *  Initializes a gif message instance.
+ *
+ *  @param aLocalPath   The path of the gif file attachment in the local device.
+ *  @param aDisplayName The display name of the gif file attachment.
+ *
+ *  @result The gif file message instance.
+ */
+- (instancetype)initWithGifFilePath:(NSString*)aGifFilePath
+                        displayName:(NSString*)aDisplayName;
 
 @end

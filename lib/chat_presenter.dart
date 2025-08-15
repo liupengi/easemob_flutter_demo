@@ -2,13 +2,14 @@ import 'package:im_flutter_sdk/im_flutter_sdk.dart';
 
 class ChatPresenter {
   void addChatListener() {
+
     EMClient.getInstance.groupManager.addEventHandler(
         "identifier",
         EMGroupEventHandler(
             onMemberJoinedFromGroup: (groupid, member) {
               print("有用户加入群组了" + groupid + "====" + member);
             },
-            onMemberExitedFromGroup:(groupid, member) {
+            onMemberExitedFromGroup: (groupid, member) {
               print("有用户退群组了" + groupid + "====" + member);
             },
             onAutoAcceptInvitationFromGroup: (groupId, inviter, inviteMessage) {
@@ -155,20 +156,13 @@ class ChatPresenter {
               await EMClient.getInstance.chatManager.fetchGroupAcks("", "");
           List<EMGroupMessageAck> groupMessageAcklist = list.data;
         }
-      },
-        onMessageContentChanged:(message,operatorId,operationTime){
-
-          print("onMessageContentChanged------${message.msgId}");
-        }
-
-
-      ),
-
+      }, onMessageContentChanged: (message, operatorId, operationTime) {
+        print("onMessageContentChanged------${message.msgId}");
+      }),
     );
     // EMClient.getInstance.chatManager.addMessageEvent("UNIQUE_HANDLER_ID", EMMessageReactionEvent(
     //
     // ));
-
 
     EMClient.getInstance.chatRoomManager.addEventHandler(
         "UNIQUE_HANDLER_ID",

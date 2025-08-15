@@ -22,7 +22,10 @@ NS_ASSUME_NONNULL_BEGIN
 @interface EMFetchServerMessagesOption: NSObject
  
 /** \~chinese 群组会话中的消息发送方的用户 ID。  \~english The user ID of the message sender in the group conversation.*/
-@property (nonatomic,strong) NSString* _Nullable from;
+@property (nonatomic,strong) NSString* _Nullable from __deprecated_msg("Use fromIds instead");
+
+/** \~chinese 群组会话中的消息发送方的用户 ID 数组, 如果设置了 from 则优先使用 from。 \~english The array of user IDs of the message sender in the group conversation. If from is set, it will be used first.*/
+@property (nonatomic,strong) NSArray<NSString*>* _Nullable fromIds;
  
 /** \~chinese 要查询的消息类型数组。默认值为 `nil`，表示返回所有类型的消息。 \~english The array of message types for query. The default value is `null`, indicating that all types of messages are retrieved. */
 @property (nonatomic,strong) NSArray<NSNumber*>* _Nullable msgTypes;

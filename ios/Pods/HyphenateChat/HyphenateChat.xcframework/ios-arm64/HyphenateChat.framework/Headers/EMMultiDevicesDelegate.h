@@ -59,8 +59,6 @@ typedef NS_ENUM(NSInteger, EMMultiDevicesEvent) {
     EMMultiDevicesEventGroupRemoveWhiteList = 31,   /** \~chinese 用户 A 在设备 A1 上从白名单移除群成员，则设备 A2 上会收到该事件。 \~english If user A removes a group member from the allow list on device A1, this event is triggered on device A2. */
     EMMultiDevicesEventGroupAllBan = 32,    /** \~chinese 用户 A 在设备 A1 上开启群组成员全体禁言，则设备 A2 上会收到该事件。 \~english If user A mutes all group members on device A1, this event is triggered on device A2. */
     EMMultiDevicesEventGroupRemoveAllBan = 33,  /** \~chinese 用户 A 在设备 A1 上取消禁言了群成员，则设备 A2 上会收到该事件。 \~english If user A unmutes all group members in device A1, this event is triggered on device A2. */
-    EMMultiDevicesEventGroupDisabled = 34,  /** \~chinese 用户 A 所在群组被禁用，则用户 A 所有设备上会收到该事件。 \~english If the chat group that user A joins is disabled, this event is triggered on device A2. */
-    EMMultiDevicesEventGroupAble = 35,  /** \~chinese 用户 A 所在群组取消禁用，则用户 A 所有设备上会收到该事件。 \~english If the chat group that user A joins is enabled, this event is triggered on device A2. */
 
     
     EMMultiDevicesEventChatThreadCreate = 40, /** \~chinese 用户 A 在设备 A1 创建子区，则设备 A2 上会收到该事件。  \~english  If user A creates a message thread on device A1, this event is triggered on device A2. */

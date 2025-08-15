@@ -264,6 +264,43 @@
 
 /**
  *  \~chinese
+ *  创建群组（可带头像）。
+ *
+ *  异步方法。
+ *
+ *  @param subject         群组名称。
+ *  @param avatar          群组头像。
+ *  @param description     群组描述。
+ *  @param invitees        群组成员，不包括创建者自己。
+ *  @param message         加入群组的邀请消息。
+ *  @param setting         群组属性。
+ *  @param completionBlock 该方法完成调用的回调。如果该方法调用失败，会包含调用失败的原因。
+ *
+ *
+ *  \~english
+ *  Creates a group(with group avatar).
+ *
+ *  This is an asynchronous method.
+ *
+ *  @param subject         The subject of the group.
+ *  @param avatar          The group avatar.
+ *  @param description     The description of the group.
+ *  @param invitees        The members of the group. Do not include the creator.
+ *  @param message         The invitation message.
+ *  @param setting         The group options.
+ *  @param completionBlock The completion block, which contains the error message if the method fails.
+ *
+ */
+- (void)createGroupWithSubject:(NSString *_Nullable)subject
+                    avatar:(NSString *_Nullable)avatar
+                   description:(NSString *_Nullable)description
+                      invitees:(NSArray<NSString *> * _Nullable)invitees
+                       message:(NSString *_Nullable)message
+                       setting:(EMGroupOptions *_Nullable)setting
+                    completion:(void (^_Nullable)(EMGroup *_Nullable group, EMError *_Nullable error))completionBlock;
+
+/**
+ *  \~chinese
  *  创建群组。
  * 
  *  异步方法。
@@ -457,6 +494,34 @@
                                     cursor:(NSString *_Nullable)aCursor
                                   pageSize:(NSInteger)aPageSize
                                 completion:(void (^_Nullable)(EMCursorResult<NSString*> *aResult, EMError *_Nullable aError))aCompletionBlock;
+
+/**
+ *  \~chinese
+ *  获取群组成员列表。
+ *  这里需要注意的是：
+ *  - 每次调用只返回一页的数据。首次调用传空值，会从最新的第一条开始取；
+ *  - aPageSize 是这次接口调用期望返回的列表数据个数，如当前在最后一页，返回的数据会是 count < aPageSize；
+ *  - 列表页码 aPageNum 是方便服务器分页查询返回，对于数据量未知且很大的情况，分页获取，服务器会根据每次的页数和每次的pagesize 返回数据，直到返回所有数据。
+ *
+ *  @param groupId         群组 ID。
+ *  @param cursor         游标，首次调用传空。下次传上次返回的值。
+ *  @param limit        获取多少条。
+ *  @param completionBlock 该方法完成调用的回调。如果该方法调用失败，会包含调用失败的原因。返回结果中携带的群成员的信息包括id以及加群时间
+ *
+ *
+ *  \~english
+ *  Gets the list of group members from the server.
+ *
+ *  @param groupId         The group ID.
+ *  @param cursor          The cursor when joins the group. Sets the parameter as nil for the first time. Next time, pass the value returned last time.
+ *  @param limit       The page size.
+ *  @param completionBlock The completion block, which contains the error message if the method fails. The result contains the group member's information, including id and join time.
+ *
+ */
+- (void)fetchGroupMemberInfoListFromServerWithGroupId:(NSString *_Nonnull)groupId
+                                               cursor:(NSString *_Nonnull)cursor
+                                              limit:(NSInteger)limit
+                                           completion:(void (^_Nullable)(EMCursorResult<EMGroupMemberInfo*>* _Nullable cursorResult, EMError *_Nullable error))completionBlock;
 
 /**
  *  \~chinese
@@ -1077,6 +1142,29 @@
 - (void)updateGroupSubject:(NSString *_Nullable)aSubject
                   forGroup:(NSString *_Nonnull)aGroupId
                 completion:(void (^_Nullable)(EMGroup *_Nullable aGroup, EMError *_Nullable aError))aCompletionBlock;
+/**
+ *  更改群组头像 。
+ *
+ *  该方法只有群主才有权限调用。
+ *
+ *  @param avatar         新头像。
+ *  @param groupId         群组 ID。
+ *  @param completionBlock 该方法完成调用的回调。如果该方法调用失败，会包含调用失败的原因。
+ *
+ *
+ *  \~english
+ *  Changes the group avatar.
+ *
+ *  Only the group owner can call this method.
+ *
+ *  @param avatar         The new subject of the group.
+ *  @param groupId         The group ID.
+ *  @param completionBlock The completion block, which contains the error message if the method fails.
+ *
+ */
+- (void)updateGroupAvatar:(NSString *_Nullable)avatar
+                  groupId:(NSString *_Nonnull)groupId
+               completion:(void (^_Nullable)(EMGroup *_Nullable group, EMError *_Nullable error))completionBlock;
 
 /**
  *  \~chinese

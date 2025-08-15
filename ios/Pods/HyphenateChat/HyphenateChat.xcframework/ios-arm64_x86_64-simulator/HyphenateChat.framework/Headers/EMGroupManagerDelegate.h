@@ -386,35 +386,35 @@ typedef NS_ENUM(NSInteger, EMGroupLeaveReason) {
 
 /**
  *  \~chinese
- *  用户加入群组回调。
+ *  批量用户加入群组回调。
  *
- *  @param aGroup       加入的群组。
- *  @param aUsername    加入群组的用户名。
+ *  @param group       加入的群组。
+ *  @param userIds   加入群组的用户名。
  *
  *  \~english
- *  Occurs when a user joins a group.
+ *  Occurs when users joins a group.
  *
- *  @param aGroup       The group instance.
- *  @param aUsername    The user that joins the group.
+ *  @param group       The group instance.
+ *  @param userIds   The users that join the group.
  */
-- (void)userDidJoinGroup:(EMGroup *_Nonnull)aGroup
-                    user:(NSString *_Nonnull)aUsername;
+- (void)userDidJoinGroup:(EMGroup *_Nonnull)group
+                   users:(NSArray<NSString*> *_Nonnull)userIds;
 
 /**
  *  \~chinese
- *  用户离开群组回调。
+ *  批量用户离开群组回调。
  *
- *  @param aGroup       离开的群组。
- *  @param aUsername    离开群组的用户名。
+ *  @param group       离开的群组。
+ *  @param userIds    离开群组的用户名列表。
  *
  *  \~english
- *  Occurs when a user leaves the group.
+ *  Occurs when users leave the group.
  *
- *  @param aGroup       The group instance.
- *  @param aUsername    The user that leaves the group.
+ *  @param group       The group instance.
+ *  @param userIds    The users that leaves the group.
  */
-- (void)userDidLeaveGroup:(EMGroup *_Nonnull)aGroup
-                     user:(NSString *_Nonnull)aUsername;
+- (void)userDidLeaveGroup:(EMGroup *_Nonnull)group
+                    users:(NSArray<NSString *>* _Nonnull)userIds;
 
 /**
  *  \~chinese
@@ -529,4 +529,36 @@ typedef NS_ENUM(NSInteger, EMGroupLeaveReason) {
  */
 - (void)joinGroupRequestDidDecline:(NSString *_Nonnull)aGroupId
                             reason:(NSString *_Nullable)aReason EM_DEPRECATED_IOS(3_1_0, 4_2_0, "Use -joinGroupRequestDidDecline:reason:applicant: instead");
+
+/**
+ *  \~chinese
+ *  用户加入群组回调。
+ *
+ *  @param aGroup       加入的群组。
+ *  @param aUsername    加入群组的用户名。
+ *
+ *  \~english
+ *  Occurs when a user joins a group.
+ *
+ *  @param aGroup       The group instance.
+ *  @param aUsername    The user that joins the group.
+ */
+- (void)userDidJoinGroup:(EMGroup *_Nonnull)aGroup
+                    user:(NSString *_Nonnull)aUsername EM_DEPRECATED_IOS(3_1_0, 4_15_0, "Use -userDidJoinGroup:users: instead");
+
+/**
+ *  \~chinese
+ *  用户离开群组回调。
+ *
+ *  @param aGroup       离开的群组。
+ *  @param aUsername    离开群组的用户名。
+ *
+ *  \~english
+ *  Occurs when a user leaves the group.
+ *
+ *  @param aGroup       The group instance.
+ *  @param aUsername    The user that leaves the group.
+ */
+- (void)userDidLeaveGroup:(EMGroup *_Nonnull)aGroup
+                     user:(NSString *_Nonnull)aUsername  EM_DEPRECATED_IOS(3_1_0, 4_15_0, "Use -userDidLeaveGroup:users: instead");
 @end
