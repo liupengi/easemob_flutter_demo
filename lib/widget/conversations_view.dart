@@ -13,11 +13,19 @@ class ConversationsView extends StatefulWidget {
 // 状态管理者
 class _SMDState extends State<ConversationsView> {
   List<EMConversation>? loadAllConversations = [];
+  final ChatPresenter _chatPresenter = ChatPresenter();
 
   @override
   void initState() {
     super.initState();
+    // 注册会话更新回调
+    _chatPresenter.onConversationsUpdated = () {
+      // 重新加载会话列表并刷新UI
+      loadAllConversation();
+    };
+    _chatPresenter.addChatListener();
     loadAllConversation();
+
   }
 
   void loadAllConversation() async {
@@ -65,15 +73,33 @@ class _SMDState extends State<ConversationsView> {
                   fontSize: 18.0,
                 ),
               ),
-
             ),
-              Text(
-                loadAllConversations![index].id,
-                style: const TextStyle(
-                  fontWeight: FontWeight.w800,
-                  fontSize: 18.0,
-                ),
-              ),
+              FutureBuilder<EMMessage?>(
+                future: loadAllConversations![index].latestMessage(),
+                builder: (context, snapshot) {
+                  String messageContent = "未知消息";
+                  if (snapshot.connectionState == ConnectionState.done) {
+                    EMMessage? message = snapshot.data;
+                    if(message?.body.type == MessageType.TXT){
+                      if (message?.body is EMTextMessageBody) {
+                        messageContent = (message!.body as EMTextMessageBody).content;
+                      }
+                    }else if(message?.body.type == MessageType.IMAGE){
+                      if (message?.body is EMImageMessageBody) {
+                        messageContent = "【图片消息】";
+                      }
+                    }
+
+                  }
+                  return Text(
+                    messageContent,
+                    style: const TextStyle(
+                      fontWeight: FontWeight.w800,
+                      fontSize: 18.0,
+                    ),
+                  );
+                },
+              )
             ],
 
           )

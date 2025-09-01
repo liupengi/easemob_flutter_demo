@@ -323,20 +323,64 @@ void _fetchMemberAttributes() async {
 }
 
 void _modifyMessage() async {
-  final attributes = {
-    'newKey': 'new value',
-  };
-  // EMConversation? emConversation =await EMClient.getInstance.chatManager.getConversation("lp2");
-  // EMMessage? emMessage = await emConversation?.latestMessage();
-  // EMImageMessageBody emImageMessageBody =  emMessage as EMImageMessageBody;
-  final txtBody = EMImageMessageBody(
-    localPath: "/data/user/0/com.hyphenate.chatdemo/files/image9020907944737722690.jpg",
+
+  // 创建一条文本消息。
+  final msg = EMMessage.createTxtSendMessage(
+    // `targetId` 为接收方，单聊为对端用户 ID、群聊为群组 ID，聊天室为聊天室 ID。
+    targetId: "lp1",
+    // `content` 为消息文字内容。
+    content: 'hello',
+    // 会话类型：单聊为 `Chat`，群聊为 `GroupChat`, 聊天室为 `ChatRoom`，默认为单聊。
+    chatType: ChatType.Chat,
   );
-  await EMClient.getInstance.chatManager.modifyMessage(
-    messageId: "1448821902893123020",
-    msgBody: txtBody,
-    attributes: attributes,
+  final handler = ChatMessageEvent(
+    onSuccess: (msgId, msg) {
+      print("发送成功" + msgId +"服务端消息id："+msg.msgId);
+    },
+    onProgress: (msgId, progress) {},
+    onError: (msgId, msg, error) {},
   );
+
+  /// 添加监听
+  EMClient.getInstance.chatManager.addMessageEvent(
+    'UNIQUE_HANDLER_ID',
+    handler,
+  );
+// 发送消息。
+  EMClient.getInstance.chatManager.sendMessage(msg);
+
+
+
+
+
+
+
+  // try {
+  //   EMCursorResult<EMMessageReaction> result =
+  //   await EMClient.getInstance.chatManager.fetchReactionDetail(
+  //     messageId: "1452147278461539952",
+  //     reaction: "😁",
+  //   );
+  // } on EMError catch (e) {
+  // }
+
+
+
+
+
+  // final attributes = {
+  //   'newKey': 'new value',
+  // };
+  // // EMConversation? emConversation =await EMClient.getInstance.chatManager.getConversation("lp2");
+  // // EMMessage? emMessage = await emConversation?.latestMessage();
+  // // EMImageMessageBody emImageMessageBody =  emMessage as EMImageMessageBody;
+  // final txtBody = EMImageMessageBody(
+  //   localPath: "/data/user/0/com.hyphenate.chatdemo/files/image9020907944737722690.jpg",
+  // );
+  // await EMClient.getInstance.chatManager.modifyMessage(
+  //   messageId: "1450224297262974376",
+  //   attributes: attributes,
+  // );
 
 
 

@@ -1,6 +1,10 @@
+import 'dart:ui';
+
 import 'package:im_flutter_sdk/im_flutter_sdk.dart';
 
 class ChatPresenter {
+  // 添加会话列表更新回调（供UI层监听）
+  VoidCallback? onConversationsUpdated;
   void addChatListener() {
 
     EMClient.getInstance.groupManager.addEventHandler(
@@ -72,6 +76,7 @@ class ChatPresenter {
           print("======================");
           for (var p = 0; p < reactionList!.length; p++) {
             print(reactionList?[p].reaction.toString());
+            print(reactionList?[p].userList);
           }
           print("======================");
         }
@@ -144,6 +149,7 @@ class ChatPresenter {
             case MessageType.COMBINE:
             // TODO: Handle this case.
           }
+          onConversationsUpdated?.call();
         }
       }, onMessagesRead: (messages) {
         for (var msg in messages) {
