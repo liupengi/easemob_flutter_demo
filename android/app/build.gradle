@@ -54,12 +54,31 @@ android {
             }
         }
     }
-
+    signingConfigs {
+        release {
+            keyAlias '111111'
+            keyPassword '111111'
+            storePassword '111111'
+            storeFile file('./keystore/111111.jks')
+        }
+        debug{
+            keyAlias '111111'
+            keyPassword '111111'
+            storePassword '111111'
+            storeFile file('./keystore/111111.jks')
+        }
+    }
     buildTypes {
         release {
-            // TODO: Add your own signing config for the release build.
-            // Signing with the debug keys for now, so `flutter run --release` works.
-            signingConfig signingConfigs.debug
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            //以下俩行记得添加！
+            debuggable true
+            signingConfig signingConfigs.release
+        }
+        //以下配置记得添加！
+        debug {
+            signingConfig signingConfigs.release
         }
     }
 }

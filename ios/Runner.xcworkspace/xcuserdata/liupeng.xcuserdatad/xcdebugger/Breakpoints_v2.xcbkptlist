@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "BE7205DC-6D07-4EBD-9EE7-A18035637955"
+   type = "0"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "6E505AB3-F19D-4C31-8B8C-678D18FA1450"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../../../../.pub-cache/hosted/pub.dev/im_flutter_sdk-4.10.1/ios/Classes/EMChatManagerWrapper.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "815"
+            endingLineNumber = "815"
+            landmarkName = "-fetchHistoryMessagesByOptions:channelName:result:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "40AA0DE6-DEFF-4115-85FE-3A0E6C009401"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../../../../.pub-cache/hosted/pub.dev/im_flutter_sdk-4.10.1/ios/Classes/EMChatManagerWrapper.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "813"
+            endingLineNumber = "813"
+            landmarkName = "-fetchHistoryMessagesByOptions:channelName:result:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "74678AE9-59E9-4819-8427-23E6461B81F8"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../../../../.pub-cache/hosted/pub.dev/im_flutter_sdk-4.10.1/ios/Classes/EMChatManagerWrapper.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "814"
+            endingLineNumber = "814"
+            landmarkName = "-fetchHistoryMessagesByOptions:channelName:result:"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "74678AE9-59E9-4819-8427-23E6461B81F8 - cf582a1729cfe2fc"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[EMChatManagerWrapper fetchHistoryMessagesByOptions:channelName:result:]"
+                  moduleName = "im_flutter_sdk"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/liupeng/.pub-cache/hosted/pub.dev/im_flutter_sdk-4.10.1/ios/Classes/EMChatManagerWrapper.m"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "814"
+                  endingLineNumber = "814">
+               </Location>
+               <Location
+                  uuid = "74678AE9-59E9-4819-8427-23E6461B81F8 - 460cd6d12524696f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__73-[EMChatManagerWrapper fetchHistoryMessagesByOptions:channelName:result:]_block_invoke"
+                  moduleName = "im_flutter_sdk"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/liupeng/.pub-cache/hosted/pub.dev/im_flutter_sdk-4.10.1/ios/Classes/EMChatManagerWrapper.m"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "815"
+                  endingLineNumber = "815">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "388E7BAA-BF19-471A-B396-6A1FBAD86F86"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../../../../.pub-cache/hosted/pub.flutter-io.cn/im_flutter_sdk_ios-4.15.1/ios/Classes/ChatManagerWrapper.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "1040"
+            endingLineNumber = "1040"
+            landmarkName = "-fetchReactionDetail:channelName:result:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "5BA947F6-5D31-476B-8E91-19BCCEA272A6"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../../../../.pub-cache/hosted/pub.flutter-io.cn/im_flutter_sdk_ios-4.15.1/ios/Classes/ChatManagerWrapper.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "1041"
+            endingLineNumber = "1041"
+            landmarkName = "-fetchReactionDetail:channelName:result:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "C260A933-AF84-482D-9B9B-C7510B7D539E"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../../../../.pub-cache/hosted/pub.flutter-io.cn/im_flutter_sdk_ios-4.15.1/ios/Classes/ChatManagerWrapper.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "1039"
+            endingLineNumber = "1039"
+            landmarkName = "-fetchReactionDetail:channelName:result:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>

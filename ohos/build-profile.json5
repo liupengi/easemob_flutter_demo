@@ -1,0 +1,46 @@
+{
+  "app": {
+    "signingConfigs": [
+      {
+        "name": "default",
+        "type": "HarmonyOS",
+        "material": {
+          "storePassword": "0000001AED760045B34F2641C164B49BCD608951AB86B39ACE7D8F3A710006571B22F7CDE1C05AE96B0E",
+          "certpath": "/Users/liupeng/Downloads/liupeng.cer",
+          "keyAlias": "liupeng",
+          "keyPassword": "0000001AE924DA540D9C4CFE501FD807307436447A1747EF54E81D6ABAE05D7444E92FAFAFEC67E136DC",
+          "profile": "/Users/liupeng/Downloads/liupengDebug (1).p7b",
+          "signAlg": "SHA256withECDSA",
+          "storeFile": "/Users/liupeng/Downloads/liupeng.p12"
+        }
+      }
+    ],
+    "products": [
+      {
+        "name": "default",
+        "signingConfig": "default",
+        "compatibleSdkVersion": "5.0.0(12)",
+        "runtimeOS": "HarmonyOS",
+        "buildOption": {
+          "strictMode": {
+            "useNormalizedOHMUrl": true
+          }
+        }
+      }
+    ]
+  },
+  "modules": [
+    {
+      "name": "entry",
+      "srcPath": "./entry",
+      "targets": [
+        {
+          "name": "default",
+          "applyToProducts": [
+            "default"
+          ]
+        }
+      ]
+    }
+  ]
+}
