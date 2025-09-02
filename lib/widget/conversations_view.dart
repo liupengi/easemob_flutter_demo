@@ -6,7 +6,7 @@ import 'package:im_flutter_sdk/im_flutter_sdk.dart';
 
 import '../chat_page.dart';
 
-// Import MVI components
+// 导入 MVI 组件
 import '../features/conversations/conversations_bloc.dart';
 import '../features/conversations/conversations_intent.dart';
 import '../features/conversations/conversations_state.dart';
@@ -31,10 +31,10 @@ class _ConversationsViewState extends State<ConversationsView> {
   void initState() {
     super.initState();
     
-    // Load conversations on initialization
+  // 初始化时加载会话
     context.read<ConversationsBloc>().add(const LoadConversationsIntent());
     
-    // Listen to conversation events
+    // 监听会话事件
     context.read<ConversationsBloc>().eventStream.listen((event) {
       if (event is NavigateToChatEvent) {
         _navigateToChat(context, event.conversationId);

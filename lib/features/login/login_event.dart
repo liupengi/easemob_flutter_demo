@@ -1,11 +1,11 @@
 import '../../core/base_event.dart';
 
-/// Login events representing side effects
+/// 表示副作用的登录事件
 abstract class LoginEvent extends BaseEvent {
   const LoginEvent();
 }
 
-/// Event to navigate to home page after successful login
+/// 登录成功后导航到主页的事件
 class NavigateToHomeEvent extends LoginEvent {
   const NavigateToHomeEvent();
 }

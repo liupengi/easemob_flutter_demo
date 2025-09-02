@@ -6,17 +6,19 @@ import 'dart:core';
 
 import 'package:intl/intl.dart';
 
-// Import BLoCs
+// 导入 BLoCs
 import 'features/login/login_bloc.dart';
 import 'features/home/home_bloc.dart';
 import 'features/conversations/conversations_bloc.dart';
 import 'features/contacts/contacts_bloc.dart';
 import 'features/chat/chat_bloc.dart';
+import 'features/groups/groups_bloc.dart';
 
-// Import repositories
+// 导入仓库
 import 'repositories/auth_repository.dart';
 import 'repositories/chat_repository.dart';
 import 'repositories/contact_repository.dart';
+import 'repositories/group_repository.dart';
 
 void main() {
   runApp(const MyApp());
@@ -52,6 +54,11 @@ class MyApp extends StatelessWidget {
         BlocProvider<ChatBloc>(
           create: (context) => ChatBloc(
             chatRepository: ChatRepository(),
+          ),
+        ),
+        BlocProvider<GroupsBloc>(
+          create: (context) => GroupsBloc(
+            groupRepository: GroupRepository(),
           ),
         ),
       ],

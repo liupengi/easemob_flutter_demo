@@ -18,9 +18,9 @@ class ChatRepository {
   Stream<String> get conversationUpdateStream =>
       _conversationUpdateController.stream;
 
-  /// Initialize chat listeners
+  /// 初始化聊天监听器
   void initializeChatListeners() {
-    // Add message listener
+    // 添加消息监听器
     EMClient.getInstance.chatManager.addEventHandler(
       "MVI_CHAT_HANDLER",
       EMChatEventHandler(
@@ -32,12 +32,12 @@ class ChatRepository {
           }
         },
         onConversationsUpdate: () {
-          // Handle conversation updates
+          // 处理会话更新
         },
       ),
     );
 
-    // Add connection listener
+    // 添加连接监听器
     EMClient.getInstance.addConnectionEventHandler(
       "MVI_CONNECTION_HANDLER",
       EMConnectionEventHandler(
@@ -110,7 +110,7 @@ class ChatRepository {
     }
   }
 
-  /// Mark conversation as read
+  /// 标记会话为已读
   Future<void> markConversationAsRead(String conversationId) async {
     try {
       final conversation = await EMClient.getInstance.chatManager
@@ -121,7 +121,7 @@ class ChatRepository {
     }
   }
 
-  /// Dispose repository
+  /// 释放仓库
   void dispose() {
     EMClient.getInstance.chatManager.removeEventHandler("MVI_CHAT_HANDLER");
     EMClient.getInstance.removeConnectionEventHandler("MVI_CONNECTION_HANDLER");

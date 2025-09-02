@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:im_flutter_sdk/im_flutter_sdk.dart';
 import 'home_page.dart';
 
-// Import MVI components
+// 导入 MVI 组件
 import 'features/login/login_bloc.dart';
 import 'features/login/login_intent.dart';
 import 'features/login/login_state.dart';
@@ -24,10 +24,10 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   void initState() {
     super.initState();
-    // Initialize login
+    // 初始化登录
     context.read<LoginBloc>().add(const LoginInitializedIntent());
     
-    // Listen to login events
+    // 监听登录事件
     context.read<LoginBloc>().eventStream.listen((event) {
       if (event is NavigateToHomeEvent) {
         _navigateToHome();

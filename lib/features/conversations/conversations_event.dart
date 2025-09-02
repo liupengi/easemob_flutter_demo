@@ -1,6 +1,6 @@
 import '../../core/base_event.dart';
 
-/// Conversations events representing side effects
+/// 表示副作用的会话事件
 abstract class ConversationsEvent extends BaseEvent {
   const ConversationsEvent();
 }

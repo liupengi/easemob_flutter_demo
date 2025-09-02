@@ -1,11 +1,11 @@
 import '../../core/base_event.dart';
 
-/// Chat events representing side effects
+/// 表示副作用的聊天事件
 abstract class ChatEvent extends BaseEvent {
   const ChatEvent();
 }
 
-/// Event to scroll to bottom of chat
+/// 滚动到聊天底部的事件
 class ScrollToBottomEvent extends ChatEvent {
   const ScrollToBottomEvent();
 }
@@ -20,7 +20,7 @@ class ShowChatErrorEvent extends ChatEvent {
   List<Object?> get props => [message];
 }
 
-/// Event to show message sent successfully
+/// 消息发送成功的事件
 class MessageSentSuccessEvent extends ChatEvent {
   const MessageSentSuccessEvent();
 }

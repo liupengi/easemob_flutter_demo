@@ -1,11 +1,11 @@
 import '../../core/base_event.dart';
 
-/// Contacts events representing side effects
+/// 表示副作用的联系人事件
 abstract class ContactsEvent extends BaseEvent {
   const ContactsEvent();
 }
 
-/// Event to navigate to chat with a contact
+/// 导航到与联系人聊天的事件
 class NavigateToChatWithContactEvent extends ContactsEvent {
   final String userId;
 
@@ -15,7 +15,7 @@ class NavigateToChatWithContactEvent extends ContactsEvent {
   List<Object?> get props => [userId];
 }
 
-/// Event to show error message
+/// 显示错误消息的事件
 class ShowContactsErrorEvent extends ContactsEvent {
   final String message;
 
@@ -25,7 +25,7 @@ class ShowContactsErrorEvent extends ContactsEvent {
   List<Object?> get props => [message];
 }
 
-/// Event to show success message
+/// 显示成功消息的事件
 class ShowContactsSuccessEvent extends ContactsEvent {
   final String message;
 
