@@ -18,11 +18,7 @@ public final class GeneratedPluginRegistrant {
     try {
       flutterEngine.getPlugins().add(new com.easemob.im_flutter_sdk.ImFlutterSdkPlugin());
     } catch (Exception e) {
-<<<<<<< HEAD
-      Log.e(TAG, "Error registering plugin im_flutter_sdk, com.easemob.im_flutter_sdk.ImFlutterSdkPlugin", e);
-=======
       Log.e(TAG, "Error registering plugin im_flutter_sdk_android, com.easemob.im_flutter_sdk.ImFlutterSdkPlugin", e);
->>>>>>> flutter-4.15.1
     }
   }
 }

@@ -79,12 +79,6 @@ packages:
     dependency: "direct main"
     description:
       name: im_flutter_sdk
-<<<<<<< HEAD
-      sha256: dd5c54581381e1dbf1c118628d02fce88ba4cb40aa11e19b60fe43ac17734dd1
-      url: "https://pub.dev"
-    source: hosted
-    version: "4.12.0+1"
-=======
       sha256: "952bd7a4846d9645adf6bf67c781573aba2825e12bbedfa7bb9f8b234bb1410b"
       url: "https://pub.flutter-io.cn"
     source: hosted
@@ -130,7 +124,6 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "0.17.0"
->>>>>>> flutter-4.15.1
   leak_tracker:
     dependency: transitive
     description:
