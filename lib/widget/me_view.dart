@@ -307,7 +307,8 @@ class _SMDState extends State<MeView> {
 }
 
 void _sendGroupMessageReceipt() async {
-
+ EMMessage? message = await  EMClient.getInstance.chatManager.loadMessage("1456909639940572912");
+print(message?.serverTime);
 }
 void _fetchHistoryMessages() async {
 
