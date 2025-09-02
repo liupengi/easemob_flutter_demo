@@ -4,29 +4,33 @@ import 'package:im_flutter_sdk/im_flutter_sdk.dart';
 
 class ChatPresenter {
   // 添加会话列表更新回调（供UI层监听）
-  VoidCallback? onConversationsUpdated;
+  Function(String conversationId)? onMessagesUpdated;
+
+
+
+
+
+
+
+
+
   void addChatListener() {
 
     EMClient.getInstance.groupManager.addEventHandler(
         "identifier",
         EMGroupEventHandler(
             onMemberJoinedFromGroup: (groupid, member) {
-              print("有用户加入群组了" + groupid + "====" + member);
+              print("有用户加入群组了$groupid====$member");
             },
             onMemberExitedFromGroup: (groupid, member) {
-              print("有用户退群组了" + groupid + "====" + member);
+              print("有用户退群组了$groupid====$member");
             },
             onAutoAcceptInvitationFromGroup: (groupId, inviter, inviteMessage) {
-              print("您加入了群组" +
-                  groupId +
-                  "====" +
-                  inviter +
-                  "=====" +
-                  inviteMessage.toString());
+              print("您加入了群组$groupId====$inviter=====$inviteMessage");
             },
             onSpecificationDidUpdate: (group) {},
             onAnnouncementChangedFromGroup: (groupid, announcement) {
-              print("公告更新了" + groupid + "====" + announcement!);
+              print("公告更新了$groupid====${announcement!}");
             }
             //onSpecificationDidUpdate
 
@@ -37,7 +41,7 @@ class ChatPresenter {
       "identifier",
       EMChatRoomEventHandler(
         onMemberJoinedFromChatRoom: (roomId, participant, ext) {
-          print("有用户加入聊天室了" + participant + "====" + ext.toString());
+          print("有用户加入聊天室了$participant====$ext");
         },
       ),
     );
@@ -82,11 +86,13 @@ class ChatPresenter {
         }
       }, onMessagesRecalledInfo: (recallMessageInfo) {
         for (var msg in recallMessageInfo) {
-          print("onMessagesRecalledInfo======================" +
-              msg.recallMessageId);
+          print("onMessagesRecalledInfo======================${msg.recallMessageId}");
         }
       }, onMessagesReceived: (messages) async {
         for (var msg in messages) {
+          String? conversationId = msg.conversationId;
+          onMessagesUpdated?.call(conversationId!);
+
           print("onMessagesReceived======================${msg.toString()}");
 // // 指定需要翻译的目标语言
 //             List<String> languages = ["en"];
@@ -149,7 +155,6 @@ class ChatPresenter {
             case MessageType.COMBINE:
             // TODO: Handle this case.
           }
-          onConversationsUpdated?.call();
         }
       }, onMessagesRead: (messages) {
         for (var msg in messages) {
@@ -223,9 +228,5 @@ class ChatPresenter {
     await EMClient.getInstance.init(options);
     // 通知 SDK UI 已准备好。该方法执行后才会收到 `EMChatRoomEventHandler`、`EMContactEventHandler` 和 `EMGroupEventHandler` 回调。
     await EMClient.getInstance.startCallback();
-  }
-
-  void isLoginBefore() {
-    EMClient.getInstance.isLoginBefore();
   }
 }
