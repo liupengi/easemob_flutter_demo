@@ -26,6 +26,7 @@ class ChatRepository {
       EMChatEventHandler(
         onMessagesReceived: (messages) {
           for (var msg in messages) {
+            print("Received message: ${msg.toString()}");
             final messageModel = MessageModel.fromEMMessage(msg);
             _messageStreamController.add(messageModel);
             _conversationUpdateController.add(msg.conversationId!);

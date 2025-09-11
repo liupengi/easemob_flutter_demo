@@ -12,7 +12,7 @@ class AuthRepository {
   Future<void> initializeSDK() async {
     EMOptions options = EMOptions.withAppKey(
       "easemob-demo#support",
-      autoLogin: false,
+      autoLogin: true,
       debugMode: true,
       requireAck: true,
       extSettings: {
