@@ -36,7 +36,7 @@ class ChatBloc extends Bloc<ChatIntent, ChatState> {
     // Cancel previous message subscription
     _messageSubscription?.cancel();
 
-    // Listen to new messages for this conversation
+    // 监听新消息（移除了监听器初始化代码，因为已经在应用启动时初始化了）
     _messageSubscription = _chatRepository.messageStream.listen(
       (message) {
         if (message.toUserId == _currentConversationId ||

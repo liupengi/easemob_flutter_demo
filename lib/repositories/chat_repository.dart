@@ -18,8 +18,16 @@ class ChatRepository {
   Stream<String> get conversationUpdateStream =>
       _conversationUpdateController.stream;
 
+  // 添加一个标志来确保监听器只初始化一次
+  bool _listenersInitialized = false;
+
   /// 初始化聊天监听器
   void initializeChatListeners() {
+    // 确保只初始化一次
+    if (_listenersInitialized) {
+      return;
+    }
+    
     // 添加消息监听器
     EMClient.getInstance.chatManager.addEventHandler(
       "MVI_CHAT_HANDLER",
@@ -50,6 +58,9 @@ class ChatRepository {
         },
       ),
     );
+
+    
+    _listenersInitialized = true;
   }
 
   /// Send text message

@@ -22,9 +22,6 @@ class ConversationsBloc extends Bloc<ConversationsIntent, ConversationsState> {
     on<SelectConversationIntent>(_onSelectConversation);
     on<MarkConversationAsReadIntent>(_onMarkConversationAsRead);
 
-    // Initialize chat listeners
-    _chatRepository.initializeChatListeners();
-
     // Listen to conversation updates
     _conversationUpdateSubscription =
         _chatRepository.conversationUpdateStream.listen(

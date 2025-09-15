@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:im_flutter_sdk/im_flutter_sdk.dart';
 import '../models/user_model.dart';
+import 'chat_repository.dart'; // 添加这个导入
 
 /// Repository for authentication operations
 class AuthRepository {
@@ -20,7 +21,10 @@ class AuthRepository {
       },
     );
     await EMClient.getInstance.init(options);
+    // 初始化聊天监听器
+    ChatRepository().initializeChatListeners();
     await EMClient.getInstance.startCallback();
+
   }
 
   /// Login with username and password
