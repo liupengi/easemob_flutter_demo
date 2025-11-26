@@ -156,6 +156,35 @@ class _ChatPageState extends State<ChatPage> {
     final isMe = message.direction;
     final content = message.content;
     
+    // 创建消息气泡组件
+    Widget messageBubble = ConstrainedBox(
+      constraints: BoxConstraints(
+        maxWidth: MediaQuery.of(context).size.width * 0.7, // 最大宽度限制
+      ),
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+        decoration: BoxDecoration(
+          color: isMe == MessageDirection.SEND ? const Color(0xFF95EC69) : Colors.white, // 微信绿/白色气泡
+          borderRadius: BorderRadius.circular(18),
+          // 接收方气泡添加左侧尖角
+          border: isMe != MessageDirection.RECEIVE ? Border.all(color: Colors.grey[200]!) : null,
+        ),
+        child: Text(
+          content,
+          style: TextStyle(
+            color: isMe == MessageDirection.SEND ? Colors.black : Colors.black87,
+            fontSize: 16,
+          ),
+        ),
+      ),
+    );
+
+    // 添加长按手势识别
+    messageBubble = GestureDetector(
+      onLongPress: () => _showMessageActions(message),
+      child: messageBubble,
+    );
+    
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 6),
       child: Row(
@@ -171,27 +200,7 @@ class _ChatPageState extends State<ChatPage> {
             const SizedBox(width: 8),
           ],
           // 消息气泡
-          ConstrainedBox(
-            constraints: BoxConstraints(
-              maxWidth: MediaQuery.of(context).size.width * 0.7, // 最大宽度限制
-            ),
-            child: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-              decoration: BoxDecoration(
-                color: isMe == MessageDirection.SEND ? const Color(0xFF95EC69) : Colors.white, // 微信绿/白色气泡
-                borderRadius: BorderRadius.circular(18),
-                // 接收方气泡添加左侧尖角
-                border: isMe != MessageDirection.RECEIVE ? Border.all(color: Colors.grey[200]!) : null,
-              ),
-              child: Text(
-                content,
-                style: TextStyle(
-                  color: isMe == MessageDirection.SEND ? Colors.black : Colors.black87,
-                  fontSize: 16,
-                ),
-              ),
-            ),
-          ),
+          messageBubble,
           if (isMe == MessageDirection.SEND) ...[
             const SizedBox(width: 8),
             const CircleAvatar(
@@ -202,6 +211,67 @@ class _ChatPageState extends State<ChatPage> {
         ],
       ),
     );
+  }
+
+  // 显示消息操作菜单
+  void _showMessageActions(dynamic message) {
+    showModalBottomSheet(
+      context: context,
+      builder: (BuildContext context) {
+        return SafeArea(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              ListTile(
+                leading: const Icon(Icons.thumb_up),
+                title: const Text('点赞'),
+                onTap: () {
+                  Navigator.pop(context);
+                  // 在这里添加点赞逻辑
+                  _handleMessageAddReaction(message, '{\"type\":0,\"from\":\"c57821be-6a0a-4c4c-b8cd-42c0cdef92fd\",\"to\":\"c57821be-6a0a-4c4c-b8cd-42c0cdef92fd\",\"content\":\"test111\",\"timestamp\":1760683012366}');
+                },
+              ),
+              ListTile(
+                leading: const Icon(Icons.reply),
+                title: const Text('取消点赞'),
+                onTap: () {
+                  Navigator.pop(context);
+                  // 在这里添加回复逻辑
+                  _handleMessageRemoveReaction(message, '{\"type\":0,\"from\":\"c57821be-6a0a-4c4c-b8cd-42c0cdef92fd\",\"to\":\"c57821be-6a0a-4c4c-b8cd-42c0cdef92fd\",\"content\":\"test111\",\"timestamp\":1760683012366}');
+                },
+              ),
+            ],
+          ),
+        );
+      },
+    );
+  }
+
+  // 处理消息操作
+  void _handleMessageAddReaction(dynamic message, String action) {
+    // 调用 SDK 添加 Reaction
+
+    EMClient.getInstance.chatManager.addReaction(
+      messageId: message.messageId,
+      reaction: action,
+    ).then((value) {
+      print('添加 Reaction 成功');
+    }).catchError((error) {
+      print('添加 Reaction 失败: $error');
+    });
+
+  }
+
+
+  void _handleMessageRemoveReaction(dynamic message, String action) {
+    EMClient.getInstance.chatManager.removeReaction(
+      messageId: message.messageId,
+      reaction: action,
+    ).then((value) {
+      print('删除 Reaction 成功');
+    }).catchError((error) {
+      print('删除 Reaction 失败: $error');
+    });
   }
 
   // 构建底部输入区域

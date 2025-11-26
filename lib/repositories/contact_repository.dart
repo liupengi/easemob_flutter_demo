@@ -16,6 +16,7 @@ class ContactRepository {
 
       if (contacts.isEmpty) {
         contacts = await EMClient.getInstance.contactManager.fetchAllContacts();
+
       }
 
       return contacts

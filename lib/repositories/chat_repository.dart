@@ -41,12 +41,16 @@ class ChatRepository {
           }
         },
         onConversationsUpdate: () {
-          // 处理会话更新
         },
+        onMessageReactionDidChange:(events){
+          print('收到了-------onMessageReactionDidChange: $events');
+
+        }
       ),
     );
 
     // 添加连接监听器
+
     EMClient.getInstance.addConnectionEventHandler(
       "MVI_CONNECTION_HANDLER",
       EMConnectionEventHandler(
@@ -56,8 +60,13 @@ class ChatRepository {
         onDisconnected: () {
           print("Disconnected from EaseMob server");
         },
+
       ),
     );
+    EMClient.getInstance.chatRoomManager.addEventHandler("identifier",
+        EMChatRoomEventHandler(
+
+        ));
 
     
     _listenersInitialized = true;

@@ -66,7 +66,7 @@
 		</data>
 		<key>ios-arm64/HyphenateChat.framework/Headers/EMConversation.h</key>
 		<data>
-		2Ak+QJddG5SyhjX819DxQW+2w3Y=
+		D6AXte/DsAH7pOouMU9+aH1ilW8=
 		</data>
 		<key>ios-arm64/HyphenateChat.framework/Headers/EMConversationFilter.h</key>
 		<data>
@@ -94,7 +94,7 @@
 		</data>
 		<key>ios-arm64/HyphenateChat.framework/Headers/EMFetchServerMessagesOption.h</key>
 		<data>
-		0pxm0OLDdpb6TGo25nUJQS4pEpQ=
+		dQfEc26h5GFKYocSHN4LkPAZ1jY=
 		</data>
 		<key>ios-arm64/HyphenateChat.framework/Headers/EMFileMessageBody.h</key>
 		<data>
@@ -102,15 +102,11 @@
 		</data>
 		<key>ios-arm64/HyphenateChat.framework/Headers/EMGroup.h</key>
 		<data>
-		wZaKZT24Qk8hsG1qF3pe3PMBYT4=
+		xPNZNihWuzT7EIcenAfOV1n74ew=
 		</data>
 		<key>ios-arm64/HyphenateChat.framework/Headers/EMGroupManagerDelegate.h</key>
 		<data>
-		/UuapMAbc7qXWI/JSImL6ew4j6c=
-		</data>
-		<key>ios-arm64/HyphenateChat.framework/Headers/EMGroupMemberInfo.h</key>
-		<data>
-		5u6D7UwSMpWBcsXyX4yfAC2MNfk=
+		SH6CT02LkWH2p2TGr0Lfu+CdJow=
 		</data>
 		<key>ios-arm64/HyphenateChat.framework/Headers/EMGroupMessageAck.h</key>
 		<data>
@@ -126,7 +122,7 @@
 		</data>
 		<key>ios-arm64/HyphenateChat.framework/Headers/EMImageMessageBody.h</key>
 		<data>
-		29D9JhS6ekc7nmLZwu/WnS0pzig=
+		DEjw5j4SQEYWBW5kW6Duvo8i5hk=
 		</data>
 		<key>ios-arm64/HyphenateChat.framework/Headers/EMLocalNotificationManager.h</key>
 		<data>
@@ -162,7 +158,7 @@
 		</data>
 		<key>ios-arm64/HyphenateChat.framework/Headers/EMMultiDevicesDelegate.h</key>
 		<data>
-		6Tt5YJAOCcIVmEm37kjZVOev2ic=
+		ZTlT6ntYRHflOvGuXE/FUNApeXk=
 		</data>
 		<key>ios-arm64/HyphenateChat.framework/Headers/EMOptions+PrivateDeploy.h</key>
 		<data>
@@ -170,7 +166,7 @@
 		</data>
 		<key>ios-arm64/HyphenateChat.framework/Headers/EMOptions.h</key>
 		<data>
-		qqjMzPVxPj6iKBVxpUiYLGLpP4I=
+		d1fp63y0J2B7AVja7MWw32VLGeI=
 		</data>
 		<key>ios-arm64/HyphenateChat.framework/Headers/EMPageResult.h</key>
 		<data>
@@ -246,7 +242,7 @@
 		</data>
 		<key>ios-arm64/HyphenateChat.framework/Headers/IEMGroupManager.h</key>
 		<data>
-		F1deayXJeY0VsYT9oReRs3iC+lI=
+		nSCRZxktrwRncVrANn4KwGz8s/s=
 		</data>
 		<key>ios-arm64/HyphenateChat.framework/Headers/IEMPresenceManager.h</key>
 		<data>
@@ -274,11 +270,11 @@
 		</data>
 		<key>ios-arm64/HyphenateChat.framework/HyphenateChat</key>
 		<data>
-		GbZl6CaNR0xFh0T2fszRg7dSVHg=
+		WKwufEmbkpOrmLrMapG1u8ZlZ5Y=
 		</data>
 		<key>ios-arm64/HyphenateChat.framework/Info.plist</key>
 		<data>
-		Ncx15XifMhWb1SlsoA9QOzHKqSM=
+		iNfaiPFoMBUA7KGQeHXFy63PcbM=
 		</data>
 		<key>ios-arm64/HyphenateChat.framework/Modules/module.modulemap</key>
 		<data>
@@ -350,7 +346,7 @@
 		</data>
 		<key>ios-arm64_x86_64-simulator/HyphenateChat.framework/Headers/EMConversation.h</key>
 		<data>
-		2Ak+QJddG5SyhjX819DxQW+2w3Y=
+		D6AXte/DsAH7pOouMU9+aH1ilW8=
 		</data>
 		<key>ios-arm64_x86_64-simulator/HyphenateChat.framework/Headers/EMConversationFilter.h</key>
 		<data>
@@ -378,7 +374,7 @@
 		</data>
 		<key>ios-arm64_x86_64-simulator/HyphenateChat.framework/Headers/EMFetchServerMessagesOption.h</key>
 		<data>
-		0pxm0OLDdpb6TGo25nUJQS4pEpQ=
+		dQfEc26h5GFKYocSHN4LkPAZ1jY=
 		</data>
 		<key>ios-arm64_x86_64-simulator/HyphenateChat.framework/Headers/EMFileMessageBody.h</key>
 		<data>
@@ -386,15 +382,11 @@
 		</data>
 		<key>ios-arm64_x86_64-simulator/HyphenateChat.framework/Headers/EMGroup.h</key>
 		<data>
-		wZaKZT24Qk8hsG1qF3pe3PMBYT4=
+		xPNZNihWuzT7EIcenAfOV1n74ew=
 		</data>
 		<key>ios-arm64_x86_64-simulator/HyphenateChat.framework/Headers/EMGroupManagerDelegate.h</key>
 		<data>
-		/UuapMAbc7qXWI/JSImL6ew4j6c=
-		</data>
-		<key>ios-arm64_x86_64-simulator/HyphenateChat.framework/Headers/EMGroupMemberInfo.h</key>
-		<data>
-		5u6D7UwSMpWBcsXyX4yfAC2MNfk=
+		SH6CT02LkWH2p2TGr0Lfu+CdJow=
 		</data>
 		<key>ios-arm64_x86_64-simulator/HyphenateChat.framework/Headers/EMGroupMessageAck.h</key>
 		<data>
@@ -410,7 +402,7 @@
 		</data>
 		<key>ios-arm64_x86_64-simulator/HyphenateChat.framework/Headers/EMImageMessageBody.h</key>
 		<data>
-		29D9JhS6ekc7nmLZwu/WnS0pzig=
+		DEjw5j4SQEYWBW5kW6Duvo8i5hk=
 		</data>
 		<key>ios-arm64_x86_64-simulator/HyphenateChat.framework/Headers/EMLocalNotificationManager.h</key>
 		<data>
@@ -446,7 +438,7 @@
 		</data>
 		<key>ios-arm64_x86_64-simulator/HyphenateChat.framework/Headers/EMMultiDevicesDelegate.h</key>
 		<data>
-		6Tt5YJAOCcIVmEm37kjZVOev2ic=
+		ZTlT6ntYRHflOvGuXE/FUNApeXk=
 		</data>
 		<key>ios-arm64_x86_64-simulator/HyphenateChat.framework/Headers/EMOptions+PrivateDeploy.h</key>
 		<data>
@@ -454,7 +446,7 @@
 		</data>
 		<key>ios-arm64_x86_64-simulator/HyphenateChat.framework/Headers/EMOptions.h</key>
 		<data>
-		qqjMzPVxPj6iKBVxpUiYLGLpP4I=
+		d1fp63y0J2B7AVja7MWw32VLGeI=
 		</data>
 		<key>ios-arm64_x86_64-simulator/HyphenateChat.framework/Headers/EMPageResult.h</key>
 		<data>
@@ -530,7 +522,7 @@
 		</data>
 		<key>ios-arm64_x86_64-simulator/HyphenateChat.framework/Headers/IEMGroupManager.h</key>
 		<data>
-		F1deayXJeY0VsYT9oReRs3iC+lI=
+		nSCRZxktrwRncVrANn4KwGz8s/s=
 		</data>
 		<key>ios-arm64_x86_64-simulator/HyphenateChat.framework/Headers/IEMPresenceManager.h</key>
 		<data>
@@ -558,11 +550,11 @@
 		</data>
 		<key>ios-arm64_x86_64-simulator/HyphenateChat.framework/HyphenateChat</key>
 		<data>
-		b+1YzvqoVrS0LN+7PPZZV5CUld8=
+		qcerry80YC6qGpqtuk4lQEfRKBU=
 		</data>
 		<key>ios-arm64_x86_64-simulator/HyphenateChat.framework/Info.plist</key>
 		<data>
-		pdLiCT2xVCvqZvuAYuPamLJVfZM=
+		XKxYXGwzkgqCcRHrMl8jJVqqQ04=
 		</data>
 		<key>ios-arm64_x86_64-simulator/HyphenateChat.framework/Modules/module.modulemap</key>
 		<data>
@@ -744,11 +736,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			2Ak+QJddG5SyhjX819DxQW+2w3Y=
+			D6AXte/DsAH7pOouMU9+aH1ilW8=
 			</data>
 			<key>hash2</key>
 			<data>
-			fjrZWVLvi/z4gHHqyMjgW0jXl49/dHwEEk9qIFCVjuY=
+			UzMzSlnqLRX7rgDaLRT8GCGSdeqI15sDz/I2QJDanPU=
 			</data>
 		</dict>
 		<key>ios-arm64/HyphenateChat.framework/Headers/EMConversationFilter.h</key>
@@ -821,11 +813,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			0pxm0OLDdpb6TGo25nUJQS4pEpQ=
+			dQfEc26h5GFKYocSHN4LkPAZ1jY=
 			</data>
 			<key>hash2</key>
 			<data>
-			OuLITQAhHQd1AGHhNW1323luKgeKo4bitM9/S2cvGc8=
+			fofWXIs+dp4NE94sFUSE0ILe3PzZgZ0PmDqqUhW0/4o=
 			</data>
 		</dict>
 		<key>ios-arm64/HyphenateChat.framework/Headers/EMFileMessageBody.h</key>
@@ -843,33 +835,22 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			wZaKZT24Qk8hsG1qF3pe3PMBYT4=
+			xPNZNihWuzT7EIcenAfOV1n74ew=
 			</data>
 			<key>hash2</key>
 			<data>
-			tKgTJswUss2OrGZhrd5ZKZkCSCIrEyE5i6/UADkKk/k=
+			dQ8VJ8MG9jZqyGh/u1SsQENx8lrb+hli0OfUTGuPveQ=
 			</data>
 		</dict>
 		<key>ios-arm64/HyphenateChat.framework/Headers/EMGroupManagerDelegate.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			/UuapMAbc7qXWI/JSImL6ew4j6c=
+			SH6CT02LkWH2p2TGr0Lfu+CdJow=
 			</data>
 			<key>hash2</key>
 			<data>
-			xQhqFxEBfKghK8RJ9iMtgqr7mdXvEgilrqHB8dXdSuY=
-			</data>
-		</dict>
-		<key>ios-arm64/HyphenateChat.framework/Headers/EMGroupMemberInfo.h</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			5u6D7UwSMpWBcsXyX4yfAC2MNfk=
-			</data>
-			<key>hash2</key>
-			<data>
-			H82+bzn/fPSnjQbHEJyAVd9aZdEW53pw9K59rzR9dlA=
+			8dvn/42xG841sKGea3MOuV2c6jauE8zDilzMsoC/DcU=
 			</data>
 		</dict>
 		<key>ios-arm64/HyphenateChat.framework/Headers/EMGroupMessageAck.h</key>
@@ -909,11 +890,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			29D9JhS6ekc7nmLZwu/WnS0pzig=
+			DEjw5j4SQEYWBW5kW6Duvo8i5hk=
 			</data>
 			<key>hash2</key>
 			<data>
-			SRt/QFJlXP1bk+pQ8IMiS/XjwZ+MtkipKC3oorzXMmc=
+			y4nCOfo7YEpmto6U5nGfv+GHFF+31aHk4GBFLlXHPNg=
 			</data>
 		</dict>
 		<key>ios-arm64/HyphenateChat.framework/Headers/EMLocalNotificationManager.h</key>
@@ -1008,11 +989,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			6Tt5YJAOCcIVmEm37kjZVOev2ic=
+			ZTlT6ntYRHflOvGuXE/FUNApeXk=
 			</data>
 			<key>hash2</key>
 			<data>
-			OUDBQKPJ07XdZcPtdR78lsGTldNTZFf7mY1PMX3ivE0=
+			VEu3Z+wWLJsbjflBIbJOucEEIT4QxZkBWqBBMFYwOG4=
 			</data>
 		</dict>
 		<key>ios-arm64/HyphenateChat.framework/Headers/EMOptions+PrivateDeploy.h</key>
@@ -1030,11 +1011,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			qqjMzPVxPj6iKBVxpUiYLGLpP4I=
+			d1fp63y0J2B7AVja7MWw32VLGeI=
 			</data>
 			<key>hash2</key>
 			<data>
-			nBIaWEP+QmlWUAv/DS9ksI567lHgCPlrn5jjrlkxrtQ=
+			c8IFW9GgZTekrmoxAKlDo1Cl3sKci/LIrySjziiRz40=
 			</data>
 		</dict>
 		<key>ios-arm64/HyphenateChat.framework/Headers/EMPageResult.h</key>
@@ -1239,11 +1220,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			F1deayXJeY0VsYT9oReRs3iC+lI=
+			nSCRZxktrwRncVrANn4KwGz8s/s=
 			</data>
 			<key>hash2</key>
 			<data>
-			jiEiyWvOuHt2ZKEEoRTjwmH6EowN5hTbdDpPRlqrXFw=
+			18DNEyg7YHT8s/QYnGeQab8a/kT7qIZY7zgUk8NBCyM=
 			</data>
 		</dict>
 		<key>ios-arm64/HyphenateChat.framework/Headers/IEMPresenceManager.h</key>
@@ -1316,22 +1297,22 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			GbZl6CaNR0xFh0T2fszRg7dSVHg=
+			WKwufEmbkpOrmLrMapG1u8ZlZ5Y=
 			</data>
 			<key>hash2</key>
 			<data>
-			1FcOkWF9iW6aKA8wkekLyzNV1yxvdUU7VtRVIBhHynw=
+			V9phfSUGKZJM70zEBhppHg212YPW4ItZs/0YPkHNIM4=
 			</data>
 		</dict>
 		<key>ios-arm64/HyphenateChat.framework/Info.plist</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			Ncx15XifMhWb1SlsoA9QOzHKqSM=
+			iNfaiPFoMBUA7KGQeHXFy63PcbM=
 			</data>
 			<key>hash2</key>
 			<data>
-			pBPD8n2jT2tsqL5+/ZMCukjzgwlVhTjygq76VaULrV0=
+			3YhJn8/LQihr+rwr1rDav4MeHGYXbj14Xxj9aPR9jO8=
 			</data>
 		</dict>
 		<key>ios-arm64/HyphenateChat.framework/Modules/module.modulemap</key>
@@ -1525,11 +1506,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			2Ak+QJddG5SyhjX819DxQW+2w3Y=
+			D6AXte/DsAH7pOouMU9+aH1ilW8=
 			</data>
 			<key>hash2</key>
 			<data>
-			fjrZWVLvi/z4gHHqyMjgW0jXl49/dHwEEk9qIFCVjuY=
+			UzMzSlnqLRX7rgDaLRT8GCGSdeqI15sDz/I2QJDanPU=
 			</data>
 		</dict>
 		<key>ios-arm64_x86_64-simulator/HyphenateChat.framework/Headers/EMConversationFilter.h</key>
@@ -1602,11 +1583,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			0pxm0OLDdpb6TGo25nUJQS4pEpQ=
+			dQfEc26h5GFKYocSHN4LkPAZ1jY=
 			</data>
 			<key>hash2</key>
 			<data>
-			OuLITQAhHQd1AGHhNW1323luKgeKo4bitM9/S2cvGc8=
+			fofWXIs+dp4NE94sFUSE0ILe3PzZgZ0PmDqqUhW0/4o=
 			</data>
 		</dict>
 		<key>ios-arm64_x86_64-simulator/HyphenateChat.framework/Headers/EMFileMessageBody.h</key>
@@ -1624,33 +1605,22 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			wZaKZT24Qk8hsG1qF3pe3PMBYT4=
+			xPNZNihWuzT7EIcenAfOV1n74ew=
 			</data>
 			<key>hash2</key>
 			<data>
-			tKgTJswUss2OrGZhrd5ZKZkCSCIrEyE5i6/UADkKk/k=
+			dQ8VJ8MG9jZqyGh/u1SsQENx8lrb+hli0OfUTGuPveQ=
 			</data>
 		</dict>
 		<key>ios-arm64_x86_64-simulator/HyphenateChat.framework/Headers/EMGroupManagerDelegate.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			/UuapMAbc7qXWI/JSImL6ew4j6c=
+			SH6CT02LkWH2p2TGr0Lfu+CdJow=
 			</data>
 			<key>hash2</key>
 			<data>
-			xQhqFxEBfKghK8RJ9iMtgqr7mdXvEgilrqHB8dXdSuY=
-			</data>
-		</dict>
-		<key>ios-arm64_x86_64-simulator/HyphenateChat.framework/Headers/EMGroupMemberInfo.h</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			5u6D7UwSMpWBcsXyX4yfAC2MNfk=
-			</data>
-			<key>hash2</key>
-			<data>
-			H82+bzn/fPSnjQbHEJyAVd9aZdEW53pw9K59rzR9dlA=
+			8dvn/42xG841sKGea3MOuV2c6jauE8zDilzMsoC/DcU=
 			</data>
 		</dict>
 		<key>ios-arm64_x86_64-simulator/HyphenateChat.framework/Headers/EMGroupMessageAck.h</key>
@@ -1690,11 +1660,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			29D9JhS6ekc7nmLZwu/WnS0pzig=
+			DEjw5j4SQEYWBW5kW6Duvo8i5hk=
 			</data>
 			<key>hash2</key>
 			<data>
-			SRt/QFJlXP1bk+pQ8IMiS/XjwZ+MtkipKC3oorzXMmc=
+			y4nCOfo7YEpmto6U5nGfv+GHFF+31aHk4GBFLlXHPNg=
 			</data>
 		</dict>
 		<key>ios-arm64_x86_64-simulator/HyphenateChat.framework/Headers/EMLocalNotificationManager.h</key>
@@ -1789,11 +1759,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			6Tt5YJAOCcIVmEm37kjZVOev2ic=
+			ZTlT6ntYRHflOvGuXE/FUNApeXk=
 			</data>
 			<key>hash2</key>
 			<data>
-			OUDBQKPJ07XdZcPtdR78lsGTldNTZFf7mY1PMX3ivE0=
+			VEu3Z+wWLJsbjflBIbJOucEEIT4QxZkBWqBBMFYwOG4=
 			</data>
 		</dict>
 		<key>ios-arm64_x86_64-simulator/HyphenateChat.framework/Headers/EMOptions+PrivateDeploy.h</key>
@@ -1811,11 +1781,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			qqjMzPVxPj6iKBVxpUiYLGLpP4I=
+			d1fp63y0J2B7AVja7MWw32VLGeI=
 			</data>
 			<key>hash2</key>
 			<data>
-			nBIaWEP+QmlWUAv/DS9ksI567lHgCPlrn5jjrlkxrtQ=
+			c8IFW9GgZTekrmoxAKlDo1Cl3sKci/LIrySjziiRz40=
 			</data>
 		</dict>
 		<key>ios-arm64_x86_64-simulator/HyphenateChat.framework/Headers/EMPageResult.h</key>
@@ -2020,11 +1990,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			F1deayXJeY0VsYT9oReRs3iC+lI=
+			nSCRZxktrwRncVrANn4KwGz8s/s=
 			</data>
 			<key>hash2</key>
 			<data>
-			jiEiyWvOuHt2ZKEEoRTjwmH6EowN5hTbdDpPRlqrXFw=
+			18DNEyg7YHT8s/QYnGeQab8a/kT7qIZY7zgUk8NBCyM=
 			</data>
 		</dict>
 		<key>ios-arm64_x86_64-simulator/HyphenateChat.framework/Headers/IEMPresenceManager.h</key>
@@ -2097,22 +2067,22 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			b+1YzvqoVrS0LN+7PPZZV5CUld8=
+			qcerry80YC6qGpqtuk4lQEfRKBU=
 			</data>
 			<key>hash2</key>
 			<data>
-			n8E/p3By23vYLk2ep8T7/Wy2tENK9jZYV7d5S84JOmY=
+			gHzjMf2Bsmcx6Zp0urDPGae5UWpZzGbtX/gE7j6+gVc=
 			</data>
 		</dict>
 		<key>ios-arm64_x86_64-simulator/HyphenateChat.framework/Info.plist</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			pdLiCT2xVCvqZvuAYuPamLJVfZM=
+			XKxYXGwzkgqCcRHrMl8jJVqqQ04=
 			</data>
 			<key>hash2</key>
 			<data>
-			cV9s4kUzR8jAmNDKg7MEyuexvBerRyqjgRgTyzxkL/4=
+			rEkOHBhEdfX618MNnr3uG5E3Rdbax5qjctJ7MFzgfWI=
 			</data>
 		</dict>
 		<key>ios-arm64_x86_64-simulator/HyphenateChat.framework/Modules/module.modulemap</key>

@@ -74,11 +74,11 @@ class MyApp extends StatelessWidget {
       ],
       // 应用核心配置：设置主题、标题和初始页面
       child: MaterialApp(
-        title: 'EaseMob Flutter Demo', // 应用标题
+        title: 'CHAT', // 应用标题
         theme: ThemeData(
           primarySwatch: Colors.blue, // 应用主题色
         ),
-        home: const MyHomePage(title: 'EaseMob Demo'), // 初始显示的首页
+        home: const MyHomePage(title: 'CHAT'), // 初始显示的首页
       ),
     );
   }
