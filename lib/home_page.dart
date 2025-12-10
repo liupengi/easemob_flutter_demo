@@ -11,7 +11,6 @@ import 'features/home/home_state.dart';
 import 'features/home/home_event.dart';
 import 'login_page.dart';
 
-
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
@@ -61,7 +60,7 @@ class _BottomNavigationDemoState extends State<BottomNavigationDemo> {
 
   void _navigateToLogin() {
     Navigator.of(context).pushReplacement(
-      MaterialPageRoute(builder: (context) => const MyHomePage(title: 'EaseMob Demo')),
+      MaterialPageRoute(builder: (context) => const MyHomePage(title: 'CHAT-DEMO')),
     );
   }
 
@@ -70,6 +69,10 @@ class _BottomNavigationDemoState extends State<BottomNavigationDemo> {
       SnackBar(
         content: Text(message),
         backgroundColor: Colors.red,
+        behavior: SnackBarBehavior.floating,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10),
+        ),
       ),
     );
   }
@@ -88,37 +91,111 @@ class _BottomNavigationDemoState extends State<BottomNavigationDemo> {
         
         return Scaffold(
           appBar: AppBar(
-            title: const Text('EasemobDemo'),
+            title: const Text(
+              'EaseMob 聊天',
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 20,
+              ),
+            ),
+            centerTitle: false,
+            elevation: 0,
             actions: [
               IconButton(
-                icon: const Icon(Icons.logout),
+                icon: Container(
+                  padding: const EdgeInsets.all(8),
+                  decoration: BoxDecoration(
+                    color: Colors.blue.withOpacity(0.1),
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: const Icon(
+                    Icons.search,
+                    color: Colors.blue,
+                  ),
+                ),
+                onPressed: () {
+                  // 搜索功能
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                      content: Text('搜索功能正在开发中'),
+                      backgroundColor: Colors.blue,
+                      behavior: SnackBarBehavior.floating,
+                    ),
+                  );
+                },
+              ),
+              const SizedBox(width: 8),
+              IconButton(
+                icon: Container(
+                  padding: const EdgeInsets.all(8),
+                  decoration: BoxDecoration(
+                    color: Colors.red.withOpacity(0.1),
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: const Icon(
+                    Icons.logout,
+                    color: Colors.red,
+                  ),
+                ),
                 onPressed: state is HomeLoggingOutState
                     ? null
                     : () => context.read<HomeBloc>().add(const LogoutIntent()),
               ),
+              const SizedBox(width: 16),
             ],
+            flexibleSpace: Container(
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  colors: [Colors.blue.shade400, Colors.blue.shade700],
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                ),
+              ),
+            ),
           ),
-          body: Center(
+          body: AnimatedSwitcher(
+            duration: const Duration(milliseconds: 300),
             child: _widgetOptions.elementAt(selectedIndex),
           ),
-          bottomNavigationBar: BottomNavigationBar(
-            items: const <BottomNavigationBarItem>[
-              BottomNavigationBarItem(
-                icon: Icon(Icons.message),
-                label: '消息',
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.home),
-                label: '通讯录',
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.settings),
-                label: '我的',
-              ),
-            ],
-            currentIndex: selectedIndex,
-            selectedItemColor: Colors.amber[800],
-            onTap: _onItemTapped,
+          bottomNavigationBar: Container(
+            decoration: BoxDecoration(
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.grey.withOpacity(0.3),
+                  spreadRadius: 1,
+                  blurRadius: 8,
+                  offset: const Offset(0, -2),
+                ),
+              ],
+            ),
+            child: BottomNavigationBar(
+              items: const <BottomNavigationBarItem>[
+                BottomNavigationBarItem(
+                  icon: Icon(Icons.message_outlined),
+                  activeIcon: Icon(Icons.message),
+                  label: '消息',
+                ),
+                BottomNavigationBarItem(
+                  icon: Icon(Icons.contacts_outlined),
+                  activeIcon: Icon(Icons.contacts),
+                  label: '通讯录',
+                ),
+                BottomNavigationBarItem(
+                  icon: Icon(Icons.person_outline),
+                  activeIcon: Icon(Icons.person),
+                  label: '我的',
+                ),
+              ],
+              currentIndex: selectedIndex,
+              selectedItemColor: Colors.blue,
+              unselectedItemColor: Colors.grey,
+              selectedLabelStyle: const TextStyle(fontWeight: FontWeight.w500),
+              unselectedLabelStyle: const TextStyle(fontWeight: FontWeight.normal),
+              onTap: _onItemTapped,
+              type: BottomNavigationBarType.fixed,
+              backgroundColor: Colors.white,
+              elevation: 0,
+            ),
           ),
         );
       },

@@ -78,7 +78,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue, // 应用主题色
         ),
-        home: const MyHomePage(title: 'CHAT'), // 初始显示的首页
+        home: const MyHomePage(title: 'Chat Demo'), // 初始显示的首页
       ),
     );
   }

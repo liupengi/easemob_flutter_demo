@@ -49,6 +49,10 @@ class _ConversationsViewState extends State<ConversationsView> {
       SnackBar(
         content: Text(message),
         backgroundColor: Colors.red,
+        behavior: SnackBarBehavior.floating,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10),
+        ),
       ),
     );
   }
@@ -61,17 +65,46 @@ class _ConversationsViewState extends State<ConversationsView> {
         );
       },
       child: Container(
-        color: Colors.white,
-        margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+        margin: const EdgeInsets.symmetric(vertical: 4, horizontal: 12),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(12),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.1),
+              spreadRadius: 1,
+              blurRadius: 4,
+              offset: const Offset(0, 2),
+            ),
+          ],
+        ),
         child: ListTile(
+          contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
           // 头像
           leading: Container(
-            padding: const EdgeInsets.all(5),
-            child: Image.asset(
-              _avatarAsset,
-              height: 50,
-              width: 50,
-              fit: BoxFit.cover,
+            width: 56,
+            height: 56,
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              border: Border.all(
+                color: Colors.blue.withOpacity(0.3),
+                width: 2,
+              ),
+            ),
+            child: ClipOval(
+              child: Image.asset(
+                _avatarAsset,
+                fit: BoxFit.cover,
+                errorBuilder: (context, error, stackTrace) {
+                  return Container(
+                    color: Colors.blue[100],
+                    child: Icon(
+                      Icons.person,
+                      color: Colors.blue[800],
+                    ),
+                  );
+                },
+              ),
             ),
           ),
           // 标题（会话ID/名称）
@@ -84,29 +117,82 @@ class _ConversationsViewState extends State<ConversationsView> {
             ),
           ),
           // 副标题（最新消息内容）
-          subtitle: conversationModel.lastMessage != null
-              ? Text(
-                  conversationModel.lastMessage!.content,
-                  style: const TextStyle(fontSize: 14, color: Colors.grey),
+          subtitle: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const SizedBox(height: 4),
+              Text(
+                conversationModel.lastMessage != null
+                    ? conversationModel.lastMessage!.content
+                    : '暂无消息',
+                style: TextStyle(
+                  fontSize: 14,
+                  color: Colors.grey[600],
                   overflow: TextOverflow.ellipsis,
-                )
-              : const Text('无消息', style: TextStyle(fontSize: 14)),
-          trailing: conversationModel.unreadCount > 0
-              ? Container(
-                  padding: const EdgeInsets.all(4),
-                  decoration: const BoxDecoration(
+                ),
+                maxLines: 1,
+              ),
+              const SizedBox(height: 4),
+              if (conversationModel.lastMessage != null)
+                Text(
+                  _formatTime(conversationModel.lastMessage!.timestamp),
+                  style: TextStyle(
+                    fontSize: 12,
+                    color: Colors.grey[400],
+                  ),
+                ),
+            ],
+          ),
+          trailing: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              if (conversationModel.unreadCount > 0)
+                Container(
+                  padding: const EdgeInsets.all(6),
+                  decoration: BoxDecoration(
                     color: Colors.red,
                     shape: BoxShape.circle,
                   ),
                   child: Text(
-                    '${conversationModel.unreadCount}',
-                    style: const TextStyle(color: Colors.white, fontSize: 12),
+                    '${conversationModel.unreadCount > 99 ? '99+' : conversationModel.unreadCount}',
+                    style: const TextStyle(
+                      color: Colors.white, 
+                      fontSize: 11,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 )
-              : const SizedBox.shrink(),
+              else
+                const SizedBox.shrink(),
+            ],
+          ),
         ),
       ),
     );
+  }
+
+  // 格式化时间显示
+  String _formatTime(DateTime dateTime) {
+    final DateTime now = DateTime.now();
+    
+    // 如果是今天的消息，只显示时间
+    if (now.day == dateTime.day && 
+        now.month == dateTime.month && 
+        now.year == dateTime.year) {
+      return '${dateTime.hour.toString().padLeft(2, '0')}:${dateTime.minute.toString().padLeft(2, '0')}';
+    }
+    
+    // 如果是昨天的消息，显示"昨天"
+    final DateTime yesterday = now.subtract(const Duration(days: 1));
+    if (yesterday.day == dateTime.day && 
+        yesterday.month == dateTime.month && 
+        yesterday.year == dateTime.year) {
+      return '昨天';
+    }
+    
+    // 其他情况显示日期
+    return '${dateTime.month}/${dateTime.day}';
   }
 
   // 导航到聊天页面
@@ -137,6 +223,12 @@ class _ConversationsViewState extends State<ConversationsView> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
+                  Icon(
+                    Icons.error_outline,
+                    size: 64,
+                    color: Colors.grey[400],
+                  ),
+                  const SizedBox(height: 16),
                   Text(
                     state.errorMessage,
                     style: const TextStyle(fontSize: 16, color: Colors.red),
@@ -147,6 +239,10 @@ class _ConversationsViewState extends State<ConversationsView> {
                     onPressed: () {
                       context.read<ConversationsBloc>().add(const RefreshConversationsIntent());
                     },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.blue,
+                      foregroundColor: Colors.white,
+                    ),
                     child: const Text('重试'),
                   ),
                 ],
@@ -158,15 +254,32 @@ class _ConversationsViewState extends State<ConversationsView> {
                 context.read<ConversationsBloc>().add(const RefreshConversationsIntent());
               },
               child: ListView.builder(
+                padding: const EdgeInsets.only(top: 12),
                 itemBuilder: (context, index) => _buildConversationItem(context, index, state.conversations[index]),
                 itemCount: state.conversations.length,
               ),
             );
           } else if (state is ConversationsEmptyState) {
-            return const Center(
-              child: Text(
-                '暂无会话',
-                style: TextStyle(fontSize: 18, color: Colors.grey),
+            return Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(
+                    Icons.chat_bubble_outline,
+                    size: 64,
+                    color: Colors.grey[400],
+                  ),
+                  const SizedBox(height: 16),
+                  const Text(
+                    '暂无会话',
+                    style: TextStyle(fontSize: 18, color: Colors.grey),
+                  ),
+                  const SizedBox(height: 8),
+                  const Text(
+                    '开始与好友聊天吧',
+                    style: TextStyle(fontSize: 14, color: Colors.grey),
+                  ),
+                ],
               ),
             );
           }
