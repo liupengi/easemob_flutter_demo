@@ -1,0 +1,152 @@
+import 'dart:async';
+import 'package:im_flutter_sdk/im_flutter_sdk.dart';
+import '../models/message_model.dart';
+import '../models/conversation_model.dart';
+
+/// Repository for chat operations
+class ChatRepository {
+  static final ChatRepository _instance = ChatRepository._internal();
+  factory ChatRepository() => _instance;
+  ChatRepository._internal();
+
+  final StreamController<MessageModel> _messageStreamController =
+      StreamController<MessageModel>.broadcast();
+  final StreamController<String> _conversationUpdateController =
+      StreamController<String>.broadcast();
+
+  Stream<MessageModel> get messageStream => _messageStreamController.stream;
+  Stream<String> get conversationUpdateStream =>
+      _conversationUpdateController.stream;
+
+  // 添加一个标志来确保监听器只初始化一次
+  bool _listenersInitialized = false;
+
+  /// 初始化聊天监听器
+  void initializeChatListeners() {
+    // 确保只初始化一次
+    if (_listenersInitialized) {
+      return;
+    }
+    
+    // 添加消息监听器
+    EMClient.getInstance.chatManager.addEventHandler(
+      "MVI_CHAT_HANDLER",
+      EMChatEventHandler(
+        onMessagesReceived: (messages) {
+          for (var msg in messages) {
+            print("Received message: ${msg.toString()}");
+            final messageModel = MessageModel.fromEMMessage(msg);
+            _messageStreamController.add(messageModel);
+            _conversationUpdateController.add(msg.conversationId!);
+          }
+        },
+        onConversationsUpdate: () {
+        },
+        onMessageReactionDidChange:(events){
+          print('收到了-------onMessageReactionDidChange: $events');
+
+        }
+      ),
+    );
+
+    // 添加连接监听器
+
+    EMClient.getInstance.addConnectionEventHandler(
+      "MVI_CONNECTION_HANDLER",
+      EMConnectionEventHandler(
+        onConnected: () {
+          print("Connected to EaseMob server");
+        },
+        onDisconnected: () {
+          print("Disconnected from EaseMob server");
+        },
+
+      ),
+    );
+    EMClient.getInstance.chatRoomManager.addEventHandler("identifier",
+        EMChatRoomEventHandler(
+
+        ));
+
+    
+    _listenersInitialized = true;
+  }
+
+  /// Send text message
+  Future<MessageModel> sendTextMessage(String toUserId, String content) async {
+    final msg = EMMessage.createTxtSendMessage(
+      targetId: toUserId,
+      content: content,
+      chatType: ChatType.Chat,
+    );
+
+    EMClient.getInstance.chatManager.sendMessage(msg);
+    return MessageModel.fromEMMessage(msg);
+  }
+
+  /// Load messages for a conversation
+  Future<List<MessageModel>> loadMessages(String conversationId,
+      {int count = 50}) async {
+    try {
+      final conversation = await EMClient.getInstance.chatManager
+          .getConversation(conversationId);
+      if (conversation == null) return [];
+
+      final messages =
+          await conversation.loadMessages(startMsgId: "", loadCount: count);
+      return messages?.map((msg) => MessageModel.fromEMMessage(msg)).toList() ??
+          [];
+    } catch (e) {
+      throw Exception('Failed to load messages: $e');
+    }
+  }
+
+  /// Load conversations
+  Future<List<ConversationModel>> loadConversations() async {
+    try {
+      List<EMConversation> conversations =
+          await EMClient.getInstance.chatManager.loadAllConversations();
+
+      if (conversations.isEmpty) {
+        final serverResult =
+            await EMClient.getInstance.chatManager.fetchConversationsByOptions(
+          options: ConversationFetchOptions(pageSize: 50),
+        );
+        conversations = serverResult.data;
+      }
+
+      List<ConversationModel> conversationModels = [];
+      for (var conv in conversations) {
+        final lastMessage = await conv.latestMessage();
+        final unreadCount = await conv.unreadCount();
+
+        final model = ConversationModel.fromEMConversation(conv, lastMessage)
+            .copyWith(unreadCount: unreadCount);
+        conversationModels.add(model);
+      }
+
+      return conversationModels;
+    } catch (e) {
+      throw Exception('Failed to load conversations: $e');
+    }
+  }
+
+  /// 标记会话为已读
+  Future<void> markConversationAsRead(String conversationId) async {
+    try {
+      final conversation = await EMClient.getInstance.chatManager
+          .getConversation(conversationId);
+      await conversation?.markAllMessagesAsRead();
+    } catch (e) {
+      throw Exception('Failed to mark conversation as read: $e');
+    }
+  }
+
+  /// 释放仓库
+  void dispose() {
+    EMClient.getInstance.chatManager.removeEventHandler("MVI_CHAT_HANDLER");
+    EMClient.getInstance.removeConnectionEventHandler("MVI_CONNECTION_HANDLER");
+    _messageStreamController.close();
+    _conversationUpdateController.close();
+  }
+}

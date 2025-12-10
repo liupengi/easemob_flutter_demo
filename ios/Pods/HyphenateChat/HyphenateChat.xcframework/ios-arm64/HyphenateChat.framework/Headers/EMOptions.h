@@ -42,24 +42,6 @@ typedef NS_ENUM(NSInteger, AreaCode)
 };
 
 /**
- * \~chinese
- * SDK平台框架枚举。
- *
- * \~english
- * SDK platform framework enumeration.
- */
-typedef NS_ENUM(NSUInteger, EMSDKPlatform) {
-    /** \~chinese 原生平台。 \~english Native platform.*/
-    EMSDKPlatformNative = 0,
-    /** \~chinese Flutter。 \~english Flutter platform.*/
-    EMSDKPlatformFlutter = 1,
-    /** \~chinese React Native。 \~english React Native platform.*/
-    EMSDKPlatformReactNative = 2,
-    /** \~chinese Unity。 \~english Unity platform.*/
-    EMSDKPlatformUnity = 3,
-};
-
-/**
  *  \~chinese
  *  SDK 的设置选项。
  *
@@ -470,28 +452,6 @@ typedef NS_ENUM(NSUInteger, EMSDKPlatform) {
  *  - （Default）NO：Uncopiable.
  */
 @property (nonatomic) BOOL workPathCopiable;
-
-/**
- *  \~chinese
- *  UIKit 版本号。
- *  - （默认）不设置。
- *
- *  \~english
- *  The UIKit version.
- *  - (Default) Not set.
- */
-@property (nonatomic, copy) NSString* uiKitVersion;
-
-/**
- *  \~chinese
- *  SDK 平台。
- *  - （默认）`EMSDKPlatformNative`：原生平台；
- *
- *  \~english
- *  The SDK platform.
- *  - (Default) `EMSDKPlatformNative`: Native platform;
- */
-@property (nonatomic) EMSDKPlatform platform;
 
 /**
  *  \~chinese
