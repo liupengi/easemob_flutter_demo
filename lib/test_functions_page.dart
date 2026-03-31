@@ -53,8 +53,8 @@ class _TestFunctionsPageState extends State<TestFunctionsPage> {
               text: "删除本地会话",
             ),
             TestButton(
-              onPressed: _modifyMessage,
-              text: "修改消息",
+              onPressed: _fetchChatRoomAttributes,
+              text: "根据聊天室属性 key 列表获取属性列表",
             ),
             TestButton(
               onPressed: _sendMessage,
@@ -182,7 +182,34 @@ void _modifyMessage() async {
     debugPrint('Error in modify message: $e');
   }
 }
+void _fetchChatRoomAttributes() async {
+  List<String>? keys = ["mic_0"];
+  // Record start time
+  final startTime = DateTime.now();
+  debugPrint('Fetch chat room attributes started at: $startTime');
 
+  try {
+    // Await the async SDK call to ensure we measure complete duration
+    final result = await EMClient.getInstance.chatRoomManager.fetchChatRoomAttributes(
+      roomId: "304382357864449",
+      keys: keys,
+    );
+
+    // Record end time and calculate duration on success
+    final endTime = DateTime.now();
+    final duration = endTime.difference(startTime);
+    debugPrint('Fetch chat room attributes completed at: $endTime');
+    debugPrint('Time taken: ${duration.inMilliseconds} ms');
+    debugPrint('Fetched attributes: $result');
+  } catch (e) {
+    // Record end time and calculate duration on failure
+    final endTime = DateTime.now();
+    final duration = endTime.difference(startTime);
+    debugPrint('Fetch chat room attributes failed at: $endTime');
+    debugPrint('Time taken: ${duration.inMilliseconds} ms');
+    debugPrint('Error: $e');
+  }
+}
 void _deleteLoadConversations() async {
   try {
     EMClient.getInstance.chatManager.deleteConversation("");
@@ -218,37 +245,6 @@ void _fetchHistoryMessagesByOption() async {
 }
 
 void _sendMessage() async {
-  try {
-    Map<String, dynamic> attributes = {
-      "11111": "qwer",
-      "22222": "23455"
-    };
-    
-    var msg = EMMessage.createTxtSendMessage(
-      targetId: "288428783632387",
-      content: "Test message from Flutter",
-    );
-    
-    msg.attributes = attributes;
-    msg.chatType = ChatType.GroupChat;
-    
-    EMClient.getInstance.chatManager.addMessageEvent(
-      "TEST_MESSAGE_HANDLER",
-      ChatMessageEvent(
-        onSuccess: (msgId, msg) {
-          debugPrint("Message sent: $msgId, server id: ${msg.msgId}");
-        },
-        onError: (msgId, msg, error) {
-          debugPrint("Send failed: $msgId, error: $error");
-        },
-        onProgress: (msgId, progress) {
-          debugPrint("Send progress: $msgId, progress: $progress");
-        },
-      ),
-    );
-    
-    EMClient.getInstance.chatManager.sendMessage(msg);
-  } catch (e) {
-    debugPrint('Error sending message: $e');
-  }
+ EMClient.getInstance.chatRoomManager.joinChatRoom("304382357864449");
+ _fetchChatRoomAttributes();
 }

@@ -264,6 +264,8 @@ class _ChatPageState extends State<ChatPage> {
 
 
   void _handleMessageRemoveReaction(dynamic message, String action) {
+
+
     EMClient.getInstance.chatManager.removeReaction(
       messageId: message.messageId,
       reaction: action,
