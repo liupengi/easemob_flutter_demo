@@ -669,6 +669,11 @@ typedef NS_ENUM(NSUInteger, EMMessageFetchHistoryDirection) {
  *  \~chinese
  *  撤回一条消息。
  *
+ * 对于单聊会话，只支持发送方撤回发送成功的消息。若消息过期，撤回失败。
+ *
+ * 对于群组/聊天室会话，群主/聊天室所有者和管理员可撤回其他用户发送的消息。若消息过期，发送方撤回失败，只有群主/聊天室所有者和管理员可撤回。
+ *
+ *
  *  异步方法。
  *
  *  @param aMessageId           消息 ID。
@@ -676,6 +681,11 @@ typedef NS_ENUM(NSUInteger, EMMessageFetchHistoryDirection) {
  *
  *  \~english
  *  Recalls a message.
+ *
+ *  For a one-to-one chat conversation, only the message sender can recall the message that is sent successfully. If the message expires, the recall fails.
+ *
+ * For a group/chat room conversation, except the message sender, the group/chat room owner and administrators can recall messages sent in the group/chat room. If the message expires, only the group/chat room owner and administrators can recall it.
+ *
  *
  *  This is an asynchronous method.
  *
@@ -1178,6 +1188,7 @@ typedef NS_ENUM(NSUInteger, EMMessageFetchHistoryDirection) {
              searchDirection:(EMMessageSearchDirection)aDirection
                   completion:(void (^)(NSArray<EMChatMessage *> *aMessages, EMError *aError))aCompletionBlock;
 
+
 /**
  *  \~chinese
  *  通过关键词从数据库获取消息。
@@ -1240,7 +1251,7 @@ typedef NS_ENUM(NSUInteger, EMMessageFetchHistoryDirection) {
  *
  *  This is a synchronous method and blocks the current thread.
  *
- *  @param aKeyword         The keyword for message search. If you set this parameter as `nil`, the SDK ignores this parameter when retrieving messages.
+ *  @param aKeywords         The keyword for message search. If you set this parameter as `nil`, the SDK ignores this parameter when retrieving messages.
  *  @param aTimestamp       The message timestamp threshold for loading. If you set this parameter as a negative value, the SDK loads messages from the latest.
  *  @param aCount           The number of messages to load. If you set this parameter less than 1, the SDK gets one message from the local database.
  *  @param aSender          The message sender. If you set this parameter as `nil`, the SDK ignores this parameter when retrieving messages.
@@ -1331,6 +1342,37 @@ typedef NS_ENUM(NSUInteger, EMMessageFetchHistoryDirection) {
                 searchDirection:(EMMessageSearchDirection)aDirection
                           scope:(EMMessageSearchScope)aScope
                      completion:(void (^)(NSArray<EMChatMessage *> *aMessages, EMError *aError))aCompletionBlock;
+
+/**
+ *  \~chinese
+ *  通过关键词从本地数据库中获取消息，返回会话Id及消息Id数组。
+ *   SDK 返回的消息按时间顺序排列。
+ *  @param aKeywords        搜索关键词，设为 `nil` 表示忽略该参数。
+ *  @param aTimestamp       搜索开始的 Unix 时间戳。单位为毫秒。如果该参数设置的时间戳为负数，则从最新消息向前获取。
+ *  @param aSender          消息发送方。设为 `nil` 表示忽略该参数。
+ *  @param aDirection       消息搜索方向，详见 {@link EMMessageSearchDirection}。
+ *                          - `UP`：按消息时间戳的逆序获取。
+ *                          - `DOWN`：按消息时间戳的顺序获取。
+ *  @param aScope           消息搜索范围，详见 {@link EMMessageSearchScope}。
+ *  @param aCompletionBlock 该方法完成调用的回调。如果该方法调用失败，会包含调用失败的原因。
+ *  * \~english
+ *  Loads messages with the specified keyword from the local database, returning a dictionary containing conversation IDs and message ID arrays.
+ *  The SDK returns messages in chronological order.
+ *  @param aKeywords        The keyword for message search. If you set this parameter as `nil`, the SDK ignores this parameter when retrieving messages.
+ *  @param aTimestamp       The Unix timestamp threshold for message search. The unit is millisecond. If you set this parameter as a negative value, the SDK loads messages from the latest one.
+ *  @param aSender          The sender of the message. If you set this parameter as `nil`, the SDK ignores this parameter when retrieving messages.
+ *  @param aDirection       The message search direction. See {@link EMMessageSearchDirection}.
+ *                        - `UP`: The SDK retrieves messages in the descending order of the timestamp included in them.
+ *                        - `DOWN`：The SDK retrieves messages in the ascending order of the timestamp included in them.
+ *  @param aScope           The message search scope. See {@link EMMessageSearchScope}.
+ *  @param aCompletionBlock  The completion block which contains the error code and error information if the method fails.
+ */
+- (void)loadConversationMessagesWithKeyword:(NSString*_Nullable )aKeywords
+                                  timestamp:(long long)aTimestamp
+                                   fromUser:(NSString*_Nullable )aSender
+                            searchDirection:(EMMessageSearchDirection)aDirection
+                                      scope:(EMMessageSearchScope)aScope
+                                 completion:(void (^ _Nonnull)(NSDictionary<NSString*,NSArray<NSString*> *> * _Nullable aConversationMessages, EMError * _Nullable aError))aCompletionBlock;
 
 NS_ASSUME_NONNULL_BEGIN
 /*!
@@ -1608,6 +1650,23 @@ NS_ASSUME_NONNULL_BEGIN
  *  @param completion  The completion block, which contains the number of message count in db.
  */
 - (void)getMessageCountWithCompletion:(void (^)(NSInteger count, EMError * _Nullable aError))completion;
+
+/**
+ *  \~chinese
+ *  从 SDK 本地数据库获取指定 ID 的消息，一次最多获取20条消息，返回的消息按照时间倒序排列。
+ *  @param aMessageIds      消息 ID。
+ *  @param aConversationId  消息ID所在的会话Id
+ *  @param aCompletionBlock 该方法完成调用的回调。如果该方法调用失败，会包含调用失败的原因。
+ *
+ *  \~english
+ *  Gets messages with the specified IDs from the local database. A maximum of 20 messages can be retrieved at a time, and the returned messages are sorted in reverse chronological order.
+ *  @param aMessageIds      The message IDs.
+ *  @param aConversationId    The conversationId which messages in.
+ *  @param aCompletionBlock The completion block, which contains the list of messages and the error message if the method fails.
+ */
+- (void)getMessages:(NSArray<NSString *> * _Nonnull)aMessageIds
+  withConversationId:(NSString * _Nonnull)aConversationId
+          completion:(void (^ _Nonnull)(NSArray<EMChatMessage *> * _Nullable aMessages, EMError * _Nullable aError))aCompletionBlock;
     
 NS_ASSUME_NONNULL_END
 

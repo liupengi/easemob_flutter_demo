@@ -617,7 +617,7 @@ typedef NS_ENUM(NSInteger, EMMessageSearchScope) {
  *
  *  This is a synchronous method and blocks the current thread.
  *
- *  @param aKeyword         The keywords for query. Setting it as NIL means that the SDK ignores this parameter.
+ *  @param aKeywords         The keywords for query. Setting it as NIL means that the SDK ignores this parameter.
  *  @param aTimestamp       The starting Unix timestamp for search. The unit is millisecond.
  *                          If this parameter is set as a negative value, the SDK retrieves from the current time.
  *  @param aCount           The number of messages to load each time. If you set this parameter to a value less than 1, the SDK retrieves one message.
@@ -627,7 +627,7 @@ typedef NS_ENUM(NSInteger, EMMessageSearchScope) {
  *  @result EMChatMessage  The message list.
  *
  */
-- (NSArray<EMChatMessage *> * _Nullable)loadMessagesWithKeyword:(NSString* _Nullable)aKeyword
+- (NSArray<EMChatMessage *> * _Nullable)loadMessagesWithKeyword:(NSString* _Nullable)aKeywords
                       timestamp:(long long)aTimestamp
                           count:(int)aCount
                        fromUser:(NSString* _Nullable)aSender
@@ -647,7 +647,7 @@ typedef NS_ENUM(NSInteger, EMMessageSearchScope) {
  *  \~english
  *  Loads messages with specified keyword from local database. Returning messages are sorted by receiving timestamp based on EMMessageSearchDirection. If reference timestamp is negative, load from the latest messages; if message count is negative, will be handled as count=1
  *
- *  @param aKeyword         The keywords for query. Setting it as NIL means that the SDK ignores this parameter.
+ *  @param aKeywords         The keywords for query. Setting it as NIL means that the SDK ignores this parameter.
  *  @param aTimestamp       The starting Unix timestamp for search. The unit is millisecond.
  *                          If this parameter is set as a negative value, the SDK retrieves from the current time.
  *  @param aCount           The number of messages to load each time. If you set this parameter to a value less than 1, the SDK retrieves one message.
@@ -656,7 +656,7 @@ typedef NS_ENUM(NSInteger, EMMessageSearchScope) {
  *  @param aCompletionBlock The completion block, which contains the error message if the method fails.
  *
  */
-- (void)loadMessagesWithKeyword:(NSString* _Nullable)aKeyword
+- (void)loadMessagesWithKeyword:(NSString* _Nullable)aKeywords
                       timestamp:(long long)aTimestamp
                           count:(int)aCount
                        fromUser:(NSString* _Nullable)aSender
@@ -694,10 +694,51 @@ typedef NS_ENUM(NSInteger, EMMessageSearchScope) {
  *  @param aCompletionBlock The completion block, which contains the error message if the method fails.
  *
  */
-- (void)loadMessagesWithKeyword:(NSString* _Nullable)aKeyword
+- (void)loadMessagesWithKeyword:(NSString* _Nullable)aKeywords
                       timestamp:(long long)aTimestamp
                           count:(int)aCount
                        fromUser:(NSString* _Nullable)aSender
+                searchDirection:(EMMessageSearchDirection)aDirection
+                          scope:(EMMessageSearchScope)aScope
+                     completion:(void (^ _Nullable)(NSArray<EMChatMessage *> * _Nullable aMessages, EMError * _Nullable aError))aCompletionBlock __deprecated_msg("Use -loadMessagesWithKeyword:timestamp:count:fromUsers:searchDirection:scope:completion: instead");
+
+
+
+/**
+ *  \~chinese
+ *  从本地数据库获取会话中的指定用户发送的包含特定关键词的消息。
+ *
+ *  SDK 返回的消息按时间顺序排列。
+ *
+ *  @param aKeywords        关键词。设为 `nil` 表示忽略该参数。
+ *  @param aTimestamp       搜索开始的 Unix 时间戳。单位为毫秒。如果该参数设置的时间戳为负数，则从最新消息向前获取。
+ *  @param aCount           每次获取的消息条数。如果设为小于等于 0，SDK 会获取 1 条消息。
+ *  @param senders          消息发送方id列表,  长度小于10。设为 `nil` 表示忽略该参数。
+ *  @param aDirection       消息搜索方向，详见 {@link EMMessageSearchDirection}。
+ *  @param aScope             消息搜索范围，详见 {@link EMMessageSearchScope}。
+ *  @param aCompletionBlock 该方法完成调用的回调。如果该方法调用失败，会包含调用失败的原因。
+ *
+ *  \~english
+ *  Loads messages with the specified keyword from a user in the local database.
+ *
+ *  The SDK returns messages in the chronological order.
+ *
+ *  @param aKeywords         The keyword for message search. If you set this parameter as `nil`, the SDK ignores this parameter when retrieving messages.
+ *  @param aTimestamp       The Unix timestamp threshold for message search. The unit is millisecond. If you set this parameter as a negative value, the SDK loads messages from the latest one.
+ *                          If this parameter is set as a negative value, the SDK retrieves from the current time.
+ *  @param aCount           The number of messages to load. If you set this parameter to 0 or less, the SDK gets one message from the local database.
+ *  @param senders         The senders of the messages. senders size must be less than 10.  If you set this parameter as nil, the SDK ignores this parameter when retrieving messages.
+ *  @param aDirection       The message search direction. See {@link EMMessageSearchDirection}.
+ *                          - `UP`: The SDK retrieves messages in the descending order of the timestamp included in them.
+ *                          - `DOWN`：The SDK retrieves messages in the ascending order of the timestamp included in them.
+ *  @param aScope             The message search scope. See {@link EMMessageSearchScope}.
+ *  @param aCompletionBlock The completion block, which contains the error message if the method fails.
+ *
+ */
+- (void)loadMessagesWithKeyword:(NSString* _Nullable)aKeywords
+                      timestamp:(long long)aTimestamp
+                          count:(int)aCount
+                       fromUsers:(NSArray<NSString*>* _Nullable)senders
                 searchDirection:(EMMessageSearchDirection)aDirection
                           scope:(EMMessageSearchScope)aScope
                      completion:(void (^ _Nullable)(NSArray<EMChatMessage *> * _Nullable aMessages, EMError * _Nullable aError))aCompletionBlock;
@@ -722,7 +763,7 @@ typedef NS_ENUM(NSInteger, EMMessageSearchScope) {
  *
  *  This is a synchronous method and blocks the current thread.
  *
- *  @param aKeyword         The keywords for query. Setting it as NIL means that the SDK ignores this parameter.
+ *  @param aKeywords         The keywords for query. Setting it as NIL means that the SDK ignores this parameter.
  *  @param aTimestamp       The starting Unix timestamp in the message for query. The unit is millisecond. After this parameter is set, the SDK retrieves messages, starting from the specified one, according to the message search direction.
      *                      If this parameter is set as a negative value, the SDK retrieves from the current time.
  *  @param aCount           The number of messages to load each time. If you set this parameter to a value less than 1, the SDK retrieves one message.
@@ -731,7 +772,7 @@ typedef NS_ENUM(NSInteger, EMMessageSearchScope) {
  *  @result EMChatMessage   The message list.
  *
  */
-- (NSArray<EMChatMessage *> * _Nullable)loadCustomMsgWithKeyword:(NSString*)aKeyword
+- (NSArray<EMChatMessage *> * _Nullable)loadCustomMsgWithKeyword:(NSString*)aKeywords
                        timestamp:(long long)aTimestamp
                            count:(int)aCount
                         fromUser:(NSString* _Nullable)aSender
@@ -751,7 +792,7 @@ typedef NS_ENUM(NSInteger, EMMessageSearchScope) {
  *  \~english
  *  Loads custom messages with keywords that the specified user sends in the conversation.
  *
- *  @param aKeyword         The keyword for searching the messages. Setting it as NIL means that the SDK ignores this parameter.
+ *  @param aKeywords         The keyword for searching the messages. Setting it as NIL means that the SDK ignores this parameter.
  *  @param aTimestamp       The starting Unix timestamp in the message for query. The unit is millisecond. After this parameter is set, the SDK retrieves messages, starting from the specified one, according to the message search direction.
      *                      If this parameter is set as a negative value, the SDK retrieves from the current time.
  *  @param aCount           The number of messages to load each time. If you set this parameter to a value less than 1, the SDK retrieves one message.
@@ -760,7 +801,7 @@ typedef NS_ENUM(NSInteger, EMMessageSearchScope) {
  *  @param aCompletionBlock The completion block, which contains the error message if the method fails.
  *
  */
-- (void)loadCustomMsgWithKeyword:(NSString* _Nullable)aKeyword
+- (void)loadCustomMsgWithKeyword:(NSString* _Nullable)aKeywords
                        timestamp:(long long)aTimestamp
                            count:(int)aCount
                         fromUser:(NSString* _Nullable)aSender

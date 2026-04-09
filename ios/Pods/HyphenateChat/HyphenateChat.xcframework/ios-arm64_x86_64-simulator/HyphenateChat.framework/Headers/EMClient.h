@@ -79,7 +79,7 @@ typedef NS_ENUM(NSInteger, EMServerCheckType) {
  *  \~english
  *  The ID of the user currently logged in to your chat app.
  */
-@property(nonatomic, strong, readonly) NSString * _Nullable currentUsername;
+@property(atomic, strong, readonly) NSString * _Nullable currentUsername;
 
 /**
  *  \~chinese
@@ -570,6 +570,7 @@ typedef NS_ENUM(NSInteger, EMServerCheckType) {
 - (void)loginWithUsername:(NSString *_Nonnull)aUsername
                     token:(NSString *_Nonnull)aToken
                completion:(void (^_Nullable)(NSString * _Nonnull aUsername, EMError *_Nullable aError))aCompletionBlock;
+    
 
 /**
  *  \~chinese
@@ -874,6 +875,53 @@ typedef NS_ENUM(NSInteger, EMServerCheckType) {
  */
 - (void)registerForRemoteNotificationsWithDeviceToken:(NSData *_Nonnull)aDeviceToken
                                            completion:(void (^_Nullable)(EMError *_Nullable aError))aCompletionBlock;
+
+/**
+ *  \~chinese
+ *  根据频道名称 (channelName) 获取 RTC token、token 过期时间以及即时通讯 IM 用户 ID 对应的 RTC UID。
+ *
+ *  调用该接口前需要先开通 RTC 功能。
+ *
+ *  如果 channelName 设置为 nil，会生成支持所有频道的 RTC token。
+ *
+ *  异步方法。
+ *
+ *  @param aChannelName      声网 RTC 频道名称。
+ *  @param aCompletionBlock 该方法完成调用的回调。如果该方法调用失败，会包含调用失败的原因。
+ *
+ *  \~english
+ *  Gets the Agora RTC token, token expiration time, and RTC UID matching the Agora Chat user ID according to the channel name (channelName).
+ *
+ * You must enable the Agora RTC feature before calling this API.
+ *
+ *  If the channel name is set to nil, an RTC token valid for all channels will be generated.
+ *
+ *  This is an asynchronous method.
+ *
+ *  @param aChannelName      The Agora RTC channel name.
+ *  @param aCompletionBlock  The completion block, which contains the token, expiration time, and RTC UID. The error message is included if the method fails.
+ */
+- (void)getRTCTokenWithChannel:(NSString* _Nullable)aChannelName
+                    completion:(void (^_Nonnull)(NSUInteger rtcUId,NSString * _Nullable aToken,NSInteger expiredTs, EMError *_Nullable aError))aCompletionBlock;
+
+/**
+ *  \~chinese
+ *  获取声网 RTC UID 对应的即时通讯 IM 用户 ID。
+ *
+ *  异步方法。
+ *
+ *  @param uIds      声网 Agora RTC UID 数组。
+ *  @param aCompletionBlock 该方法完成调用的回调。如果该方法调用失败，会包含调用失败的原因。
+ *
+ *  \~english
+ *  Gets the Agora Chat user IDs matching the Agora RTC UIDs.
+ *
+ * This is an asynchronous method.
+ *
+ *  @param uIds      The Agora RTC UID array.
+ *  @param aCompletionBlock  The completion block, which contains the mapping between Agora Chat user IDs and Agora RTC UIDs. The error message is included if the method fails.
+ */
+- (void)getUserIdByRTCUIds:(NSArray<NSNumber*>* _Nonnull)uIds completion:(void (^_Nullable)(NSDictionary<NSNumber*,NSString*> * _Nullable accountInfos, EMError *_Nullable aError))aCompletionBlock;
 
 /**
  *  \~chinese

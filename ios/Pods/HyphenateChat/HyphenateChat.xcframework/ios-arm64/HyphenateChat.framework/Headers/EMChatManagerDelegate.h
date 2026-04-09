@@ -51,6 +51,19 @@
 
 /**
  *  \~chinese
+ *  收到流式消息的回调。
+ *
+ *  @param aMessages  消息列表。
+ *
+ *  \~english
+ *  Occurs when the SDK receives new messages.
+ *
+ *  @param aMessages  The received stream messages. An NSArray of the <EMChatMessage> objects.
+ */
+- (void)onStreamMessagesReceived:(NSArray<EMChatMessage *> * _Nonnull)messages;
+
+/**
+ *  \~chinese
  *  收到消息的回调。
  *
  *  @param aMessages  消息列表。

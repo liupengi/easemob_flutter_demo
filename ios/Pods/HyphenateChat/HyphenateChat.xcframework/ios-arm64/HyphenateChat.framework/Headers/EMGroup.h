@@ -16,21 +16,10 @@
 
 #import "EMCommonDefs.h"
 #import "EMGroupOptions.h"
+#import "EMGroupMemberInfo.h"
 @class EMGroupSharedFile;
 
-/**
- *  \~chinese
- *  群组权限类型。
- *
- *  \~english
- *  The group permission type.
- */
-typedef NS_ENUM(NSInteger, EMGroupPermissionType) {
-    EMGroupPermissionTypeNone   = -1,    /** \~chinese 未知类型。 \~english The unknown type.*/
-    EMGroupPermissionTypeMember = 0,     /** \~chinese 普通成员。  \~english The group member.*/
-    EMGroupPermissionTypeAdmin,          /** \~chinese 群组管理员。 \~english The group admin.*/
-    EMGroupPermissionTypeOwner,          /** \~chinese 群主。 \~english The group owner.*/
-};
+
 
 /**
  *  \~chinese 
@@ -58,6 +47,15 @@ typedef NS_ENUM(NSInteger, EMGroupPermissionType) {
 *  The subject of the group. To get the value of this member, you need to call `getGroupSpecificationFromServerWithId` to get the group details first.
 */
 @property (nonatomic, copy, readonly) NSString *groupName;
+
+/**
+ *  \~chinese
+ *  群组的头像，需要先通过 `getGroupSpecificationFromServerWithId` 获取群组详情。
+ *
+ *  \~english
+ *  The avatar of the group. To get the value of this member, you need to call `getGroupSpecificationFromServerWithId` first.
+ */
+@property (nonatomic, copy, readonly) NSString *groupAvatar;
 
 /**
  *  \~chinese

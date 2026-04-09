@@ -16,7 +16,8 @@ typedef NS_ENUM(NSUInteger, EMThreadOperation) {
     EMThreadOperationCreate,
     EMThreadOperationUpdate,
     EMThreadOperationDelete,
-    EMThreadOperationUpdate_msg
+    EMThreadOperationUpdate_msg,
+    EMThreadOperationUserRemoved
 };
 
 /*!

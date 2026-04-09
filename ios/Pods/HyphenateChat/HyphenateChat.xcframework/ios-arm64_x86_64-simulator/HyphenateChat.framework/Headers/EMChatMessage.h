@@ -16,7 +16,7 @@
 
 #import "EMMessageBody.h"
 #import "EMMessageReaction.h"
-
+#import "EMStreamChunk.h"
 /**
  *  \~chinese
  *  聊天类型。
@@ -164,8 +164,8 @@ typedef NS_ENUM(NSInteger, EMMessagePinOperation) {
  *  服务器收到该消息的 Unix 时间戳，单位为毫秒。
  *
  *  \~english
- *  The Unix timestamp for the chat server receiving the message. 
- * 
+ *  The Unix timestamp for the chat server receiving the message.
+ *
  *  The unit is second.
  */
 @property (nonatomic) long long timestamp;
@@ -173,12 +173,12 @@ typedef NS_ENUM(NSInteger, EMMessagePinOperation) {
 /**
  *  \~chinese
  *  客户端发送或收到此消息的时间。
- * 
+ *
  *  单位为毫秒。
  *
  *  \~english
  *  The Unix timestamp for the local client sending or receiving the message.
- * 
+ *
  * The unit is millisecond.
  */
 @property (nonatomic) long long localTime;
@@ -207,22 +207,22 @@ typedef NS_ENUM(NSInteger, EMMessagePinOperation) {
  *  是否为在线消息：
  *  - `YES`: 在线消息。
  *  - `NO`:  离线消息。
- *  
+ *
  *  消息的在线状态在本地数据库不存储。
- * 
+ *
  * 从数据库读取或拉取的漫游消息默认值为在线。
  *
- *  \~english 
- * 
+ *  \~english
+ *
  *  Whether the message is an online message:
- *  - `YES`: online message. 
+ *  - `YES`: online message.
  *  - `NO`: offline message.
- * 
- * This message status is not stored in the local database. 
- * 
+ *
+ * This message status is not stored in the local database.
+ *
  * Messages read from the database or pulled from the server are regarded as online.
- * 
- * 
+ *
+ *
  */
 @property (nonatomic, readonly) BOOL onlineState;
 
@@ -244,13 +244,13 @@ typedef NS_ENUM(NSInteger, EMMessagePinOperation) {
 /**
  *  \~chinese
  *  是否是在子区内发送的消息：
- * 
+ *
  *  - `YES`: 是；
  *  - `NO`: 否。
  *
  *  \~english
  *  Whether this message is sent within a thread:
- * 
+ *
  *  - `YES`: Yes;
  *  - `NO`: No.
  */
@@ -261,7 +261,7 @@ typedef NS_ENUM(NSInteger, EMMessagePinOperation) {
  *  是否需要发送群组已读消息回执：
  *
  * - `YES`: 是；
- * - `NO`: 否。 
+ * - `NO`: 否。
  *
  *  \~english
  *  Whether read receipts are required for group messages.
@@ -283,24 +283,24 @@ typedef NS_ENUM(NSInteger, EMMessagePinOperation) {
 /**
  *  \~chinese
  *  是否已发送或收到消息送达回执。
- * 
+ *
  *  - `YES`: 是；
  *  - `NO`: 否。
  *
  *  对于消息发送方，该属性表示是否已收到送达回执。
- * 
+ *
  *  对于消息接收方，该属性表示是否已发送送达回执。
  *
  *  如果你将 `EMOptions` 中的 `enableDeliveryAck` 设为 `YES`，则 SDK 在收到消息后会自动发送送法回执。
  *
  *  \~english
  *  Whether the delivery receipt is sent or received:
- * 
+ *
  *  - `YES`: Yes;
  *  - `NO`: No.
 
  *  For the message sender, this attribute indicates whether the delivery receipt is received.
- * 
+ *
  *  For the message recipient, this attribute indicates whether the delivery receipt is sent.
  *
  *  If you set `enableDeliveryAck` in `EMOptions` as `YES`, the SDK automatically sends the delivery receipt after receiving a message.
@@ -387,28 +387,28 @@ typedef NS_ENUM(NSInteger, EMMessagePinOperation) {
 /**
  *  \~chinese
  *  获取消息内的 thread 概览。
- * 
+ *
  *  目前仅群组消息支持。
  *
  *  \~english
  *  Gets an overview of the thread in the message.
- * 
+ *
  *  Currently, this attribute is valid only for group messages.
  */
 
 @property (readonly) EMChatThread * _Nullable chatThread;
 /**
  *  \~chinese
- * 
+ *
  *  设置聊天室消息的到达优先级。
- * 
+ *
  *  目前，该属性仅支持聊天室消息。默认值为 `normal`，表示普通优先级。
  *
  *  \~english
- *  Sets the priority of a chat room message. 
- * 
+ *  Sets the priority of a chat room message.
+ *
  *  Currently, this attribute is valid only for chat room messages.
- * 
+ *
  *  The default value is `normal`, indicating the normal priority.
  */
 @property (nonatomic) EMChatRoomMessagePriority  priority;
@@ -467,6 +467,15 @@ typedef NS_ENUM(NSInteger, EMMessagePinOperation) {
   *
   */
 @property (nonatomic,readonly) BOOL isContentReplaced;
+/**
+ *  \~chinese
+ *  附件消息文件上传或下载的进度。
+ *  单位为百分比（0~100）。
+ *  \~english
+ *  The progress of uploading or downloading the file of the attachment message.
+ *  The unit is percentage (0~100).
+ */
+@property (nonatomic,readonly) CGFloat progress;
 
 /**
  *  \~chinese
@@ -484,6 +493,11 @@ typedef NS_ENUM(NSInteger, EMMessagePinOperation) {
  */
 @property (nonatomic,readonly)  EMMessagePinInfo* _Nullable  pinnedInfo;
 
+/**
+ * \~chinese 流式消息片段信息
+ * \~english Stream chunk information of the message.
+ */
+@property (nonatomic,readonly) EMStreamChunk * _Nullable streamChunk;
 /**
  *  \~chinese
  *  初始化消息实例。

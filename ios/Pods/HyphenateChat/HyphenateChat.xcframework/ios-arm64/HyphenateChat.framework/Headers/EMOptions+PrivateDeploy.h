@@ -73,12 +73,12 @@
 
 /**
  *  \~chinese
- *  连接chatServer时，是否启用TLS加密。默认为NO。
+ *  连接chatServer时，是否启用TLS加密，同时控制webSocketServer和chatServer。默认为NO。
  *
  *  enableDnsConfig 为 NO 时生效。只能在 {@link EMClient initializeSDKWithOptions:} 中设置，不能在程序运行过程中动态修改。
  *
  *  \~english
- *  Whether to enable TLS encryption when connecting to chatServer.The default value is NO.
+ *  Whether to enable TLS encryption when connecting to chatServer or webSocketServer.The default value is NO.
  *
  *  This property is effective only when `enableDnsConfig` is `NO`.
  *  Can only be set when initializing the SDK with  {@link EMClient initializeSDKWithOptions:} , cannot be altered in runtime
@@ -98,5 +98,29 @@
  *  Can only be set when initializing the SDK with  {@link EMClient initializeSDKWithOptions:} , cannot be altered in runtime.
  */
 @property (nonatomic, copy) NSString *dnsURL;
+
+/**
+ *  \~chinese
+ *  WebSocket 服务器地址。
+ *
+ *  enableDnsConfig 为 NO 时生效。只能在 {@link EMClient initializeSDKWithOptions:} 中设置，不能在程序运行过程中动态修改。
+ *  \~english
+ *  The WebSocket server.
+ *
+ *  This property is effective only when `enableDnsConfig` is `NO`.
+ *  Can only be set when initializing the SDK with  {@link EMClient initializeSDKWithOptions:} , cannot be altered in runtime.
+ */
+@property (nonatomic, copy) NSString* _Nullable webSocketServer;
+
+/**
+ *  \~chinese
+ *  WebSocket 服务器端口。
+ *  enableDnsConfig 为 NO 时生效。只能在 {@link EMClient initializeSDKWithOptions:} 中设置，不能在程序运行过程中动态修改。
+ *  \~english
+ *  The WebSocket server port.
+ *  This property is effective only when `enableDnsConfig` is `NO`.
+ *  Can only be set when initializing the SDK with  {@link EMClient initializeSDKWithOptions:} , cannot be altered in runtime.
+    */
+@property (nonatomic, assign) int webSocketPort;
 
 @end

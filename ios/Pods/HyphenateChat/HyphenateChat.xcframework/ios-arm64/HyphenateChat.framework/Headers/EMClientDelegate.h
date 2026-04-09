@@ -146,10 +146,12 @@ typedef NS_ENUM(NSInteger, EMConnectionState) {
 
 /**
  *  \~chinese
- *  token 即将过期
+ *  token 即将过期。
  *
  *  \~english
- *  token will expire (log in using agoraToken)
+ * The token is about to expire.
+ *
+ * This event occurs from when 20% of the validity period is left.
  */
 - (void)tokenWillExpire:(EMErrorCode)aErrorCode;
 
@@ -158,7 +160,7 @@ typedef NS_ENUM(NSInteger, EMConnectionState) {
  *  token已经过期
  *
  *  \~english
- *  token did expire (log in using agoraToken)
+ *  token did expire
  */
 - (void)tokenDidExpire:(EMErrorCode)aErrorCode;
 

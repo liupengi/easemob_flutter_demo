@@ -1,0 +1,29 @@
+{
+  "name": "iris_method_channel",
+  "version": "0.0.1",
+  "summary": "A new Flutter plugin project.",
+  "description": "A new Flutter plugin project.",
+  "homepage": "http://example.com",
+  "license": {
+    "file": "../LICENSE"
+  },
+  "authors": {
+    "Your Company": "email@example.com"
+  },
+  "source": {
+    "path": "."
+  },
+  "source_files": "iris_method_channel/Sources/**/*",
+  "public_header_files": "iris_method_channel/Sources/iris_method_channel/include/**/*.h",
+  "dependencies": {
+    "Flutter": []
+  },
+  "platforms": {
+    "ios": "9.0"
+  },
+  "libraries": "stdc++",
+  "pod_target_xcconfig": {
+    "DEFINES_MODULE": "YES",
+    "EXCLUDED_ARCHS[sdk=iphonesimulator*]": "i386"
+  }
+}

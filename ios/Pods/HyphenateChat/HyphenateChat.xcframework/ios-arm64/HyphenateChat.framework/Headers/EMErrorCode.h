@@ -98,6 +98,8 @@ typedef NS_ENUM(NSInteger, EMErrorCode) {
     EMErrorMessageCurrentLimiting,           /** \~chinese 消息被限流，发送失败。 \~english  The message sending failure by the current limiting. */
     EMErrorMessageSizeLimit,                 /** \~chinese 消息体太大，发送失败。 \~english  The message sending failure because the body is too large. */
     EMErrorEditFailed,                      /** \~chinese 编辑消息失败。 \~english  The message edit failed. */
+    EMErrorStreamIntervalTimeout,    /** \~chinese 流式消息分片发送超时。 \~english The chunk of stream message sending interval timeout.*/
+    EMErrorMessageStreamTimeout,    /** \~chinese 流式消息发送超时。 \~english The  stream message sending timeout.*/
     
     EMErrorGroupInvalidId = 600,             /** \~chinese 群组 ID 异常。 \~english The group ID is invalid. */
     EMErrorGroupAlreadyJoined,               /** \~chinese 用户已加入该群组。 \~english The user is already in the group. */

@@ -16,9 +16,19 @@ public final class GeneratedPluginRegistrant {
   private static final String TAG = "GeneratedPluginRegistrant";
   public static void registerWith(@NonNull FlutterEngine flutterEngine) {
     try {
+      flutterEngine.getPlugins().add(new io.agora.agora_rtc_ng.AgoraRtcNgPlugin());
+    } catch (Exception e) {
+      Log.e(TAG, "Error registering plugin agora_rtc_engine, io.agora.agora_rtc_ng.AgoraRtcNgPlugin", e);
+    }
+    try {
       flutterEngine.getPlugins().add(new com.easemob.im_flutter_sdk.ImFlutterSdkPlugin());
     } catch (Exception e) {
       Log.e(TAG, "Error registering plugin im_flutter_sdk_android, com.easemob.im_flutter_sdk.ImFlutterSdkPlugin", e);
+    }
+    try {
+      flutterEngine.getPlugins().add(new com.agora.iris_method_channel.IrisMethodChannelPlugin());
+    } catch (Exception e) {
+      Log.e(TAG, "Error registering plugin iris_method_channel, com.agora.iris_method_channel.IrisMethodChannelPlugin", e);
     }
   }
 }
